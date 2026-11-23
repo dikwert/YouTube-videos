@@ -1,0 +1,15 @@
+{
+  "model": "eleven_multilingual_v2",
+  "format": "mp3_44100_128",
+  "note": "API key comes from the environment's saved credential; the proxy injects it. Never add it here.",
+  "roles": {
+    "narrator": {"voice": "Callum - Husky Trickster", "id": "N2lVS1w4EtoT3dr4eOWO", "settings": {"stability": 0.40, "similarity_boost": 0.80, "style": 0.30, "use_speaker_boost": true}, "filter": "none"},
+    "mason": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.40, "similarity_boost": 0.80, "style": 0.45, "use_speaker_boost": true}, "filter": "none"},
+    "mason_scared": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.25, "similarity_boost": 0.80, "style": 0.60, "use_speaker_boost": true}, "filter": "none"},
+    "gps": {"voice": "Sarah - Mature, Reassuring, Confident", "id": "EXAVITQu4vr4xnSDxMaL", "settings": {"stability": 0.85, "similarity_boost": 0.80, "style": 0.0, "use_speaker_boost": true}, "filter": "radio"},
+    "future": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.25, "similarity_boost": 0.80, "style": 0.60, "use_speaker_boost": true}, "filter": "tape"},
+    "voice": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.30, "similarity_boost": 0.80, "style": 0.50, "use_speaker_boost": true}, "filter": "echo"},
+    "truck": {"voice": "Brian - Deep, Resonant and Comforting", "id": "nPczCjzI2devNBz1zQrb", "settings": {"stability": 0.50, "similarity_boost": 0.80, "style": 0.20, "use_speaker_boost": true}, "filter": "none"},
+    "backup_narrator": {"voice": "Brian - Deep, Resonant and Comforting", "id": "nPczCjzI2devNBz1zQrb", "settings": {"stability": 0.40, "similarity_boost": 0.80, "style": 0.30, "use_speaker_boost": true}, "filter": "none"}
+  }
+}
