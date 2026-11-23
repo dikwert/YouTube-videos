@@ -29,15 +29,16 @@ for (const n of [1, 2, 3, 4, 5]) {
   const part = data[String(n)];
   const lines = [
     `HIS GPS KNEW HIS NAME - PART ${n}: ${TITLE[n]}`,
-    'Voice: "Oleg - calm, natural, clear" (ElevenLabs), voice ID MWyJiWDobXN8FX3CJTdE, model Multilingual v2',
-    'Read each line as one phrase, 3-4 words per line. Blank lines are pauses. Speaker tags are for the performer, not for the voice.',
+    'Cast (ElevenLabs, model eleven_v3): narrator = Callum (N2lVS1w4EtoT3dr4eOWO); Mason and his recording = Liam (TX3LPaxmHKxFdv7VOQHJ); GPS = Sarah (EXAVITQu4vr4xnSDxMaL, radio filter); truck driver = Brian (nPczCjzI2devNBz1zQrb).',
+    'Lines are phrases of 3-4 words. Blank lines are pauses. Bracketed tags such as [whispers] are performance notes, not spoken words.',
     '',
   ];
   let last = 0;
   for (const l of part.lines) {
     if (l.s - last > 1.2 && last > 0) lines.push('');
     const tag = TAG[l.who] ?? '';
-    phrases(l.t).forEach((p, i) => lines.push(i === 0 ? `${tag}${p}` : p));
+    const note = l.tag ? `${l.tag} ` : '';
+    phrases(l.t).forEach((p, i) => lines.push(i === 0 ? `${tag}${note}${p}` : p));
     last = l.e;
   }
   const file = path.join(OUT, `part${n}_voiceover.txt`);

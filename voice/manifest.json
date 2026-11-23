@@ -1,0 +1,813 @@
+{
+  "1": [
+    {
+      "idx": 1,
+      "who": "mason",
+      "role": "mason",
+      "start": 0.9,
+      "end": 2.99,
+      "take": "01_mason_t1.mp3",
+      "text": "Okay, this jungle road looks legit."
+    },
+    {
+      "idx": 2,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 3.3,
+      "end": 5.55,
+      "take": "02_narrator_t1.mp3",
+      "text": "Mason thought he knew this road."
+    },
+    {
+      "idx": 3,
+      "who": "mason",
+      "role": "mason",
+      "start": 6.4,
+      "end": 8.41,
+      "take": "03_mason_t1.mp3",
+      "text": "Hey, it's Mason. Shortcut time!"
+    },
+    {
+      "idx": 4,
+      "who": "mason",
+      "role": "mason",
+      "start": 8.9,
+      "end": 10.34,
+      "take": "04_mason_t1.mp3",
+      "text": "My GPS knows the way."
+    },
+    {
+      "idx": 5,
+      "who": "gps",
+      "role": "gps",
+      "start": 11.6,
+      "end": 13.01,
+      "take": "05_gps_t1.mp3",
+      "text": "Turn left."
+    },
+    {
+      "idx": 6,
+      "who": "mason",
+      "role": "mason",
+      "start": 15.2,
+      "end": 16.95,
+      "take": "06_mason_t2.mp3",
+      "text": "Huh. Smaller road."
+    },
+    {
+      "idx": 7,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 17.5,
+      "end": 19.59,
+      "take": "07_narrator_t1.mp3",
+      "text": "Every turn felt wrong."
+    },
+    {
+      "idx": 8,
+      "who": "mason",
+      "role": "mason",
+      "start": 19.74,
+      "end": 21.65,
+      "take": "08_mason_t1.mp3",
+      "text": "Whoa! Branches everywhere!"
+    },
+    {
+      "idx": 9,
+      "who": "gps",
+      "role": "gps",
+      "start": 23.6,
+      "end": 25.4,
+      "take": "09_gps_t1.mp3",
+      "text": "Turn left."
+    },
+    {
+      "idx": 10,
+      "who": "mason",
+      "role": "mason",
+      "start": 25.55,
+      "end": 27.07,
+      "take": "10_mason_t1.mp3",
+      "text": "Why is the map spiraling?"
+    },
+    {
+      "idx": 11,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 27.6,
+      "end": 29.43,
+      "take": "11_mason_scared_t2.mp3",
+      "text": "No, no, no. Come on!"
+    },
+    {
+      "idx": 12,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 29.58,
+      "end": 31.41,
+      "take": "12_narrator_t1.mp3",
+      "text": "Then the screen went quiet."
+    },
+    {
+      "idx": 13,
+      "who": "gps",
+      "role": "gps",
+      "start": 31.56,
+      "end": 32.87,
+      "take": "13_gps_t1.mp3",
+      "text": "You have arrived."
+    },
+    {
+      "idx": 14,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 33.6,
+      "end": 34.33,
+      "take": "14_mason_scared_t1.mp3",
+      "text": "Is that the temple?"
+    },
+    {
+      "idx": 15,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 35.2,
+      "end": 38.88,
+      "take": "15_narrator_t1.mp3",
+      "text": "The temple was real. And waiting."
+    },
+    {
+      "idx": 16,
+      "who": "mason",
+      "role": "mason",
+      "start": 39.03,
+      "end": 41.2,
+      "take": "16_mason_t1.mp3",
+      "text": "Turn it off. Turn it off."
+    },
+    {
+      "idx": 17,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 41.35,
+      "end": 43.52,
+      "take": "17_narrator_t1.mp3",
+      "text": "Mason reached for the power button."
+    },
+    {
+      "idx": 18,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 43.67,
+      "end": 45.68,
+      "take": "18_narrator_t2.mp3",
+      "text": "The screen flickered green."
+    },
+    {
+      "idx": 19,
+      "who": "gps",
+      "role": "gps",
+      "start": 47.4,
+      "end": 48.71,
+      "take": "19_gps_t2.mp3",
+      "text": "Welcome back, Mason."
+    },
+    {
+      "idx": 20,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 50.4,
+      "end": 51.99,
+      "take": "20_mason_scared_t1.mp3",
+      "text": "It knows my name."
+    },
+    {
+      "idx": 21,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 53.2,
+      "end": 55.6,
+      "take": "21_narrator_t2.mp3",
+      "text": "Some maps don't lead you home."
+    }
+  ],
+  "2": [
+    {
+      "idx": 1,
+      "who": "mason",
+      "role": "mason",
+      "start": 0.9,
+      "end": 2.99,
+      "take": "01_mason_t2.mp3",
+      "text": "Okay. Flashlight. Don't be dumb."
+    },
+    {
+      "idx": 2,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 3.4,
+      "end": 5.96,
+      "take": "02_narrator_t1.mp3",
+      "text": "The temple had been waiting for years."
+    },
+    {
+      "idx": 3,
+      "who": "mason",
+      "role": "mason",
+      "start": 6.8,
+      "end": 8.32,
+      "take": "03_mason_t2.mp3",
+      "text": "Why is it so cold?"
+    },
+    {
+      "idx": 4,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 9.5,
+      "end": 10.94,
+      "take": "04_mason_scared_t1.mp3",
+      "text": "Hold on. Is that..."
+    },
+    {
+      "idx": 5,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 12.8,
+      "end": 14.63,
+      "take": "05_mason_scared_t2.mp3",
+      "text": "My jeep? In a temple?"
+    },
+    {
+      "idx": 6,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 15.4,
+      "end": 17.8,
+      "take": "06_narrator_t2.mp3",
+      "text": "Under the moss, it was his jeep."
+    },
+    {
+      "idx": 7,
+      "who": "mason",
+      "role": "mason",
+      "start": 18.8,
+      "end": 21.12,
+      "take": "07_mason_t2.mp3",
+      "text": "Rusted solid. Roots everywhere."
+    },
+    {
+      "idx": 8,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 21.27,
+      "end": 23.67,
+      "take": "08_narrator_t2.mp3",
+      "text": "Mason didn't remember driving here."
+    },
+    {
+      "idx": 9,
+      "who": "mason",
+      "role": "mason",
+      "start": 24.6,
+      "end": 25.8,
+      "take": "09_mason_t1.mp3",
+      "text": "That's my jerrycan."
+    },
+    {
+      "idx": 10,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 29.6,
+      "end": 32,
+      "take": "10_mason_scared_t2.mp3",
+      "text": "Hold on... the GPS is on?"
+    },
+    {
+      "idx": 11,
+      "who": "gps",
+      "role": "gps",
+      "start": 32.15,
+      "end": 33.06,
+      "take": "11_gps_t1.mp3",
+      "text": "Turn left."
+    },
+    {
+      "idx": 12,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 33.4,
+      "end": 35.65,
+      "take": "12_narrator_t1.mp3",
+      "text": "The screen had one instruction."
+    },
+    {
+      "idx": 13,
+      "who": "mason",
+      "role": "mason",
+      "start": 35.8,
+      "end": 37.32,
+      "take": "13_mason_t2.mp3",
+      "text": "My old action camera?"
+    },
+    {
+      "idx": 14,
+      "who": "mason",
+      "role": "mason",
+      "start": 38,
+      "end": 39.36,
+      "take": "14_mason_t2.mp3",
+      "text": "I never left this here."
+    },
+    {
+      "idx": 15,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 41.6,
+      "end": 43.12,
+      "take": "15_mason_scared_t2.mp3",
+      "text": "Did I? I don't remember."
+    },
+    {
+      "idx": 16,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 44.4,
+      "end": 45.99,
+      "take": "16_mason_scared_t2.mp3",
+      "text": "I don't remember any of this."
+    },
+    {
+      "idx": 17,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 47.6,
+      "end": 49.92,
+      "take": "17_narrator_t1.mp3",
+      "text": "Nobody had been here for years."
+    },
+    {
+      "idx": 18,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 51.8,
+      "end": 54.12,
+      "take": "18_narrator_t2.mp3",
+      "text": "But the camera was still recording."
+    }
+  ],
+  "3": [
+    {
+      "idx": 1,
+      "who": "mason",
+      "role": "mason",
+      "start": 1.2,
+      "end": 2.24,
+      "take": "01_mason_t1.mp3",
+      "text": "Okay. Play it."
+    },
+    {
+      "idx": 2,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 3.6,
+      "end": 6,
+      "take": "02_narrator_t1.mp3",
+      "text": "The footage was found in the temple."
+    },
+    {
+      "idx": 3,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 6.15,
+      "end": 7.67,
+      "take": "03_mason_scared_t2.mp3",
+      "text": "Is that... me?"
+    },
+    {
+      "idx": 4,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 9.4,
+      "end": 12.12,
+      "take": "04_narrator_t1.mp3",
+      "text": "The man on the screen was Mason."
+    },
+    {
+      "idx": 5,
+      "who": "future",
+      "role": "future",
+      "start": 13.4,
+      "end": 14.81,
+      "take": "05_future_t1.mp3",
+      "text": "Don't trust the GPS."
+    },
+    {
+      "idx": 6,
+      "who": "future",
+      "role": "future",
+      "start": 16.2,
+      "end": 17.19,
+      "take": "06_future_t2.mp3",
+      "text": "Don't turn left."
+    },
+    {
+      "idx": 7,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 19.4,
+      "end": 22.27,
+      "take": "07_narrator_t2.mp3",
+      "text": "The date on the screen made no sense."
+    },
+    {
+      "idx": 8,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 22.42,
+      "end": 24.17,
+      "take": "08_mason_scared_t2.mp3",
+      "text": "Tomorrow? That's tomorrow."
+    },
+    {
+      "idx": 9,
+      "who": "future",
+      "role": "future",
+      "start": 27.2,
+      "end": 30.52,
+      "take": "09_future_t1.mp3",
+      "text": "Behind me... the eyes are opening."
+    },
+    {
+      "idx": 10,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 32,
+      "end": 34.48,
+      "take": "10_narrator_t2.mp3",
+      "text": "Nothing moved for twelve seconds."
+    },
+    {
+      "idx": 11,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 36.6,
+      "end": 38.85,
+      "take": "11_narrator_t2.mp3",
+      "text": "He was alone in the dark."
+    },
+    {
+      "idx": 12,
+      "who": "voice",
+      "role": "voice",
+      "start": 45.6,
+      "end": 47.85,
+      "take": "12_voice_t1.mp3",
+      "text": "Mason... turn left."
+    },
+    {
+      "idx": 13,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 48.2,
+      "end": 50.03,
+      "take": "13_narrator_t1.mp3",
+      "text": "He turned toward the voice."
+    },
+    {
+      "idx": 14,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 53,
+      "end": 55.01,
+      "take": "14_narrator_t1.mp3",
+      "text": "Then the recorder went silent."
+    }
+  ],
+  "4": [
+    {
+      "idx": 1,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 0.9,
+      "end": 2.57,
+      "take": "01_mason_scared_t2.mp3",
+      "text": "Run. Run, run, run."
+    },
+    {
+      "idx": 2,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 3.8,
+      "end": 6.12,
+      "take": "02_narrator_t1.mp3",
+      "text": "The map showed nothing down here."
+    },
+    {
+      "idx": 3,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 6.6,
+      "end": 7.96,
+      "take": "03_mason_scared_t1.mp3",
+      "text": "The walls are moving!"
+    },
+    {
+      "idx": 4,
+      "who": "mason",
+      "role": "mason",
+      "start": 9,
+      "end": 10.28,
+      "take": "04_mason_t2.mp3",
+      "text": "They're following the arrow."
+    },
+    {
+      "idx": 5,
+      "who": "mason",
+      "role": "mason",
+      "start": 12.8,
+      "end": 15.12,
+      "take": "05_mason_t1.mp3",
+      "text": "Empty. Every single one."
+    },
+    {
+      "idx": 6,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 15.4,
+      "end": 18.04,
+      "take": "06_narrator_t1.mp3",
+      "text": "The carvings were older than the map."
+    },
+    {
+      "idx": 7,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 18.8,
+      "end": 19.92,
+      "take": "07_mason_scared_t1.mp3",
+      "text": "They're watching me."
+    },
+    {
+      "idx": 8,
+      "who": "mason",
+      "role": "mason",
+      "start": 22.8,
+      "end": 24.32,
+      "take": "08_mason_t1.mp3",
+      "text": "My GPS just froze."
+    },
+    {
+      "idx": 9,
+      "who": "gps",
+      "role": "gps",
+      "start": 24.6,
+      "end": 26.01,
+      "take": "09_gps_t1.mp3",
+      "text": "Recalculating..."
+    },
+    {
+      "idx": 10,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 27,
+      "end": 29.09,
+      "take": "10_narrator_t1.mp3",
+      "text": "Every tunnel looked the same."
+    },
+    {
+      "idx": 11,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 29.8,
+      "end": 31.89,
+      "take": "11_mason_scared_t2.mp3",
+      "text": "Left or right? Left or right?"
+    },
+    {
+      "idx": 12,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 34.4,
+      "end": 36.88,
+      "take": "12_narrator_t1.mp3",
+      "text": "His breath echoed off the stone."
+    },
+    {
+      "idx": 13,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 37.6,
+      "end": 39.35,
+      "take": "13_mason_scared_t1.mp3",
+      "text": "If I stop, I'm dead."
+    },
+    {
+      "idx": 14,
+      "who": "gps",
+      "role": "gps",
+      "start": 41,
+      "end": 43.35,
+      "take": "14_gps_t2.mp3",
+      "text": "Turn left, Mason. You always do."
+    },
+    {
+      "idx": 15,
+      "who": "mason",
+      "role": "mason",
+      "start": 44.6,
+      "end": 46.12,
+      "take": "15_mason_t2.mp3",
+      "text": "Both tunnels look wrong."
+    },
+    {
+      "idx": 16,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 46.8,
+      "end": 49.6,
+      "take": "16_narrator_t1.mp3",
+      "text": "Two tunnels. One choice."
+    }
+  ],
+  "5": [
+    {
+      "idx": 1,
+      "who": "mason",
+      "role": "mason",
+      "start": 1,
+      "end": 2.28,
+      "take": "01_mason_t1.mp3",
+      "text": "Right. I'm going right."
+    },
+    {
+      "idx": 2,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 3.6,
+      "end": 6.24,
+      "take": "02_narrator_t1.mp3",
+      "text": "The temple did not want him to leave."
+    },
+    {
+      "idx": 3,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 6.8,
+      "end": 8.63,
+      "take": "03_mason_scared_t1.mp3",
+      "text": "Get off! Get off me!"
+    },
+    {
+      "idx": 4,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 9.4,
+      "end": 11.15,
+      "take": "04_mason_scared_t1.mp3",
+      "text": "There's blood on my arm."
+    },
+    {
+      "idx": 5,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 13,
+      "end": 14.59,
+      "take": "05_mason_scared_t2.mp3",
+      "text": "Shut up! Shut up!"
+    },
+    {
+      "idx": 6,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 15.2,
+      "end": 17.11,
+      "take": "06_narrator_t1.mp3",
+      "text": "The stone began to shake."
+    },
+    {
+      "idx": 7,
+      "who": "voice",
+      "role": "voice",
+      "start": 17.8,
+      "end": 20.12,
+      "take": "07_voice_t1.mp3",
+      "text": "Mason... turn left."
+    },
+    {
+      "idx": 8,
+      "who": "mason",
+      "role": "mason_scared",
+      "start": 20.27,
+      "end": 22.18,
+      "take": "08_mason_scared_t1.mp3",
+      "text": "Not listening. Not listening."
+    },
+    {
+      "idx": 9,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 22.33,
+      "end": 24.97,
+      "take": "09_narrator_t1.mp3",
+      "text": "Real light. Real air."
+    },
+    {
+      "idx": 10,
+      "who": "mason",
+      "role": "mason",
+      "start": 25.12,
+      "end": 26.87,
+      "take": "10_mason_t2.mp3",
+      "text": "A road? Sunlight!"
+    },
+    {
+      "idx": 11,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 27.02,
+      "end": 30.62,
+      "take": "11_narrator_t2.mp3",
+      "text": "A road. A truck. A stranger."
+    },
+    {
+      "idx": 12,
+      "who": "truck",
+      "role": "truck",
+      "start": 30.77,
+      "end": 32.52,
+      "take": "12_truck_t2.mp3",
+      "text": "Lost, buddy? Hop in."
+    },
+    {
+      "idx": 13,
+      "who": "mason",
+      "role": "mason",
+      "start": 33.4,
+      "end": 34.92,
+      "take": "13_mason_t1.mp3",
+      "text": "Oh, thank you. Thank you."
+    },
+    {
+      "idx": 14,
+      "who": "truck",
+      "role": "truck",
+      "start": 36.6,
+      "end": 37.72,
+      "take": "14_truck_t2.mp3",
+      "text": "Where you headed?"
+    },
+    {
+      "idx": 15,
+      "who": "mason",
+      "role": "mason",
+      "start": 38.9,
+      "end": 40.02,
+      "take": "15_mason_t1.mp3",
+      "text": "Anywhere but there."
+    },
+    {
+      "idx": 16,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 41.4,
+      "end": 43.49,
+      "take": "16_narrator_t1.mp3",
+      "text": "The driver didn't ask again."
+    },
+    {
+      "idx": 17,
+      "who": "mason",
+      "role": "mason",
+      "start": 44.6,
+      "end": 46.19,
+      "take": "17_mason_t1.mp3",
+      "text": "My GPS is glowing?"
+    },
+    {
+      "idx": 18,
+      "who": "gps",
+      "role": "gps",
+      "start": 47.4,
+      "end": 48.47,
+      "take": "18_gps_t1.mp3",
+      "text": "Welcome back, Mason."
+    },
+    {
+      "idx": 19,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 49.8,
+      "end": 51.55,
+      "take": "19_narrator_t2.mp3",
+      "text": "Mason didn't move."
+    },
+    {
+      "idx": 20,
+      "who": "narrator",
+      "role": "narrator",
+      "start": 52.6,
+      "end": 55.16,
+      "take": "20_narrator_t2.mp3",
+      "text": "Some places never let go."
+    }
+  ]
+}

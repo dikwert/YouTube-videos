@@ -1,10 +1,9 @@
 {
-  "_note": "Seconds from the start of each 60 s part. 'who': narrator (Callum), mason (Liam), future (Liam, recording), voice (Liam, from the dark), gps (Sarah), truck (Brian). 'scared' = fearful delivery. 'tag' = optional eleven_v3 tag for the voice only (never shown in captions). 'highlights': at most 4 per part, at least 15 s apart.",
   "1": {
     "lines": [
       {
         "s": 0.9,
-        "e": 3.0,
+        "e": 2.99,
         "t": "Okay, this jungle road looks legit.",
         "who": "mason",
         "scared": false,
@@ -12,13 +11,13 @@
       },
       {
         "s": 3.3,
-        "e": 5.5,
+        "e": 5.55,
         "t": "Mason thought he knew this road.",
         "who": "narrator"
       },
       {
         "s": 6.4,
-        "e": 8.4,
+        "e": 8.41,
         "t": "Hey, it's Mason. Shortcut time!",
         "who": "mason",
         "scared": false,
@@ -26,7 +25,7 @@
       },
       {
         "s": 8.9,
-        "e": 10.8,
+        "e": 10.34,
         "t": "My GPS knows the way.",
         "who": "mason",
         "scared": false,
@@ -34,7 +33,7 @@
       },
       {
         "s": 11.6,
-        "e": 12.6,
+        "e": 13.01,
         "t": "Turn left.",
         "who": "gps",
         "scared": false,
@@ -42,7 +41,7 @@
       },
       {
         "s": 15.2,
-        "e": 17.0,
+        "e": 16.95,
         "t": "Huh. Smaller road.",
         "who": "mason",
         "scared": false,
@@ -50,13 +49,13 @@
       },
       {
         "s": 17.5,
-        "e": 19.0,
+        "e": 19.59,
         "t": "Every turn felt wrong.",
         "who": "narrator"
       },
       {
-        "s": 19.4,
-        "e": 21.0,
+        "s": 19.74,
+        "e": 21.65,
         "t": "Whoa! Branches everywhere!",
         "who": "mason",
         "scared": false,
@@ -64,15 +63,15 @@
       },
       {
         "s": 23.6,
-        "e": 24.6,
+        "e": 25.4,
         "t": "Turn left.",
         "who": "gps",
         "scared": false,
         "tag": ""
       },
       {
-        "s": 25.1,
-        "e": 26.9,
+        "s": 25.55,
+        "e": 27.07,
         "t": "Why is the map spiraling?",
         "who": "mason",
         "scared": false,
@@ -80,21 +79,21 @@
       },
       {
         "s": 27.6,
-        "e": 28.9,
+        "e": 29.43,
         "t": "No, no, no. Come on!",
         "who": "mason",
         "scared": true,
         "tag": ""
       },
       {
-        "s": 29.2,
-        "e": 31.0,
+        "s": 29.58,
+        "e": 31.41,
         "t": "Then the screen went quiet.",
         "who": "narrator"
       },
       {
-        "s": 31.2,
-        "e": 32.8,
+        "s": 31.56,
+        "e": 32.87,
         "t": "You have arrived.",
         "who": "gps",
         "scared": false,
@@ -102,7 +101,7 @@
       },
       {
         "s": 33.6,
-        "e": 34.9,
+        "e": 34.33,
         "t": "Is that the temple?",
         "who": "mason",
         "scared": true,
@@ -110,33 +109,33 @@
       },
       {
         "s": 35.2,
-        "e": 37.4,
+        "e": 38.88,
         "t": "The temple was real. And waiting.",
         "who": "narrator"
       },
       {
-        "s": 37.8,
-        "e": 39.4,
+        "s": 39.03,
+        "e": 41.2,
         "t": "Turn it off. Turn it off.",
         "who": "mason",
         "scared": false,
         "tag": ""
       },
       {
-        "s": 40.2,
-        "e": 42.4,
+        "s": 41.35,
+        "e": 43.52,
         "t": "Mason reached for the power button.",
         "who": "narrator"
       },
       {
-        "s": 43.0,
-        "e": 45.0,
+        "s": 43.67,
+        "e": 45.68,
         "t": "The screen flickered green.",
         "who": "narrator"
       },
       {
         "s": 47.4,
-        "e": 49.2,
+        "e": 48.71,
         "t": "Welcome back, Mason.",
         "who": "gps",
         "scared": false,
@@ -144,7 +143,7 @@
       },
       {
         "s": 50.4,
-        "e": 52.0,
+        "e": 51.99,
         "t": "It knows my name.",
         "who": "mason",
         "scared": true,
@@ -161,12 +160,12 @@
       {
         "word": "GPS",
         "kind": "mystery",
-        "at": 9.3
+        "at": 9.62
       },
       {
         "word": "temple",
         "kind": "mystery",
-        "at": 34.2
+        "at": 33.97
       },
       {
         "word": "name",
@@ -179,7 +178,7 @@
     "lines": [
       {
         "s": 0.9,
-        "e": 2.8,
+        "e": 2.99,
         "t": "Okay. Flashlight. Don't be dumb.",
         "who": "mason",
         "scared": false,
@@ -187,13 +186,13 @@
       },
       {
         "s": 3.4,
-        "e": 5.6,
+        "e": 5.96,
         "t": "The temple had been waiting for years.",
         "who": "narrator"
       },
       {
         "s": 6.8,
-        "e": 8.8,
+        "e": 8.32,
         "t": "Why is it so cold?",
         "who": "mason",
         "scared": false,
@@ -201,7 +200,7 @@
       },
       {
         "s": 9.5,
-        "e": 10.8,
+        "e": 10.94,
         "t": "Hold on. Is that...",
         "who": "mason",
         "scared": true,
@@ -209,7 +208,7 @@
       },
       {
         "s": 12.8,
-        "e": 14.6,
+        "e": 14.63,
         "t": "My jeep? In a temple?",
         "who": "mason",
         "scared": true,
@@ -223,21 +222,21 @@
       },
       {
         "s": 18.8,
-        "e": 20.8,
+        "e": 21.12,
         "t": "Rusted solid. Roots everywhere.",
         "who": "mason",
         "scared": false,
         "tag": ""
       },
       {
-        "s": 21.2,
-        "e": 23.6,
+        "s": 21.27,
+        "e": 23.67,
         "t": "Mason didn't remember driving here.",
         "who": "narrator"
       },
       {
         "s": 24.6,
-        "e": 26.0,
+        "e": 25.8,
         "t": "That's my jerrycan.",
         "who": "mason",
         "scared": false,
@@ -245,15 +244,15 @@
       },
       {
         "s": 29.6,
-        "e": 31.2,
+        "e": 32,
         "t": "Hold on... the GPS is on?",
         "who": "mason",
         "scared": true,
         "tag": ""
       },
       {
-        "s": 31.8,
-        "e": 33.0,
+        "s": 32.15,
+        "e": 33.06,
         "t": "Turn left.",
         "who": "gps",
         "scared": false,
@@ -261,21 +260,21 @@
       },
       {
         "s": 33.4,
-        "e": 35.2,
+        "e": 35.65,
         "t": "The screen had one instruction.",
         "who": "narrator"
       },
       {
-        "s": 35.6,
-        "e": 37.2,
+        "s": 35.8,
+        "e": 37.32,
         "t": "My old action camera?",
         "who": "mason",
         "scared": false,
         "tag": ""
       },
       {
-        "s": 38.0,
-        "e": 40.2,
+        "s": 38,
+        "e": 39.36,
         "t": "I never left this here.",
         "who": "mason",
         "scared": false,
@@ -283,7 +282,7 @@
       },
       {
         "s": 41.6,
-        "e": 43.6,
+        "e": 43.12,
         "t": "Did I? I don't remember.",
         "who": "mason",
         "scared": true,
@@ -291,7 +290,7 @@
       },
       {
         "s": 44.4,
-        "e": 47.0,
+        "e": 45.99,
         "t": "I don't remember any of this.",
         "who": "mason",
         "scared": true,
@@ -299,13 +298,13 @@
       },
       {
         "s": 47.6,
-        "e": 49.8,
+        "e": 49.92,
         "t": "Nobody had been here for years.",
         "who": "narrator"
       },
       {
         "s": 51.8,
-        "e": 54.8,
+        "e": 54.12,
         "t": "But the camera was still recording.",
         "who": "narrator"
       }
@@ -314,12 +313,12 @@
       {
         "word": "temple",
         "kind": "mystery",
-        "at": 13.4
+        "at": 4.68
       },
       {
         "word": "GPS",
         "kind": "mystery",
-        "at": 30.4
+        "at": 30.8
       }
     ]
   },
@@ -327,7 +326,7 @@
     "lines": [
       {
         "s": 1.2,
-        "e": 3.2,
+        "e": 2.24,
         "t": "Okay. Play it.",
         "who": "mason",
         "scared": false,
@@ -335,13 +334,13 @@
       },
       {
         "s": 3.6,
-        "e": 5.4,
+        "e": 6,
         "t": "The footage was found in the temple.",
         "who": "narrator"
       },
       {
-        "s": 6.0,
-        "e": 8.2,
+        "s": 6.15,
+        "e": 7.67,
         "t": "Is that... me?",
         "who": "mason",
         "scared": true,
@@ -349,13 +348,13 @@
       },
       {
         "s": 9.4,
-        "e": 11.6,
+        "e": 12.12,
         "t": "The man on the screen was Mason.",
         "who": "narrator"
       },
       {
         "s": 13.4,
-        "e": 15.4,
+        "e": 14.81,
         "t": "Don't trust the GPS.",
         "who": "future",
         "scared": true,
@@ -363,7 +362,7 @@
       },
       {
         "s": 16.2,
-        "e": 18.0,
+        "e": 17.19,
         "t": "Don't turn left.",
         "who": "future",
         "scared": true,
@@ -371,13 +370,13 @@
       },
       {
         "s": 19.4,
-        "e": 21.3,
+        "e": 22.27,
         "t": "The date on the screen made no sense.",
         "who": "narrator"
       },
       {
-        "s": 22.0,
-        "e": 24.2,
+        "s": 22.42,
+        "e": 24.17,
         "t": "Tomorrow? That's tomorrow.",
         "who": "mason",
         "scared": true,
@@ -385,27 +384,27 @@
       },
       {
         "s": 27.2,
-        "e": 29.8,
+        "e": 30.52,
         "t": "Behind me... the eyes are opening.",
         "who": "future",
         "scared": true,
         "tag": ""
       },
       {
-        "s": 32.0,
-        "e": 34.4,
+        "s": 32,
+        "e": 34.48,
         "t": "Nothing moved for twelve seconds.",
         "who": "narrator"
       },
       {
         "s": 36.6,
-        "e": 38.8,
+        "e": 38.85,
         "t": "He was alone in the dark.",
         "who": "narrator"
       },
       {
         "s": 45.6,
-        "e": 47.6,
+        "e": 47.85,
         "t": "Mason... turn left.",
         "who": "voice",
         "scared": true,
@@ -413,13 +412,13 @@
       },
       {
         "s": 48.2,
-        "e": 50.2,
+        "e": 50.03,
         "t": "He turned toward the voice.",
         "who": "narrator"
       },
       {
-        "s": 53.0,
-        "e": 55.4,
+        "s": 53,
+        "e": 55.01,
         "t": "Then the recorder went silent.",
         "who": "narrator"
       }
@@ -428,7 +427,7 @@
       {
         "word": "GPS",
         "kind": "mystery",
-        "at": 13.8
+        "at": 14.11
       }
     ]
   },
@@ -436,7 +435,7 @@
     "lines": [
       {
         "s": 0.9,
-        "e": 2.9,
+        "e": 2.57,
         "t": "Run. Run, run, run.",
         "who": "mason",
         "scared": true,
@@ -444,21 +443,21 @@
       },
       {
         "s": 3.8,
-        "e": 5.4,
+        "e": 6.12,
         "t": "The map showed nothing down here.",
         "who": "narrator"
       },
       {
         "s": 6.6,
-        "e": 8.2,
+        "e": 7.96,
         "t": "The walls are moving!",
         "who": "mason",
         "scared": true,
         "tag": ""
       },
       {
-        "s": 9.0,
-        "e": 10.8,
+        "s": 9,
+        "e": 10.28,
         "t": "They're following the arrow.",
         "who": "mason",
         "scared": false,
@@ -466,7 +465,7 @@
       },
       {
         "s": 12.8,
-        "e": 14.6,
+        "e": 15.12,
         "t": "Empty. Every single one.",
         "who": "mason",
         "scared": false,
@@ -474,13 +473,13 @@
       },
       {
         "s": 15.4,
-        "e": 17.6,
+        "e": 18.04,
         "t": "The carvings were older than the map.",
         "who": "narrator"
       },
       {
         "s": 18.8,
-        "e": 20.6,
+        "e": 19.92,
         "t": "They're watching me.",
         "who": "mason",
         "scared": true,
@@ -488,7 +487,7 @@
       },
       {
         "s": 22.8,
-        "e": 24.4,
+        "e": 24.32,
         "t": "My GPS just froze.",
         "who": "mason",
         "scared": false,
@@ -496,21 +495,21 @@
       },
       {
         "s": 24.6,
-        "e": 26.2,
+        "e": 26.01,
         "t": "Recalculating...",
         "who": "gps",
         "scared": false,
         "tag": ""
       },
       {
-        "s": 27.0,
-        "e": 29.2,
+        "s": 27,
+        "e": 29.09,
         "t": "Every tunnel looked the same.",
         "who": "narrator"
       },
       {
         "s": 29.8,
-        "e": 31.6,
+        "e": 31.89,
         "t": "Left or right? Left or right?",
         "who": "mason",
         "scared": true,
@@ -518,21 +517,21 @@
       },
       {
         "s": 34.4,
-        "e": 36.4,
+        "e": 36.88,
         "t": "His breath echoed off the stone.",
         "who": "narrator"
       },
       {
         "s": 37.6,
-        "e": 39.4,
+        "e": 39.35,
         "t": "If I stop, I'm dead.",
         "who": "mason",
         "scared": true,
         "tag": "[whispers]"
       },
       {
-        "s": 41.0,
-        "e": 43.2,
+        "s": 41,
+        "e": 43.35,
         "t": "Turn left, Mason. You always do.",
         "who": "gps",
         "scared": false,
@@ -540,7 +539,7 @@
       },
       {
         "s": 44.6,
-        "e": 46.2,
+        "e": 46.12,
         "t": "Both tunnels look wrong.",
         "who": "mason",
         "scared": false,
@@ -548,7 +547,7 @@
       },
       {
         "s": 46.8,
-        "e": 48.8,
+        "e": 49.6,
         "t": "Two tunnels. One choice.",
         "who": "narrator"
       }
@@ -557,25 +556,25 @@
       {
         "word": "Run",
         "kind": "danger",
-        "at": 1.0
+        "at": 1.74
       },
       {
         "word": "GPS",
         "kind": "mystery",
-        "at": 23.2
+        "at": 23.56
       },
       {
         "word": "dead",
         "kind": "danger",
-        "at": 38.8
+        "at": 39.05
       }
     ]
   },
   "5": {
     "lines": [
       {
-        "s": 1.0,
-        "e": 2.8,
+        "s": 1,
+        "e": 2.28,
         "t": "Right. I'm going right.",
         "who": "mason",
         "scared": false,
@@ -583,13 +582,13 @@
       },
       {
         "s": 3.6,
-        "e": 5.4,
+        "e": 6.24,
         "t": "The temple did not want him to leave.",
         "who": "narrator"
       },
       {
         "s": 6.8,
-        "e": 8.6,
+        "e": 8.63,
         "t": "Get off! Get off me!",
         "who": "mason",
         "scared": true,
@@ -597,15 +596,15 @@
       },
       {
         "s": 9.4,
-        "e": 11.0,
+        "e": 11.15,
         "t": "There's blood on my arm.",
         "who": "mason",
         "scared": true,
         "tag": ""
       },
       {
-        "s": 13.0,
-        "e": 14.6,
+        "s": 13,
+        "e": 14.59,
         "t": "Shut up! Shut up!",
         "who": "mason",
         "scared": true,
@@ -613,49 +612,49 @@
       },
       {
         "s": 15.2,
-        "e": 17.0,
+        "e": 17.11,
         "t": "The stone began to shake.",
         "who": "narrator"
       },
       {
         "s": 17.8,
-        "e": 19.4,
+        "e": 20.12,
         "t": "Mason... turn left.",
         "who": "voice",
         "scared": true,
         "tag": "[whispers]"
       },
       {
-        "s": 19.8,
-        "e": 21.6,
+        "s": 20.27,
+        "e": 22.18,
         "t": "Not listening. Not listening.",
         "who": "mason",
         "scared": true,
         "tag": "[whispers]"
       },
       {
-        "s": 21.8,
-        "e": 23.2,
+        "s": 22.33,
+        "e": 24.97,
         "t": "Real light. Real air.",
         "who": "narrator"
       },
       {
-        "s": 23.6,
-        "e": 25.2,
+        "s": 25.12,
+        "e": 26.87,
         "t": "A road? Sunlight!",
         "who": "mason",
         "scared": false,
         "tag": ""
       },
       {
-        "s": 26.4,
-        "e": 28.6,
+        "s": 27.02,
+        "e": 30.62,
         "t": "A road. A truck. A stranger.",
         "who": "narrator"
       },
       {
-        "s": 30.6,
-        "e": 32.4,
+        "s": 30.77,
+        "e": 32.52,
         "t": "Lost, buddy? Hop in.",
         "who": "truck",
         "scared": false,
@@ -663,7 +662,7 @@
       },
       {
         "s": 33.4,
-        "e": 35.2,
+        "e": 34.92,
         "t": "Oh, thank you. Thank you.",
         "who": "mason",
         "scared": false,
@@ -671,7 +670,7 @@
       },
       {
         "s": 36.6,
-        "e": 38.4,
+        "e": 37.72,
         "t": "Where you headed?",
         "who": "truck",
         "scared": false,
@@ -679,7 +678,7 @@
       },
       {
         "s": 38.9,
-        "e": 40.6,
+        "e": 40.02,
         "t": "Anywhere but there.",
         "who": "mason",
         "scared": false,
@@ -687,13 +686,13 @@
       },
       {
         "s": 41.4,
-        "e": 43.4,
+        "e": 43.49,
         "t": "The driver didn't ask again.",
         "who": "narrator"
       },
       {
         "s": 44.6,
-        "e": 46.2,
+        "e": 46.19,
         "t": "My GPS is glowing?",
         "who": "mason",
         "scared": false,
@@ -701,7 +700,7 @@
       },
       {
         "s": 47.4,
-        "e": 49.2,
+        "e": 48.47,
         "t": "Welcome back, Mason.",
         "who": "gps",
         "scared": false,
@@ -709,13 +708,13 @@
       },
       {
         "s": 49.8,
-        "e": 51.6,
+        "e": 51.55,
         "t": "Mason didn't move.",
         "who": "narrator"
       },
       {
         "s": 52.6,
-        "e": 55.6,
+        "e": 55.16,
         "t": "Some places never let go.",
         "who": "narrator"
       }
@@ -724,7 +723,7 @@
       {
         "word": "blood",
         "kind": "danger",
-        "at": 10.0
+        "at": 10.28
       },
       {
         "word": "GPS",
@@ -732,5 +731,6 @@
         "at": 45.4
       }
     ]
-  }
+  },
+  "_note": "Seconds from the start of each 60 s part. 'who': narrator (Callum), mason (Liam), future (Liam, recording), voice (Liam, from the dark), gps (Sarah), truck (Brian). 'scared' = fearful delivery. 'tag' = optional eleven_v3 tag for the voice only (never shown in captions). 'highlights': at most 4 per part, at least 15 s apart."
 }

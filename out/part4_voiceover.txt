@@ -1,26 +1,33 @@
 HIS GPS KNEW HIS NAME - PART 4: Recalculating
-Voice: "Oleg - calm, natural, clear" (ElevenLabs), voice ID MWyJiWDobXN8FX3CJTdE, model Multilingual v2
-Read each line as one phrase, 3-4 words per line. Blank lines are pauses. Speaker tags are for the performer, not for the voice.
+Cast (ElevenLabs, model eleven_v3): narrator = Callum (N2lVS1w4EtoT3dr4eOWO); Mason and his recording = Liam (TX3LPaxmHKxFdv7VOQHJ); GPS = Sarah (EXAVITQu4vr4xnSDxMaL, radio filter); truck driver = Brian (nPczCjzI2devNBz1zQrb).
+Lines are phrases of 3-4 words. Blank lines are pauses. Bracketed tags such as [whispers] are performance notes, not spoken words.
 
 Run. Run, run, run.
 
+The map showed
+nothing down here.
 The walls are moving!
 They're following the arrow.
 
 Empty. Every single one.
-
+The carvings were older
+than the map.
 They're watching me.
 
 My GPS just froze.
 [GPS voice] Recalculating...
-
+Every tunnel looked
+the same.
 Left or right?
 Left or right?
 
-If I stop,
+His breath echoed
+off the stone.
+[whispers] If I stop,
 I'm dead.
 
 [GPS voice] Turn left, Mason.
 You always do.
 
 Both tunnels look wrong.
+Two tunnels. One choice.
