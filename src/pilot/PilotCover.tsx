@@ -16,11 +16,15 @@ export const PilotCover: React.FC = () => (
     <ThreeCanvas width={1080} height={1920} camera={{fov: 50, near: 0.05, far: 1000, position: [0, 1.2, 0]}}>
       <PilotScene />
     </ThreeCanvas>
-    <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 52%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%)'}} />
-    <AbsoluteFill
+    <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 62%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%)'}} />
+    {/* the title sits below Kevin's face, centred at 60% of the height */}
+    <div
       style={{
-        justifyContent: 'center',
-        alignItems: 'center',
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: '60%',
+        transform: 'translateY(-50%)',
         textAlign: 'center',
         fontFamily: TYPE,
         fontWeight: 800,
@@ -43,6 +47,6 @@ export const PilotCover: React.FC = () => (
         <br />
         BATHROOM
       </div>
-    </AbsoluteFill>
+    </div>
   </AbsoluteFill>
 );

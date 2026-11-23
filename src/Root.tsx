@@ -30,6 +30,6 @@ export const RemotionRoot: React.FC = () => (
     <Still id="Cover3" component={Cover3} width={W} height={H} />
     <Still id="Cover4" component={Cover4} width={W} height={H} />
     <Still id="Cover5" component={Cover5} width={W} height={H} />
-    <Still id="PilotCover" component={PilotCover} width={W} height={H} />
+    <Composition id="PilotCover" component={PilotCover} durationInFrames={2028} fps={FPS} width={W} height={H} />
   </>
 );
