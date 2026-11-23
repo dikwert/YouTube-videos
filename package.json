@@ -5,7 +5,6 @@
   "description": "HIS GPS KNEW HIS NAME - 5-part vertical YouTube Shorts mystery series built with Remotion",
   "scripts": {
     "start": "remotion studio",
-    "audio": "node scripts/generate-audio.mjs",
     "render:all": "node scripts/render-all.mjs all",
     "covers": "node scripts/render-all.mjs covers",
     "typecheck": "tsc --noEmit"

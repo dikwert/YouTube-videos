@@ -1,5 +1,5 @@
-// Renders the five Shorts (out/part1.mp4 ... out/part5.mp4) and their covers (out/part1_cover.png ... ).
-// Usage: node scripts/render-all.mjs [parts|covers|all] [partNumber...]
+// Renders the Shorts (out/partN.mp4) and their covers (out/partN_cover.png).
+// Usage: node scripts/render-all.mjs [parts|covers|all] [partNumber...]   (default: Part 1 only)
 import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -9,7 +9,7 @@ import {renderMedia, renderStill, selectComposition} from '@remotion/renderer';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'out');
 const [mode = 'all', ...only] = process.argv.slice(2);
-const wanted = only.length ? only.map(Number) : [1, 2, 3, 4, 5];
+const wanted = only.length ? only.map(Number) : [1];
 fs.mkdirSync(OUT, {recursive: true});
 
 const chrome = '/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell';
