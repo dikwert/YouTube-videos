@@ -9,6 +9,7 @@ import {Part4} from './parts/Part4';
 import {Part5} from './parts/Part5';
 import {CoverPart} from './thumbs/CoverPart';
 import {PilotShort} from './pilot/PilotShort';
+import {PilotCover} from './pilot/PilotCover';
 
 const Cover1: React.FC = () => <CoverPart n={1} name="ETHAN NEVER TOLD IT" seed={3} />;
 const Cover2: React.FC = () => <CoverPart n={2} name="THE OTHER JEEP" seed={8} />;
@@ -29,5 +30,6 @@ export const RemotionRoot: React.FC = () => (
     <Still id="Cover3" component={Cover3} width={W} height={H} />
     <Still id="Cover4" component={Cover4} width={W} height={H} />
     <Still id="Cover5" component={Cover5} width={W} height={H} />
+    <Still id="PilotCover" component={PilotCover} width={W} height={H} />
   </>
 );
