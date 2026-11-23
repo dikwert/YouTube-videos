@@ -1,0 +1,26 @@
+{
+  "name": "his-gps-knew-his-name",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HIS GPS KNEW HIS NAME - 5-part vertical YouTube Shorts mystery series built with Remotion",
+  "scripts": {
+    "start": "remotion studio",
+    "audio": "node scripts/generate-audio.mjs",
+    "render:all": "node scripts/render-all.mjs all",
+    "covers": "node scripts/render-all.mjs covers",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.545",
+    "@remotion/cli": "4.0.545",
+    "@remotion/renderer": "4.0.545",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.545"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.6.3"
+  }
+}
