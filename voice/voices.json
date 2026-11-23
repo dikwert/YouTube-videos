@@ -1,15 +1,171 @@
 {
-  "model": "eleven_multilingual_v2",
+  "model": "eleven_v3",
   "format": "mp3_44100_128",
-  "note": "API key comes from the environment's saved credential; the proxy injects it. Never add it here.",
+  "note": "API key comes from the environment saved credential (proxy injects it). Never add it here. Model eleven_v3 (fallback eleven_multilingual_v2).",
   "roles": {
-    "narrator": {"voice": "Callum - Husky Trickster", "id": "N2lVS1w4EtoT3dr4eOWO", "settings": {"stability": 0.40, "similarity_boost": 0.80, "style": 0.30, "use_speaker_boost": true}, "filter": "none"},
-    "mason": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.40, "similarity_boost": 0.80, "style": 0.45, "use_speaker_boost": true}, "filter": "none"},
-    "mason_scared": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.25, "similarity_boost": 0.80, "style": 0.60, "use_speaker_boost": true}, "filter": "none"},
-    "gps": {"voice": "Sarah - Mature, Reassuring, Confident", "id": "EXAVITQu4vr4xnSDxMaL", "settings": {"stability": 0.85, "similarity_boost": 0.80, "style": 0.0, "use_speaker_boost": true}, "filter": "radio"},
-    "future": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.25, "similarity_boost": 0.80, "style": 0.60, "use_speaker_boost": true}, "filter": "tape"},
-    "voice": {"voice": "Liam - Energetic, Social Media Creator", "id": "TX3LPaxmHKxFdv7VOQHJ", "settings": {"stability": 0.30, "similarity_boost": 0.80, "style": 0.50, "use_speaker_boost": true}, "filter": "echo"},
-    "truck": {"voice": "Brian - Deep, Resonant and Comforting", "id": "nPczCjzI2devNBz1zQrb", "settings": {"stability": 0.50, "similarity_boost": 0.80, "style": 0.20, "use_speaker_boost": true}, "filter": "none"},
-    "backup_narrator": {"voice": "Brian - Deep, Resonant and Comforting", "id": "nPczCjzI2devNBz1zQrb", "settings": {"stability": 0.40, "similarity_boost": 0.80, "style": 0.30, "use_speaker_boost": true}, "filter": "none"}
-  }
+    "narrator": {
+      "voice": "Callum - Husky Trickster",
+      "id": "N2lVS1w4EtoT3dr4eOWO",
+      "settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.8,
+        "style": 0.3,
+        "use_speaker_boost": true
+      },
+      "filter": "none"
+    },
+    "mason": {
+      "voice": "Liam - Energetic, Social Media Creator",
+      "id": "TX3LPaxmHKxFdv7VOQHJ",
+      "settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.8,
+        "style": 0.45,
+        "use_speaker_boost": true
+      },
+      "filter": "none"
+    },
+    "mason_scared": {
+      "voice": "Liam - Energetic, Social Media Creator",
+      "id": "TX3LPaxmHKxFdv7VOQHJ",
+      "settings": {
+        "stability": 0.25,
+        "similarity_boost": 0.8,
+        "style": 0.6,
+        "use_speaker_boost": true
+      },
+      "filter": "none"
+    },
+    "gps": {
+      "voice": "Sarah - Mature, Reassuring, Confident",
+      "id": "EXAVITQu4vr4xnSDxMaL",
+      "settings": {
+        "stability": 0.85,
+        "similarity_boost": 0.8,
+        "style": 0.0,
+        "use_speaker_boost": true
+      },
+      "filter": "radio"
+    },
+    "future": {
+      "voice": "Liam - Energetic, Social Media Creator",
+      "id": "TX3LPaxmHKxFdv7VOQHJ",
+      "settings": {
+        "stability": 0.25,
+        "similarity_boost": 0.8,
+        "style": 0.6,
+        "use_speaker_boost": true
+      },
+      "filter": "tape"
+    },
+    "voice": {
+      "voice": "Liam - Energetic, Social Media Creator",
+      "id": "TX3LPaxmHKxFdv7VOQHJ",
+      "settings": {
+        "stability": 0.3,
+        "similarity_boost": 0.8,
+        "style": 0.5,
+        "use_speaker_boost": true
+      },
+      "filter": "echo"
+    },
+    "truck": {
+      "voice": "Brian - Deep, Resonant and Comforting",
+      "id": "nPczCjzI2devNBz1zQrb",
+      "settings": {
+        "stability": 0.5,
+        "similarity_boost": 0.8,
+        "style": 0.2,
+        "use_speaker_boost": true
+      },
+      "filter": "none"
+    },
+    "backup_narrator": {
+      "voice": "Brian - Deep, Resonant and Comforting",
+      "id": "nPczCjzI2devNBz1zQrb",
+      "settings": {
+        "stability": 0.4,
+        "similarity_boost": 0.8,
+        "style": 0.3,
+        "use_speaker_boost": true
+      },
+      "filter": "none"
+    }
+  },
+  "processing": {
+    "narrator_room": "acompressor=threshold=-20dB:ratio=3:attack=10:release=120:makeup=2, equalizer=f=150:t=q:w=1:g=3, aecho=0.8:0.88:40:0.12, loudnorm=I=-16:TP=-1.5:LRA=11",
+    "radio": "highpass=f=350, lowpass=f=3200, acompressor=threshold=-18dB:ratio=4, loudnorm=I=-16:TP=-1.5:LRA=11 (+ faint pink hiss)"
+  },
+  "narrator_candidates": [
+    {
+      "name": "Callum - Husky Trickster",
+      "voice_id": "N2lVS1w4EtoT3dr4eOWO",
+      "category": "premade",
+      "age": "middle_aged",
+      "descriptive": "husky (catalogue: characters_animation)"
+    },
+    {
+      "name": "Brian - Deep, Resonant and Comforting",
+      "voice_id": "nPczCjzI2devNBz1zQrb",
+      "category": "premade",
+      "age": "middle_aged",
+      "descriptive": "deep, resonant, comforting"
+    },
+    {
+      "name": "Bill - Wise, Mature, Balanced",
+      "voice_id": "pqHfZKP75CvOlQylNhV4",
+      "category": "premade",
+      "age": "old",
+      "descriptive": "wise, mature (catalogue: advertisement)"
+    },
+    {
+      "name": "Eric - Smooth, Trustworthy",
+      "voice_id": "cjVigY5qzO86Huf0OWal",
+      "category": "premade",
+      "age": "middle_aged",
+      "descriptive": "smooth, trustworthy"
+    },
+    {
+      "name": "Roger - Laid-Back, Casual, Resonant",
+      "voice_id": "CwhRBWXzGAHq8TQ4Fs17",
+      "category": "premade",
+      "age": "middle_aged",
+      "descriptive": "resonant, laid-back"
+    }
+  ],
+  "narrator_reserve": [
+    {
+      "name": "Declan Sage - Wise and Captivating",
+      "voice_id": "kqVT88a5QfII1HNAEPTJ",
+      "age": "middle_aged",
+      "descriptive": "deep"
+    }
+  ],
+  "narrator_library_blocked": [
+    {
+      "name": "Chuck Miller - Deep, Raspy, American",
+      "voice_id": "HIGUfNOdjuWQwwapnTRW",
+      "status": "402 paid_plan_required on free API plan"
+    },
+    {
+      "name": "James - Husky, Engaging and Bold",
+      "voice_id": "EkK5I93UQWFDigLMpZcX",
+      "status": "library voice, paid plan required"
+    },
+    {
+      "name": "Jon - Warm & Grounded Storyteller",
+      "voice_id": "MFZUKuGQUsGJPQjTS4wC",
+      "status": "library voice, paid plan required"
+    },
+    {
+      "name": "Flint - Deep, Raspy, and Warm",
+      "voice_id": "qAZH0aMXY8tw1QufPN0D",
+      "status": "library voice, paid plan required"
+    },
+    {
+      "name": "John Doe - Gravely, Deep, and Engaging",
+      "voice_id": "7fbQ7yJuEo56rYjrYaEh",
+      "status": "library voice, paid plan required"
+    }
+  ]
 }

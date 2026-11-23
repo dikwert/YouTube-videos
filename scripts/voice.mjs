@@ -28,6 +28,8 @@ export const synth = (role, text, outFile, {scared = false} = {}) => {
 
 const FILTERS = {
   none: null,
+  // Natural narrator: light compression, a little warmth below 200 Hz, a faint room slap, loudness normalised.
+  room: 'acompressor=threshold=-20dB:ratio=3:attack=10:release=120:makeup=2,equalizer=f=150:t=q:w=1:g=3,aecho=0.8:0.88:40:0.12,loudnorm=I=-16:TP=-1.5:LRA=11',
   // Radio navigator: narrow band, light compression, a little hiss.
   radio: 'highpass=f=350,lowpass=f=3200,acompressor=threshold=-18dB:ratio=4:attack=5:release=60,volume=1.1',
   // Recorded video: soft band, slight crunch.
@@ -57,7 +59,58 @@ export const applyFilter = (inFile, outFile, filter) => {
   return outFile;
 };
 
+/** Narrator candidates: one identical script phrase, two takes each, processed with the room chain. */
+const narratorRound = (phrase) => {
+  const dir = path.join(ROOT, 'voice-tests', 'narrator-candidates');
+  fs.mkdirSync(dir, {recursive: true});
+  const candidates = CONFIG.narrator_candidates;
+  const settings = {stability: 0.35, similarity_boost: 0.80, style: 0.30, use_speaker_boost: true};
+  candidates.forEach((cand, i) => {
+    for (let take = 1; take <= 2; take++) {
+      const raw = path.join(TMP, `cand_${i}_${take}.mp3`);
+      synthWith(cand.voice_id, phrase, raw, settings);
+      const slug = cand.name.split(' - ')[0].toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const out = path.join(dir, `${String(i + 1).padStart(2, '0')}_${slug}_${cand.voice_id}_take${take}.mp3`);
+      applyFilter(raw, out, 'room');
+      console.log('wrote', path.relative(ROOT, out));
+    }
+  });
+};
+
+/** Synthesis with an explicit voice id and settings (used for candidates). */
+export const synthWith = (voiceId, text, outFile, settings, model = CONFIG.model) => {
+  const body = path.join(TMP, `${Math.random().toString(36).slice(2)}.json`);
+  fs.writeFileSync(body, JSON.stringify({text, model_id: model, voice_settings: settings}));
+  const url = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=${CONFIG.format}`;
+  execFileSync('curl', ['-sS', '-f', '-X', 'POST', url, '-H', 'Content-Type: application/json', '-H', 'Accept: audio/mpeg', '--data-binary', `@${body}`, '-o', outFile]);
+  fs.rmSync(body, {force: true});
+  return outFile;
+};
+
 const [cmd, ...rest] = process.argv.slice(2);
+if (cmd === 'narrator-round') {
+  narratorRound(rest[0] ?? 'Mason never trusted maps. [pause] Until today.');
+} else if (cmd === 'character-round') {
+  const dir = path.join(ROOT, 'voice-tests', 'characters');
+  fs.mkdirSync(dir, {recursive: true});
+  const liam = CONFIG.roles.mason.id;
+  const sarah = CONFIG.roles.gps.id;
+  const plans = [
+    {voice: liam, text: 'Okay, this jungle road looks legit.', settings: {stability: 0.35, similarity_boost: 0.8, style: 0.45, use_speaker_boost: true}, filter: 'room', name: 'mason_liam_normal'},
+    {voice: liam, text: '[whispers] Mason... turn left.', settings: {stability: 0.30, similarity_boost: 0.8, style: 0.55, use_speaker_boost: true}, filter: 'room', name: 'mason_liam_scared'},
+    {voice: sarah, text: 'Welcome back, Mason.', settings: {stability: 0.35, similarity_boost: 0.8, style: 0.20, use_speaker_boost: true}, filter: 'radio', name: 'gps_sarah_natural'},
+    {voice: sarah, text: 'Welcome back, Mason.', settings: {stability: 0.70, similarity_boost: 0.8, style: 0.0, use_speaker_boost: true}, filter: 'radio', name: 'gps_sarah_flat'},
+  ];
+  for (const p of plans) {
+    for (let take = 1; take <= 2; take++) {
+      const raw = path.join(TMP, `${p.name}_${take}.mp3`);
+      synthWith(p.voice, p.text, raw, p.settings);
+      const out = path.join(dir, `${p.name}_take${take}.mp3`);
+      applyFilter(raw, out, p.filter);
+      console.log('wrote', path.relative(ROOT, out));
+    }
+  }
+} else
 if (cmd === 'test') {
   const dir = path.join(ROOT, 'voice-tests');
   fs.mkdirSync(dir, {recursive: true});
