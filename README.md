@@ -1,7 +1,7 @@
 # HIS GPS KNEW HIS NAME
 
 A 5-part vertical mystery series for YouTube Shorts, built with [Remotion](https://www.remotion.dev).
-Every part is 1080x1920, 30 fps, 40 seconds, with burned-in word-by-word captions.
+Every part is 1080x1920, 30 fps, 60 seconds, with burned-in captions (2-4 words at a time).
 
 | Part | Title | Composition | Output |
 |------|-------|-------------|--------|
@@ -20,6 +20,12 @@ npm install
 npm run audio      # generates public/sfx/*.wav, public/music.mp3 (only when missing) and src/assets.generated.ts
 npm run start      # Remotion Studio, to preview any part
 ```
+
+## Text deliverables
+
+- `out/partN_voiceover.txt`: voiceover text, one phrase of 3-4 words per line (regenerate with `node scripts/export-voiceover.mjs`)
+- `out/partN_description.txt`: intrigue lines, calls to action and hashtags for each part
+- `node scripts/check-script.mjs` checks the caption rules: at most 4 highlighted words per part, at least 15 s between highlights
 
 ## Render
 
@@ -59,6 +65,7 @@ scripts/
 
 ## Things to know
 
+- **Captions** are driven by `src/script/dialogue.json`. Timing is estimated from the scene beats until the real voiceover exists.
 - **Voiceovers are not in the project yet.** `public/voiceover1.mp3` ... `voiceover5.mp3` were not present when this was built, so each part was timed from the script beats and estimated speaking pace. Drop the files into `public/`, run `npm run audio` (it refreshes `src/assets.generated.ts`), and the voice tracks are included automatically. If the ElevenLabs takes differ from the draft captions in `src/script/parts.ts`, edit the `s`/`e` seconds there.
 - **Caption text is a draft.** It is written to match the scene beats. Replace the lines in `src/script/parts.ts` with the exact voiceover script if it differs.
 - **Music and sound effects are placeholders.** No `public/music.mp3` or `public/sfx/` files existed, so `npm run audio` generated simple procedural versions. Any file you place in `public/music.mp3` or `public/sfx/<name>.wav` is used instead, because the generator only writes missing files.
