@@ -154,7 +154,8 @@ const Mirror: React.FC = () => {
 /** 54-60 s: the navigator says goodbye. Then the screen goes black. */
 const Finale: React.FC = () => {
   const f = useCurrentFrame();
-  const black = ramp(f, sec(4.6), sec(5.4), 0, 1);
+  // Hard cut to black at 59.5 s: the final black lasts half a second.
+  const black = f >= sec(5.5) ? 1 : 0;
   return (
     <Stage>
       <Dark />
