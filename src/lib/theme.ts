@@ -1,7 +1,7 @@
 export const W = 1080;
 export const H = 1920;
 export const FPS = 30;
-export const PART_SECONDS = 40;
+export const PART_SECONDS = 60;
 export const PART_FRAMES = PART_SECONDS * FPS;
 
 /** Seconds -> frames. */

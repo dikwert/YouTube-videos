@@ -62,14 +62,15 @@ export const CamUI: React.FC<{
   rec?: boolean;
   playing?: boolean;
   dateScale?: number;
-}> = ({timecode, date, rec = true, playing = true, dateScale = 1}) => {
+  label?: string;
+}> = ({timecode, date, rec = true, playing = true, dateScale = 1, label}) => {
   const f = useCurrentFrame();
   const blink = Math.floor(f / 15) % 2 === 0;
   return (
     <g fontFamily="Inter, Arial, sans-serif" fontWeight={800}>
       {rec && blink && <circle cx={70} cy={70} r={14} fill="#ff2d2d" />}
       <text x={96} y={80} fontSize={38} fill="#ffffff">
-        {rec ? 'REC' : 'PLAY'}
+        {label ?? (rec ? 'REC' : 'PLAY')}
       </text>
       <text x={960} y={80} fontSize={40} fill="#ffffff" textAnchor="end">
         {timecode}

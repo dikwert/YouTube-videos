@@ -4,6 +4,7 @@ import {COL, W} from '../lib/theme';
 import {clamp, hash, mixHex, rng, safeId} from '../lib/math';
 import {Layer} from '../scene/Camera';
 import {Vines} from '../scene/Environment';
+import {Moss, Torch} from '../scene/Jungle';
 
 /** Closed or open carved eye. `open` 0..1 blends from stone-closed to glowing green. */
 const CarvedEye: React.FC<{x: number; y: number; w: number; open: number; id: string}> = ({x, y, w, open, id}) => {
@@ -99,6 +100,14 @@ export const TempleFacade: React.FC<{awake: number; cx?: number; cy?: number; s?
           ))}
         </g>
       ))}
+      {/* cracks, moss and torches */}
+      <path d={`M ${cx - 300} ${cy - 300} L ${cx - 280} ${cy - 250} L ${cx - 310} ${cy - 210} L ${cx - 270} ${cy - 160}`} stroke="#2a2a24" strokeWidth={4} fill="none" />
+      <path d={`M ${cx + 240} ${cy - 360} L ${cx + 262} ${cy - 318} L ${cx + 230} ${cy - 280}`} stroke="#2a2a24" strokeWidth={4} fill="none" />
+      <Moss x={cx - 330} y={cy - 120} r={70} seed={7} />
+      <Moss x={cx + 320} y={cy + 60} r={60} seed={11} />
+      <Moss x={cx - 60} y={cy - 380} r={90} seed={13} />
+      <Torch x={cx - 230} y={cy + 230} scale={1} seed={2} />
+      <Torch x={cx + 230} y={cy + 230} scale={1} seed={5} />
       {/* steps */}
       {[0, 1, 2].map((i) => (
         <rect key={i} x={cx - 300 - i * 30} y={cy + 430 + i * 36} width={600 + i * 60} height={34} fill={COL.stone} opacity={0.9 - i * 0.1} />

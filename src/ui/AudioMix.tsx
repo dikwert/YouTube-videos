@@ -26,6 +26,29 @@ export const MusicBed: React.FC<{dips?: Array<[number, number]>; base?: number}>
   );
 };
 
+/** Jungle ambience bed (insects, wind, distant birds). Same file in every part, quieter than the music, dips at scary beats. */
+export const Ambience: React.FC<{dips?: Array<[number, number]>; base?: number}> = ({dips = [], base = 0.1}) => {
+  if (!ASSETS.ambience) return null;
+  return (
+    <Audio
+      src={staticFile('ambience.mp3')}
+      volume={(f: number) => {
+        let v = base;
+        for (const [a, b] of dips) {
+          const s = sec(a);
+          const e = sec(b);
+          const dip = interpolate(f, [s - 9, s, e, e + 9], [base, 0.01, 0.01, base], {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+          });
+          v = Math.min(v, dip);
+        }
+        return v;
+      }}
+    />
+  );
+};
+
 /** Voiceover for one part, only if public/voiceover<n>.mp3 existed when the asset list was generated. */
 export const VoiceOver: React.FC<{n: number}> = ({n}) => {
   if (!ASSETS.voiceover[n]) return null;

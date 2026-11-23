@@ -8,37 +8,55 @@ import {Gps} from '../characters/Gps';
 import {Driver, JeepSide, OldCar, OldCart} from '../characters/Vehicles';
 import {CamUI, Flashlight, Beam} from '../characters/Props';
 import {PALETTE} from '../lib/theme';
+import {CAPTION_FONT} from '../lib/fonts';
 
-/** Shared thumbnail frame: a dark band behind the title, "PART X" and the series name inside the safe area. */
+/**
+ * Shared thumbnail frame. "PART X" and the series name sit in the centre safe zone (Shorts crops the top and bottom
+ * and the right-hand buttons sit on the edge), on a dark plate so they read on any artwork.
+ */
 const Cover: React.FC<{part: number; children: React.ReactNode}> = ({part, children}) => (
   <AbsoluteFill style={{background: '#000'}}>
     {children}
     <AbsoluteFill
+      style={{background: 'radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%)'}}
+    />
+    <div
       style={{
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0) 40%)',
+        position: 'absolute',
+        left: 90,
+        top: 470,
+        width: 900,
+        height: 480,
+        borderRadius: 40,
+        background: 'rgba(0,0,0,0.5)',
       }}
     />
     <div
       style={{
         position: 'absolute',
-        top: 340,
-        left: 60,
-        width: 960,
+        top: 500,
+        left: 90,
+        width: 900,
         textAlign: 'center',
-        fontFamily: 'Inter, Arial, sans-serif',
-        color: '#ffffff',
+        fontFamily: `${CAPTION_FONT}, Arial Black, sans-serif`,
+        fontWeight: 800,
+        color: '#FFD60A',
+        textTransform: 'uppercase',
       }}
     >
-      <div style={{fontSize: 120, fontWeight: 900, textShadow: '0 8px 0 #000'}}>PART {part}</div>
+      <div style={{fontSize: 130, lineHeight: 1, WebkitTextStroke: '14px #000', paintOrder: 'stroke fill', textShadow: '0 8px 18px rgba(0,0,0,0.6)'}}>
+        PART {part}
+      </div>
       <div
         style={{
-          marginTop: 10,
-          fontSize: 92,
-          fontWeight: 900,
-          lineHeight: 1.02,
-          color: '#ffe26b',
-          WebkitTextStroke: '10px #000',
+          marginTop: 36,
+          fontSize: 104,
+          fontWeight: 800,
+          lineHeight: 1.04,
+          color: '#FFFFFF',
+          WebkitTextStroke: '14px #000',
           paintOrder: 'stroke fill',
+          textShadow: '0 8px 18px rgba(0,0,0,0.6)',
         }}
       >
         HIS GPS KNEW

@@ -32,6 +32,10 @@ export type MasonProps = {
   blinkSeed?: number;
   /** Chest camera light: REC blinks while true. */
   rec?: boolean;
+  /** Sweat drops at the temple. */
+  sweat?: boolean;
+  /** Mud splashes on shorts and boots. */
+  mud?: boolean;
   /** Hides the chest camera (after it has been torn off). */
   noCam?: boolean;
 };
@@ -195,6 +199,17 @@ export const Mason: React.FC<MasonProps> = (p) => {
           )}
         </g>
 
+        {/* shirt folds and wear */}
+        <path d="M -40 -360 Q -36 -330 -46 -300 M 10 -352 Q 16 -320 6 -288 M 42 -346 Q 50 -316 40 -292" stroke={wear.shirtShade} strokeOpacity={0.35} strokeWidth={2.5} fill="none" strokeLinecap="round" />
+        <rect x={-54} y={-322} width={22} height={14} rx={3} fill={COL.packLight} />
+        {p.mud && (
+          <g fill="#5b4226" opacity={0.85}>
+            <ellipse cx={-40} cy={-150} rx={18} ry={9} />
+            <ellipse cx={48} cy={-146} rx={14} ry={7} />
+            <ellipse cx={-6} cy={-214} rx={10} ry={5} />
+            <ellipse cx={-30} cy={-12} rx={26} ry={10} />
+          </g>
+        )}
         {/* neck */}
         <rect x={-18} y={-424} width={36} height={34} fill={COL.skinShade} />
 
@@ -220,6 +235,12 @@ export const Mason: React.FC<MasonProps> = (p) => {
           {/* hair behind */}
           <path d="M -62 8 C -70 -52 -40 -98 0 -96 C 40 -98 70 -56 64 8 C 54 -24 42 -36 26 -44 L 20 -22 L 10 -52 L -6 -32 L -18 -62 L -34 -38 L -46 -16 C -52 -12 -58 -4 -62 8 Z" fill={COL.hair} />
           <ellipse cx={0} cy={0} rx={56} ry={64} fill={COL.skin} />
+          {p.sweat && (
+            <g fill="#bfe9ff" opacity={0.9}>
+              <path d={`M -40 ${-30 + ((f * 0.8) % 30)} q -4 8 0 12 q 4 -4 0 -12 z`} />
+              <path d={`M 44 ${-18 + ((f * 0.6 + 12) % 30)} q -4 8 0 12 q 4 -4 0 -12 z`} />
+            </g>
+          )}
           <ellipse cx={30} cy={6} rx={22} ry={56} fill={COL.skinShade} opacity={0.22} />
           {/* front hair tufts */}
           <path d="M -58 -18 C -44 -64 -10 -72 6 -66 C -6 -56 2 -44 -4 -36 C 10 -46 22 -50 34 -48 C 44 -40 54 -28 58 -12 C 40 -36 20 -34 6 -26 C -10 -20 -30 -18 -58 -18 Z" fill={COL.hairLight} />

@@ -1,0 +1,430 @@
+{
+  "_note": "Seconds from the start of each 60 s part. 'who' drives the speaker tag in the voiceover file. 'highlights': at most 4 per part, at least 15 s apart. kind 'danger' = red, shake; kind 'mystery' = white, yellow glow, 1.25x.",
+  "1": {
+    "lines": [
+      {
+        "s": 0.9,
+        "e": 3.0,
+        "t": "Okay, this jungle road looks legit.",
+        "who": "mason"
+      },
+      {
+        "s": 6.4,
+        "e": 8.4,
+        "t": "Hey, it's Mason. Shortcut time!",
+        "who": "mason"
+      },
+      {
+        "s": 8.9,
+        "e": 10.8,
+        "t": "My GPS knows the way.",
+        "who": "mason"
+      },
+      {
+        "s": 11.6,
+        "e": 12.6,
+        "t": "Turn left",
+        "who": "gps"
+      },
+      {
+        "s": 15.2,
+        "e": 17.0,
+        "t": "Huh. Smaller road.",
+        "who": "mason"
+      },
+      {
+        "s": 19.4,
+        "e": 21.0,
+        "t": "Whoa! Branches everywhere!",
+        "who": "mason"
+      },
+      {
+        "s": 23.6,
+        "e": 24.6,
+        "t": "Turn left",
+        "who": "gps"
+      },
+      {
+        "s": 25.1,
+        "e": 26.9,
+        "t": "Why is the map spiraling?",
+        "who": "mason"
+      },
+      {
+        "s": 27.6,
+        "e": 28.9,
+        "t": "No, no, no. Come on!",
+        "who": "mason"
+      },
+      {
+        "s": 31.2,
+        "e": 32.8,
+        "t": "You have arrived.",
+        "who": "gps"
+      },
+      {
+        "s": 33.6,
+        "e": 34.9,
+        "t": "Is that the temple?",
+        "who": "mason"
+      },
+      {
+        "s": 37.8,
+        "e": 39.4,
+        "t": "Turn it off. Turn it off.",
+        "who": "mason"
+      },
+      {
+        "s": 47.4,
+        "e": 49.2,
+        "t": "Welcome back, Mason.",
+        "who": "gps"
+      },
+      {
+        "s": 50.4,
+        "e": 52.0,
+        "t": "It knows my name.",
+        "who": "mason"
+      }
+    ],
+    "highlights": [
+      {
+        "word": "GPS",
+        "kind": "mystery",
+        "at": 9.3
+      },
+      {
+        "word": "temple",
+        "kind": "mystery",
+        "at": 34.2
+      },
+      {
+        "word": "name",
+        "kind": "mystery",
+        "at": 51.2
+      }
+    ]
+  },
+  "2": {
+    "lines": [
+      {
+        "s": 0.9,
+        "e": 2.8,
+        "t": "Okay. Flashlight. Don't be dumb.",
+        "who": "mason"
+      },
+      {
+        "s": 6.8,
+        "e": 8.8,
+        "t": "Why is it so cold?",
+        "who": "mason"
+      },
+      {
+        "s": 9.5,
+        "e": 10.8,
+        "t": "Hold on. Is that...",
+        "who": "mason"
+      },
+      {
+        "s": 12.8,
+        "e": 14.6,
+        "t": "My jeep? In a temple?",
+        "who": "mason"
+      },
+      {
+        "s": 18.8,
+        "e": 20.8,
+        "t": "Rusted solid. Roots everywhere.",
+        "who": "mason"
+      },
+      {
+        "s": 24.6,
+        "e": 26.0,
+        "t": "That's my jerrycan.",
+        "who": "mason"
+      },
+      {
+        "s": 29.6,
+        "e": 31.2,
+        "t": "Hold on... the GPS is on?",
+        "who": "mason"
+      },
+      {
+        "s": 31.8,
+        "e": 33.0,
+        "t": "Turn left",
+        "who": "gps"
+      },
+      {
+        "s": 35.6,
+        "e": 37.2,
+        "t": "My old action camera?",
+        "who": "mason"
+      },
+      {
+        "s": 38.0,
+        "e": 40.2,
+        "t": "I never left this here.",
+        "who": "mason"
+      },
+      {
+        "s": 41.6,
+        "e": 43.6,
+        "t": "Did I? I don't remember.",
+        "who": "mason"
+      },
+      {
+        "s": 44.4,
+        "e": 47.0,
+        "t": "I don't remember any of this.",
+        "who": "mason"
+      }
+    ],
+    "highlights": [
+      {
+        "word": "temple",
+        "kind": "mystery",
+        "at": 13.4
+      },
+      {
+        "word": "GPS",
+        "kind": "mystery",
+        "at": 30.4
+      }
+    ]
+  },
+  "3": {
+    "lines": [
+      {
+        "s": 1.2,
+        "e": 3.2,
+        "t": "Okay. Play it.",
+        "who": "mason"
+      },
+      {
+        "s": 6.0,
+        "e": 8.2,
+        "t": "Is that... me?",
+        "who": "mason"
+      },
+      {
+        "s": 13.4,
+        "e": 15.4,
+        "t": "Don't trust the GPS.",
+        "who": "future"
+      },
+      {
+        "s": 16.2,
+        "e": 18.0,
+        "t": "Don't turn left.",
+        "who": "future"
+      },
+      {
+        "s": 22.0,
+        "e": 24.2,
+        "t": "Tomorrow? That's tomorrow.",
+        "who": "mason"
+      },
+      {
+        "s": 27.2,
+        "e": 29.8,
+        "t": "Behind me... the eyes are opening.",
+        "who": "future"
+      },
+      {
+        "s": 45.6,
+        "e": 47.6,
+        "t": "Mason... turn left.",
+        "who": "voice"
+      }
+    ],
+    "highlights": [
+      {
+        "word": "GPS",
+        "kind": "mystery",
+        "at": 13.8
+      }
+    ]
+  },
+  "4": {
+    "lines": [
+      {
+        "s": 0.9,
+        "e": 2.9,
+        "t": "Run. Run, run, run.",
+        "who": "mason"
+      },
+      {
+        "s": 6.6,
+        "e": 8.2,
+        "t": "The walls are moving!",
+        "who": "mason"
+      },
+      {
+        "s": 9.0,
+        "e": 10.8,
+        "t": "They're following the arrow.",
+        "who": "mason"
+      },
+      {
+        "s": 12.8,
+        "e": 14.6,
+        "t": "Empty. Every single one.",
+        "who": "mason"
+      },
+      {
+        "s": 18.8,
+        "e": 20.6,
+        "t": "They're watching me.",
+        "who": "mason"
+      },
+      {
+        "s": 22.8,
+        "e": 24.4,
+        "t": "My GPS just froze.",
+        "who": "mason"
+      },
+      {
+        "s": 24.6,
+        "e": 26.2,
+        "t": "Recalculating...",
+        "who": "gps"
+      },
+      {
+        "s": 29.8,
+        "e": 31.6,
+        "t": "Left or right? Left or right?",
+        "who": "mason"
+      },
+      {
+        "s": 37.6,
+        "e": 39.4,
+        "t": "If I stop, I'm dead.",
+        "who": "mason"
+      },
+      {
+        "s": 41.0,
+        "e": 43.2,
+        "t": "Turn left, Mason. You always do.",
+        "who": "gps"
+      },
+      {
+        "s": 44.6,
+        "e": 46.2,
+        "t": "Both tunnels look wrong.",
+        "who": "mason"
+      }
+    ],
+    "highlights": [
+      {
+        "word": "Run",
+        "kind": "danger",
+        "at": 1.0
+      },
+      {
+        "word": "GPS",
+        "kind": "mystery",
+        "at": 23.2
+      },
+      {
+        "word": "dead",
+        "kind": "danger",
+        "at": 38.8
+      }
+    ]
+  },
+  "5": {
+    "lines": [
+      {
+        "s": 1.0,
+        "e": 2.8,
+        "t": "Right. I'm going right.",
+        "who": "mason"
+      },
+      {
+        "s": 6.8,
+        "e": 8.6,
+        "t": "Get off! Get off me!",
+        "who": "mason"
+      },
+      {
+        "s": 9.4,
+        "e": 11.0,
+        "t": "There's blood on my arm.",
+        "who": "mason"
+      },
+      {
+        "s": 13.0,
+        "e": 14.6,
+        "t": "Shut up! Shut UP!",
+        "who": "mason"
+      },
+      {
+        "s": 17.8,
+        "e": 19.4,
+        "t": "Mason... turn left.",
+        "who": "voice"
+      },
+      {
+        "s": 19.8,
+        "e": 21.6,
+        "t": "Not listening. Not listening.",
+        "who": "mason"
+      },
+      {
+        "s": 23.6,
+        "e": 25.2,
+        "t": "A road? Sunlight!",
+        "who": "mason"
+      },
+      {
+        "s": 30.6,
+        "e": 32.4,
+        "t": "Lost, buddy? Hop in.",
+        "who": "truck"
+      },
+      {
+        "s": 33.4,
+        "e": 35.2,
+        "t": "Oh, thank you. Thank you.",
+        "who": "mason"
+      },
+      {
+        "s": 36.6,
+        "e": 38.4,
+        "t": "Where you headed?",
+        "who": "truck"
+      },
+      {
+        "s": 38.9,
+        "e": 40.6,
+        "t": "Anywhere but there.",
+        "who": "mason"
+      },
+      {
+        "s": 44.6,
+        "e": 46.2,
+        "t": "My GPS is glowing?",
+        "who": "mason"
+      },
+      {
+        "s": 47.4,
+        "e": 49.2,
+        "t": "Welcome back, Mason.",
+        "who": "gps"
+      }
+    ],
+    "highlights": [
+      {
+        "word": "blood",
+        "kind": "danger",
+        "at": 10.0
+      },
+      {
+        "word": "GPS",
+        "kind": "mystery",
+        "at": 45.4
+      }
+    ]
+  }
+}

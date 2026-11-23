@@ -1,0 +1,31 @@
+HIS GPS KNEW HIS NAME - PART 1: Turn Left
+Voice: "Oleg - calm, natural, clear" (ElevenLabs), voice ID MWyJiWDobXN8FX3CJTdE, model Multilingual v2
+Read each line as one phrase, 3-4 words per line. Blank lines are pauses. Speaker tags are for the performer, not for the voice.
+
+Okay, this jungle
+road looks legit.
+
+Hey, it's Mason.
+Shortcut time!
+My GPS knows
+the way.
+[GPS voice] Turn left
+
+Huh. Smaller road.
+
+Whoa! Branches everywhere!
+
+[GPS voice] Turn left
+Why is the
+map spiraling?
+No, no, no.
+Come on!
+
+[GPS voice] You have arrived.
+Is that the temple?
+
+Turn it off.
+Turn it off.
+
+[GPS voice] Welcome back, Mason.
+It knows my name.

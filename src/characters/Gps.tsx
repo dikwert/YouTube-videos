@@ -126,6 +126,9 @@ export const Gps: React.FC<GpsProps> = (p) => {
           {Array.from({length: 11}, (_, i) => (
             <line key={`gy${i}`} x1={0} y1={i * 60} x2={SW} y2={i * 60} stroke="#ffffff" strokeOpacity={0.07} strokeWidth={2} />
           ))}
+          {[40, 70, 100].map((rr, i) => (
+            <ellipse key={`ct${i}`} cx={120} cy={380} rx={rr * 1.6} ry={rr} fill="none" stroke="#ffffff" strokeOpacity={0.08} strokeWidth={2} />
+          ))}
           {roads.map((d, i) => (
             <path key={i} d={d} stroke="#ffffff" strokeOpacity={0.2} strokeWidth={12} fill="none" strokeLinejoin="round" />
           ))}
@@ -236,6 +239,18 @@ export const Gps: React.FC<GpsProps> = (p) => {
           {Array.from({length: 60}, (_, i) => (
             <rect key={`sl${i}`} x={0} y={i * 10} width={SW} height={2} fill="#000" opacity={0.06} />
           ))}
+
+          {/* compass and coordinates */}
+          <g transform="translate(262 430)">
+            <circle r={30} fill="#0b2a6b" opacity={0.75} stroke="#ffffff" strokeOpacity={0.6} strokeWidth={2} />
+            <g transform={`rotate(${Math.sin(f * 0.02) * 6})`}>
+              <polygon points="0,-24 6,0 0,24 -6,0" fill="#ff4d4d" />
+              <polygon points="0,24 6,0 0,-24" fill="none" stroke="#ffffff" strokeOpacity={0.5} />
+            </g>
+            <text y={-36} textAnchor="middle" fontFamily="Inter, Arial, sans-serif" fontSize={14} fontWeight={800} fill="#ffffff">N</text>
+          </g>
+          <text x={12} y={SH - 96} fontFamily="monospace" fontSize={15} fill="#ffffff" opacity={0.85}>25°11.92'E  2°44.07'S</text>
+          <text x={SW - 12} y={SH - 96} textAnchor="end" fontFamily="monospace" fontSize={15} fill="#ffffff" opacity={0.85}>ALT 312 m</text>
 
           {/* power off overlay */}
           {power < 1 && <rect x={0} y={0} width={SW} height={SH} fill="#000" opacity={1 - power} />}

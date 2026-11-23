@@ -3,17 +3,18 @@ import {AbsoluteFill, Sequence, useCurrentFrame} from 'remotion';
 import {PALETTE, PART_FRAMES, sec} from '../lib/theme';
 import {ramp} from '../lib/math';
 import {CameraRig, Layer} from '../scene/Camera';
-import {Fog, GroundBand, Stage} from '../scene/Environment';
+import {Fog, GroundBand, LightRays, Stage} from '../scene/Environment';
 import {Corridor, Frieze, WallEyes} from '../characters/Temple';
 import {Mason} from '../characters/Mason';
 import {Beam} from '../characters/Props';
 import {Gps} from '../characters/Gps';
 import {JeepSide, OldCar, OldCart} from '../characters/Vehicles';
-import {Black} from './shared';
+import {Black, StaticNoise} from './shared';
 import {Captions} from '../ui/Captions';
 import {PartEnd, PartTitle} from '../ui/Cards';
-import {MusicBed, Sfx, SfxEvent, VoiceOver} from '../ui/AudioMix';
-import {CAPTIONS, MUSIC_DIPS} from '../script/parts';
+import {Ambience, MusicBed, Sfx, VoiceOver} from '../ui/AudioMix';
+import {DIALOGUE} from '../script/model';
+import {MUSIC_DIPS, SFX} from '../script/cues';
 
 const P = PALETTE.deep4;
 
@@ -48,16 +49,16 @@ const Run: React.FC = () => {
       <CameraRig
         keys={[
           {f: 0, z: 1.06, x: 0, y: 0},
-          {f: 150, z: 1.14, x: 0, y: -20},
+          {f: 180, z: 1.14, x: 0, y: -20},
         ]}
         shakes={[
           {at: 0, dur: 30, amp: 6},
           {at: 70, dur: 20, amp: 5},
         ]}
       >
-        <Corridor opens={[0, 0, 0]} farOpen={0} depthFaces={[0.3, 0.6, 0.85]} />
+        <Corridor opens={[0, 0, 0]} farOpen={0} depthFaces={[0.3, 0.6, 0.85]} dim={0.8} />
         <SpeedLines />
-        <Mason x={540} y={1580} s={1.0} moving="run" phase={f * 0.5} expr="determined" blinkSeed={3} />
+        <Mason x={540} y={1580} s={1.0} moving="run" phase={f * 0.5} expr="determined" blinkSeed={3} sweat />
         <Gps x={690} y={1330} s={0.32} rot={14} arrow="straight" signal={4} text="" />
         <Beam x0={560} y0={1300} x1={540} y1={700} w0={20} w1={160} opacity={0.2} />
       </CameraRig>
@@ -77,7 +78,7 @@ const Alive: React.FC = () => {
           {f: 180, z: 1.15},
         ]}
       >
-        <Corridor opens={[0, 0, 0]} farOpen={0} depthFaces={[]} />
+        <Corridor opens={[0, 0, 0]} farOpen={0} depthFaces={[]} dim={0.8} />
         <Frieze alive={a} y={1040} />
         <Mason x={540} y={1640} s={0.92} moving="walk" phase={f * 0.25} expr="awe" />
         <Fog y={1500} depth={1} opacity={0.3} seed={17} />
@@ -111,6 +112,8 @@ const Hall: React.FC = () => (
         <OldCart x={1400} y={1480} s={1.0} />
         <OldCar x={1720} y={1480} s={1.1} flip />
       </Layer>
+      <Fog y={1300} depth={1} opacity={0.2} seed={44} />
+      <LightRays depth={1} opacity={0.06} color="#b9ffd6" seed={8} />
     </CameraRig>
   </Stage>
 );
@@ -160,14 +163,14 @@ const Recalc: React.FC = () => {
       <CameraRig
         keys={[
           {f: 0, z: 1},
-          {f: 120, z: 1.05},
+          {f: 150, z: 1.05},
         ]}
       >
-        <Corridor opens={[0.6, 0.6, 0.6]} farOpen={0.8} depthFaces={[]} />
+        <Corridor opens={[0.6, 0.6, 0.6]} farOpen={0.8} depthFaces={[]} dim={0.8} />
         <Gps
           x={540}
-          y={980}
-          s={1.42}
+          y={760}
+          s={1.25}
           text="RECALCULATING…"
           arrow="none"
           busy
@@ -189,20 +192,20 @@ const ForkHall: React.FC<{look?: number}> = ({look = 0}) => (
     <path d="M 650 1500 L 650 760 Q 820 560 990 760 L 990 1500 Z" fill="#050a07" />
     <line x1={100} y1={1040} x2={420} y2={1040} stroke="#2a3d33" strokeWidth={4} />
     <line x1={660} y1={1040} x2={980} y2={1040} stroke="#2a3d33" strokeWidth={4} />
-    <Mason x={540} y={1640} s={0.95} expr="determined" look={look} blinkSeed={8} />
+    <Mason x={540} y={1640} s={0.95} expr="determined" look={look} blinkSeed={8} sweat />
   </g>
 );
 
 /** 6. The fork in the corridor. Mason looks at both tunnels. */
 const Fork: React.FC = () => {
   const f = useCurrentFrame();
-  const look = f < 60 ? ramp(f, 0, 60, 0, -1) : f < 120 ? ramp(f, 60, 120, -1, 1) : ramp(f, 120, 180, 1, 0);
+  const look = f < 90 ? ramp(f, 0, 90, 0, -1) : f < 180 ? ramp(f, 90, 180, -1, 1) : ramp(f, 180, 270, 1, 0);
   return (
     <Stage p={P}>
       <CameraRig
         keys={[
           {f: 0, z: 1.0, y: 0},
-          {f: 180, z: 1.28, y: 60},
+          {f: 270, z: 1.28, y: 60},
         ]}
       >
         <ForkHall look={look} />
@@ -212,75 +215,72 @@ const Fork: React.FC = () => {
   );
 };
 
-/** 7. The GPS, in a deeper voice: "Turn left, Mason. You always do." Cut. */
+/** 7. The GPS, in a deeper voice: "Turn left, Mason. You always do." Mason looks both ways. */
 const DeepVoice: React.FC = () => {
   const f = useCurrentFrame();
-  const look = f < 90 ? ramp(f, 0, 90, 0, -1) : ramp(f, 90, 170, -1, 0.2);
+  const look = f < 120 ? ramp(f, 0, 120, 0, -1) : ramp(f, 120, 240, -1, 0.2);
   return (
     <Stage p={P}>
       <CameraRig
         keys={[
           {f: 0, z: 1.2, y: 60},
-          {f: 195, z: 1.25, y: 60},
+          {f: 360, z: 1.25, y: 60},
         ]}
       >
         <ForkHall look={look} />
         <Gps x={740} y={1260} s={0.58} rot={12} text="TURN LEFT" arrow="left" signal={4} green={0.9} glitch={0.12} />
-        <Black opacity={ramp(f, 176, 195, 0, 1)} />
       </CameraRig>
     </Stage>
   );
 };
 
-const SFX: SfxEvent[] = [
-  {at: 0.2, name: 'step', v: 0.6},
-  {at: 0.8, name: 'step', v: 0.6},
-  {at: 1.4, name: 'step', v: 0.6},
-  {at: 2.0, name: 'step', v: 0.6},
-  {at: 2.6, name: 'step', v: 0.6},
-  {at: 3.2, name: 'step', v: 0.6},
-  {at: 3.8, name: 'step', v: 0.6},
-  {at: 4.4, name: 'step', v: 0.6},
-  {at: 6.2, name: 'rumble', v: 0.4},
-  {at: 9.0, name: 'drip', v: 0.35},
-  {at: 11.4, name: 'rumble', v: 0.35},
-  {at: 17.67, name: 'boom', v: 1},
-  {at: 19.0, name: 'boom', v: 0.95},
-  {at: 20.33, name: 'boom', v: 1},
-  {at: 23.5, name: 'chime', v: 0.6},
-  {at: 24.0, name: 'glitch', v: 0.5},
-  {at: 27.4, name: 'whoosh', v: 0.3},
-  {at: 33.4, name: 'chime', v: 0.6},
-  {at: 36.0, name: 'glitch', v: 0.3},
-];
+/** 8. Static after the fork, then black; the PART 5 card sits in the last second. */
+const EndStatic: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{background: '#000'}}>
+      <svg width={1080} height={1920} viewBox="0 0 1080 1920" style={{position: 'absolute', left: 0, top: 0}}>
+        <StaticNoise opacity={ramp(f, 0, 60, 0.35, 0.05)} seed={5} />
+        <Black opacity={ramp(f, 60, 120, 0, 1)} />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+const SFX_ITEMS = SFX[4];
+const L = DIALOGUE['4'];
 
 export const Part4: React.FC = () => (
   <AbsoluteFill style={{backgroundColor: '#000'}}>
-    <Sequence from={0} durationInFrames={sec(5)}>
+    <Sequence from={0} durationInFrames={sec(6)}>
       <Run />
     </Sequence>
-    <Sequence from={sec(5)} durationInFrames={sec(6)}>
+    <Sequence from={sec(6)} durationInFrames={sec(6)}>
       <Alive />
     </Sequence>
-    <Sequence from={sec(11)} durationInFrames={sec(6)}>
+    <Sequence from={sec(12)} durationInFrames={sec(6)}>
       <Hall />
     </Sequence>
-    <Sequence from={sec(17)} durationInFrames={sec(6)}>
+    <Sequence from={sec(18)} durationInFrames={sec(6)}>
       <EyesWake />
     </Sequence>
-    <Sequence from={sec(23)} durationInFrames={sec(4)}>
+    <Sequence from={sec(24)} durationInFrames={sec(5)}>
       <Recalc />
     </Sequence>
-    <Sequence from={sec(27)} durationInFrames={sec(6)}>
+    <Sequence from={sec(29)} durationInFrames={sec(9)}>
       <Fork />
     </Sequence>
-    <Sequence from={sec(33)} durationInFrames={sec(7)}>
+    <Sequence from={sec(38)} durationInFrames={sec(12)}>
       <DeepVoice />
     </Sequence>
-    <Captions lines={CAPTIONS[4]} />
-    <MusicBed dips={MUSIC_DIPS[4]} />
+    <Sequence from={sec(50)} durationInFrames={sec(10)}>
+      <EndStatic />
+    </Sequence>
+    <Captions script={L} />
+    <Ambience dips={MUSIC_DIPS[4]} />
+    <MusicBed dips={MUSIC_DIPS[4]} base={0.1} />
     <VoiceOver n={4} />
-    <Sfx events={SFX} />
+    <Sfx events={SFX_ITEMS} />
     <PartTitle n={4} title="Recalculating" />
     <PartEnd label="PART 5 →" total={PART_FRAMES} />
   </AbsoluteFill>

@@ -169,6 +169,48 @@ const generateMusic = () => {
   }
 };
 
+/** 60 s jungle ambience bed: low wind, insect buzz with slow tremolo, birdsong and water drips. */
+const generateAmbience = () => {
+  const out = path.join(PUBLIC, 'ambience.mp3');
+  if (fs.existsSync(out)) return 'kept';
+  const dur = 60;
+  const n = dur * SR;
+  const r = rngFactory(4242);
+  const data = new Float64Array(n);
+  let lp = 0;
+  const chirps = [];
+  for (let t = 1.5; t < dur - 1; t += 2.5 + r() * 4) chirps.push({t, f0: 2200 + r() * 800, dir: r() > 0.5 ? 1 : -1, amp: 0.05 + r() * 0.04});
+  const drips = [];
+  for (let t = 4; t < dur - 1; t += 6 + r() * 9) drips.push({t, amp: 0.05 + r() * 0.03});
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    lp += 0.02 * ((r() * 2 - 1) - lp);
+    let v = lp * (0.7 + 0.3 * Math.sin(TAU * t / 11)) * 0.6;
+    v += 0.012 * Math.sin(TAU * 180 * t) * (0.5 + 0.5 * Math.sin(TAU * 7 * t)) * (0.6 + 0.4 * Math.sin(TAU * 0.13 * t));
+    v += 0.004 * Math.sin(TAU * 4200 * t) * (0.5 + 0.5 * Math.sin(TAU * 26 * t)) * (t % 20 < 6 ? 1 : 0.2);
+    for (const c of chirps) {
+      const d = t - c.t;
+      if (d >= 0 && d < 0.28) {
+        const f = c.f0 + c.dir * 900 * (d / 0.28);
+        v += c.amp * Math.sin(TAU * f * d) * Math.sin(Math.PI * d / 0.28);
+      }
+    }
+    for (const dr of drips) {
+      const d = t - dr.t;
+      if (d >= 0 && d < 0.5) v += dr.amp * Math.sin(TAU * (1700 * Math.exp(-6 * d) + 380) * d) * Math.exp(-9 * d);
+    }
+    data[i] = v;
+  }
+  const wavPath = path.join(PUBLIC, '.ambience-tmp.wav');
+  writeWav(wavPath, data);
+  try {
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', wavPath, '-codec:a', 'libmp3lame', '-b:a', '160k', out]);
+    return 'generated';
+  } finally {
+    fs.rmSync(wavPath, {force: true});
+  }
+};
+
 const voiceovers = {};
 for (let n = 1; n <= 5; n++) {
   voiceovers[n] = fs.existsSync(path.join(PUBLIC, `voiceover${n}.mp3`));
@@ -177,11 +219,14 @@ for (let n = 1; n <= 5; n++) {
 generateSfx();
 const musicState = generateMusic();
 console.log(`music.mp3: ${musicState}`);
+console.log(`ambience.mp3: ${generateAmbience()}`);
 const musicExists = fs.existsSync(path.join(PUBLIC, 'music.mp3'));
+const ambienceExists = fs.existsSync(path.join(PUBLIC, 'ambience.mp3'));
 
 const gen = `// Written by scripts/generate-audio.mjs. Do not edit by hand.
 export const ASSETS = {
   music: ${musicExists},
+  ambience: ${ambienceExists},
   voiceover: ${JSON.stringify(voiceovers)} as Record<number, boolean>,
 };
 `;

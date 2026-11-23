@@ -1,65 +1,86 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {CAPTION_FONT} from '../lib/fonts';
 import {sec} from '../lib/theme';
+import {Piece, PartScript, buildPieces, HighlightKind} from '../script/model';
 
-export type Speaker = 'mason' | 'future' | 'gps' | 'truck' | 'voice';
+const YELLOW = '#FFD60A';
+const OUTLINE = '6px'; // visible outline; WebkitTextStroke is centred, so the stroke is doubled
+const SHADOW = '0 6px 14px rgba(0,0,0,0.6)';
 
-/** One caption line. `s` and `e` are seconds from the start of the part. */
-export type Line = {s: number; e: number; t: string; who?: Speaker};
-
-const SPEAKER_COLOR: Record<Speaker, string> = {
-  mason: '#ffffff',
-  future: '#ffd0c4',
-  gps: '#8fd8ff',
-  truck: '#ffffff',
-  voice: '#d6ffe4',
+const wordStyle = (hl: HighlightKind | undefined, f: number): React.CSSProperties => {
+  const base: React.CSSProperties = {
+    display: 'inline-block',
+    margin: '0 8px',
+    color: YELLOW,
+    WebkitTextStroke: `${Number(OUTLINE.replace('px', '')) * 2}px #000`,
+    paintOrder: 'stroke fill',
+    textShadow: SHADOW,
+  };
+  if (hl === 'danger') {
+    const jx = Math.sin(f * 2.9) * 3;
+    const jy = Math.cos(f * 3.7) * 2;
+    return {
+      ...base,
+      color: '#FF1E1E',
+      textShadow: `0 0 14px rgba(255,30,30,0.95), 0 0 30px rgba(255,30,30,0.7), ${SHADOW}`,
+      transform: `translate(${jx}px, ${jy}px)`,
+    };
+  }
+  if (hl === 'mystery') {
+    return {
+      ...base,
+      color: '#FFFFFF',
+      textShadow: `0 0 16px ${YELLOW}, 0 0 34px rgba(255,214,10,0.8), ${SHADOW}`,
+      transform: 'scale(1.25)',
+    };
+  }
+  return base;
 };
 
 /**
- * Burned-in word-by-word captions. Bold white with a black outline, current word in yellow.
- * Sits in the lower-middle safe area, clear of the Shorts buttons and bottom text.
+ * Burned-in captions: 2-4 words at a time, yellow ExtraBold with a black outline and shadow.
+ * Each chunk pops in (0.8 -> 1.0 over 120 ms). Highlights are rare: red + shake for danger words,
+ * white with a yellow glow at 1.25x for mystery words. Block sits in the lower third, above 75% of the frame.
  */
-export const Captions: React.FC<{lines: Line[]}> = ({lines}) => {
+export const Captions: React.FC<{script: PartScript}> = ({script}) => {
   const f = useCurrentFrame();
-  const line = lines.find((l) => f >= sec(l.s) && f < sec(l.e));
-  if (!line) return null;
-  const words = line.t.split(' ');
-  const start = sec(line.s);
-  const per = (sec(line.e) - start) / words.length;
-  const idx = Math.min(words.length - 1, Math.max(0, Math.floor((f - start) / per)));
-  const base = SPEAKER_COLOR[line.who ?? 'mason'];
+  const pieces: Piece[] = buildPieces(script);
+  const piece = pieces.find((p) => f >= sec(p.start) && f < sec(p.end));
+  if (!piece) return null;
+  const t0 = sec(piece.start);
+  const pop = interpolate(f - t0, [0, 4], [0.8, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const alpha = interpolate(f - t0, [0, 2], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
       <div
         style={{
           position: 'absolute',
-          left: 70,
-          width: 820,
-          top: 1420,
+          left: 60,
+          top: 1160,
+          width: 960,
+          height: 240,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           textAlign: 'center',
-          fontFamily: 'Inter, Arial, sans-serif',
-          fontWeight: 900,
-          fontSize: 80,
-          lineHeight: 1.18,
+          fontFamily: `${CAPTION_FONT}, Arial Black, sans-serif`,
+          fontWeight: 800,
+          fontSize: 88,
+          lineHeight: 1.12,
           textTransform: 'uppercase',
+          opacity: alpha,
+          transform: `scale(${pop})`,
+          transformOrigin: '50% 50%',
         }}
       >
-        {words.map((w, i) => (
-          <span
-            key={i}
-            style={{
-              display: 'inline-block',
-              margin: '0 9px',
-              color: i === idx ? '#ffe600' : base,
-              WebkitTextStroke: '13px #000',
-              paintOrder: 'stroke fill',
-              textShadow: '0 6px 14px rgba(0,0,0,0.5)',
-              transform: i === idx ? 'scale(1.08)' : 'scale(1)',
-            }}
-          >
-            {w}
-          </span>
-        ))}
+        <div>
+          {piece.words.map((w, i) => (
+            <span key={i} style={wordStyle(w.hl, f)}>
+              {w.w}
+            </span>
+          ))}
+        </div>
       </div>
     </AbsoluteFill>
   );
