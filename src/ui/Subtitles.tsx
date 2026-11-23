@@ -38,7 +38,7 @@ export const Subtitles: React.FC<{cards: Card[]}> = ({cards}) => {
       }}
     >
       {words.map((w, i) => {
-        const bare = w.replace(/[^A-Z']/g, '');
+        const bare = w.replace(/[^A-Z'\-]/g, '');
         const isKey = keyWords.includes(bare);
         return (
           <span
