@@ -1,6 +1,6 @@
 import React from 'react';
 import {interpolate, useCurrentFrame} from 'remotion';
-import {Card} from '../script/part1';
+import type {Card} from '../script/types';
 import {SUB_Y, sec} from '../lib/theme';
 
 /**

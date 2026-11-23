@@ -1,0 +1,24 @@
+{
+  "part": 4,
+  "title": "THE DRIVER",
+  "duration": 60,
+  "voices": {"elder": "pqHfZKP75CvOlQylNhV4"},
+  "lines": [
+    {"id": "p4_01", "who": "narrator", "s": 0.3, "text": "One screen was waiting for his name.", "cards": ["ONE SCREEN WAS", "WAITING FOR HIS NAME."]},
+    {"id": "p4_02", "who": "narrator", "s": 4.0, "text": "Then a figure stepped out of the dark.", "cards": ["THEN A FIGURE", "STEPPED OUT", "OF THE DARK."]},
+    {"id": "p4_03", "who": "elder", "s": 7.2, "text": "Don't reach the destination.", "cards": ["DON'T REACH THE DESTINATION."], "keys": ["DESTINATION"]},
+    {"id": "p4_04", "who": "elder", "s": 10.2, "text": "It keeps you.", "cards": ["IT KEEPS YOU."]},
+    {"id": "p4_05", "who": "narrator", "s": 15.0, "text": "He was Ethan. Older. Thinner. Bearded.", "cards": ["HE WAS ETHAN. OLDER.", "THINNER. BEARDED."]},
+    {"id": "p4_06", "who": "gps", "s": 24.0, "text": "You have arrived.", "cards": ["YOU HAVE ARRIVED."], "keys": ["ARRIVED"]},
+    {"id": "p4_07", "who": "narrator", "s": 50.0, "text": "His watch. The same date as the video.", "cards": ["HIS WATCH. THE SAME", "DATE AS THE VIDEO."]},
+    {"id": "p4_08", "who": "narrator", "s": 55.4, "text": "Three years. Exactly.", "cards": ["THREE YEARS. EXACTLY."]}
+  ],
+  "sfx": [
+    {"file": "audio/part4/p4_06.mp3", "s": 24.22, "vol": 0.55},
+    {"file": "audio/part4/p4_06.mp3", "s": 24.41, "vol": 0.4},
+    {"file": "audio/part4/p4_06.mp3", "s": 24.63, "vol": 0.3},
+    {"file": "sfx/static.wav", "s": 23.8, "vol": 0.3},
+    {"file": "sfx/whoosh.wav", "s": 36.4, "vol": 0.5}
+  ],
+  "bed": {"vol": 0.8}
+}

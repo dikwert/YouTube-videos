@@ -2,9 +2,32 @@
   "model": "eleven_v3",
   "format": "mp3_44100_128",
   "note": "API key is the environment's saved credential; the proxy injects it. Never add it here.",
-  "settings": {"narrator": {"stability": 0.35, "similarity_boost": 0.80, "style": 0.30, "use_speaker_boost": true},
-               "ethan": {"stability": 0.35, "similarity_boost": 0.80, "style": 0.30, "use_speaker_boost": true},
-               "gps": {"stability": 0.40, "similarity_boost": 0.80, "style": 0.25, "use_speaker_boost": true}},
+  "settings": {
+    "narrator": {
+      "stability": 0.35,
+      "similarity_boost": 0.8,
+      "style": 0.3,
+      "use_speaker_boost": true
+    },
+    "ethan": {
+      "stability": 0.35,
+      "similarity_boost": 0.8,
+      "style": 0.3,
+      "use_speaker_boost": true
+    },
+    "gps": {
+      "stability": 0.4,
+      "similarity_boost": 0.8,
+      "style": 0.25,
+      "use_speaker_boost": true
+    },
+    "ethanvideo": {
+      "stability": 0.35,
+      "similarity_boost": 0.8,
+      "style": 0.3,
+      "use_speaker_boost": true
+    }
+  },
   "phrases": {
     "narrator": "Ethan Cole never told the GPS his name.",
     "ethan": "Okay, guys, we are officially off the map.",
@@ -12,19 +35,54 @@
   },
   "candidates": {
     "narrator": [
-      {"name": "Callum - Husky Trickster", "voice_id": "N2lVS1w4EtoT3dr4eOWO"},
-      {"name": "Brian - Deep, Resonant and Comforting", "voice_id": "nPczCjzI2devNBz1zQrb"},
-      {"name": "Bill - Wise, Mature, Balanced", "voice_id": "pqHfZKP75CvOlQylNhV4"}
+      {
+        "name": "Callum - Husky Trickster",
+        "voice_id": "N2lVS1w4EtoT3dr4eOWO"
+      },
+      {
+        "name": "Brian - Deep, Resonant and Comforting",
+        "voice_id": "nPczCjzI2devNBz1zQrb"
+      },
+      {
+        "name": "Bill - Wise, Mature, Balanced",
+        "voice_id": "pqHfZKP75CvOlQylNhV4"
+      }
     ],
     "ethan": [
-      {"name": "Liam - Energetic, Social Media Creator", "voice_id": "TX3LPaxmHKxFdv7VOQHJ"},
-      {"name": "Will - Relaxed Optimist", "voice_id": "bIHbv24MWmeRgasZH58o"},
-      {"name": "Harry - Fierce Warrior", "voice_id": "SOYHLrjzK2X1ezoPC6cr"}
+      {
+        "name": "Liam - Energetic, Social Media Creator",
+        "voice_id": "TX3LPaxmHKxFdv7VOQHJ"
+      },
+      {
+        "name": "Will - Relaxed Optimist",
+        "voice_id": "bIHbv24MWmeRgasZH58o"
+      },
+      {
+        "name": "Harry - Fierce Warrior",
+        "voice_id": "SOYHLrjzK2X1ezoPC6cr"
+      }
     ],
     "gps": [
-      {"name": "Sarah - Mature, Reassuring, Confident", "voice_id": "EXAVITQu4vr4xnSDxMaL"},
-      {"name": "Bella - Professional, Bright, Warm", "voice_id": "hpp4J3VqNfWAUOO0d1Us"},
-      {"name": "River - Relaxed, Neutral, Informative", "voice_id": "SAz9YHcvj6GT2YYXdXww"}
+      {
+        "name": "Sarah - Mature, Reassuring, Confident",
+        "voice_id": "EXAVITQu4vr4xnSDxMaL"
+      },
+      {
+        "name": "Bella - Professional, Bright, Warm",
+        "voice_id": "hpp4J3VqNfWAUOO0d1Us"
+      },
+      {
+        "name": "River - Relaxed, Neutral, Informative",
+        "voice_id": "SAz9YHcvj6GT2YYXdXww"
+      }
     ]
-  }
+  },
+  "chosen": {
+    "narrator": "nPczCjzI2devNBz1zQrb",
+    "ethan": "TX3LPaxmHKxFdv7VOQHJ",
+    "gps": "EXAVITQu4vr4xnSDxMaL",
+    "ethanvideo": "TX3LPaxmHKxFdv7VOQHJ",
+    "elder": "pqHfZKP75CvOlQylNhV4"
+  },
+  "chosen_note": "Chosen for Part 1 (Brian, Liam, Sarah); later parts reuse them."
 }

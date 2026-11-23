@@ -1,0 +1,27 @@
+{
+  "part": 1,
+  "title": "ETHAN NEVER TOLD IT",
+  "duration": 60,
+  "lines": [
+    {"id": "p1_01", "who": "narrator", "s": 0.4, "text": "Ethan never told it his name.", "cards": ["ETHAN NEVER TOLD IT", "HIS NAME."], "keys": ["NAME"]},
+    {"id": "p1_02", "who": "ethan", "s": 6.2, "text": "Okay, guys, we're officially off the map.", "cards": ["OKAY, GUYS, WE'RE", "OFFICIALLY OFF THE MAP."]},
+    {"id": "p1_03", "who": "ethan", "s": 9.4, "text": "Two hours of mud. Zero regrets.", "cards": ["TWO HOURS OF MUD.", "ZERO REGRETS."]},
+    {"id": "p1_04", "who": "narrator", "s": 12.4, "text": "Ethan Cole rented a jeep in Borneo.", "cards": ["ETHAN COLE,", "RENTED A JEEP", "IN BORNEO."]},
+    {"id": "p1_05", "who": "gps", "s": 16.0, "text": "Signal lost. Recalculating.", "cards": ["SIGNAL LOST. RECALCULATING."]},
+    {"id": "p1_06", "who": "ethan", "s": 19.4, "text": "Wait... where are you taking me?", "cards": ["WAIT... WHERE ARE YOU", "TAKING ME?"]},
+    {"id": "p1_07", "who": "ethan", "s": 26.0, "text": "Nope. Turning around.", "cards": ["NOPE. TURNING AROUND."]},
+    {"id": "p1_08", "who": "gps", "s": 29.6, "text": "Please continue, Ethan.", "cards": ["PLEASE CONTINUE, ETHAN."], "keys": ["ETHAN"]},
+    {"id": "p1_09", "who": "narrator", "s": 32.6, "text": "He never typed in his name.", "cards": ["HE NEVER TYPED", "IN HIS NAME."]},
+    {"id": "p1_10", "who": "narrator", "s": 37.0, "text": "Same jeep. Same plate. Same camera.", "cards": ["SAME JEEP. SAME PLATE.", "SAME CAMERA."]},
+    {"id": "p1_11", "who": "ethan", "s": 40.5, "text": "That's my jeep.", "cards": ["THAT'S MY JEEP."]},
+    {"id": "p1_12", "who": "narrator", "s": 43.0, "text": "Except this one had been here for years.", "cards": ["EXCEPT THIS ONE", "HAD BEEN HERE", "FOR YEARS."]},
+    {"id": "p1_13", "who": "narrator", "s": 48.6, "text": "Inside, an old GPS was still on.", "cards": ["INSIDE, AN OLD GPS", "WAS STILL ON."]},
+    {"id": "p1_14", "who": "gps", "s": 52.4, "text": "Welcome back, Ethan.", "cards": ["WELCOME BACK, ETHAN."], "keys": ["WELCOME BACK"]}
+  ],
+  "sfx": [
+    {"file": "sfx/rumble.wav", "s": 18.2, "vol": 0.7},
+    {"file": "sfx/rumble.wav", "s": 47.6, "vol": 0.7},
+    {"file": "sfx/chime.wav", "s": 52.0, "vol": 0.5}
+  ],
+  "bed": {"vol": 0.8}
+}

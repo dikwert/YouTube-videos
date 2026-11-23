@@ -1,0 +1,159 @@
+{
+  "part": 2,
+  "title": "THE OTHER JEEP",
+  "duration": 60,
+  "lines": [
+    {
+      "id": "p2_01",
+      "who": "narrator",
+      "s": 0.3,
+      "text": "Last time: his GPS knew his name.",
+      "cards": [
+        "LAST TIME: HIS GPS",
+        "KNEW HIS NAME."
+      ]
+    },
+    {
+      "id": "p2_02",
+      "who": "narrator",
+      "s": 3.7,
+      "text": "The figure was gone. The camera was still in the jeep.",
+      "cards": [
+        "THE FIGURE WAS GONE.",
+        "THE CAMERA WAS",
+        "STILL IN THE JEEP."
+      ]
+    },
+    {
+      "id": "p2_03",
+      "who": "ethan",
+      "s": 8.0,
+      "text": "That's my camera. I never left it here.",
+      "cards": [
+        "THAT'S MY CAMERA.",
+        "I NEVER LEFT",
+        "IT HERE."
+      ]
+    },
+    {
+      "id": "p2_04",
+      "who": "narrator",
+      "s": 12.2,
+      "text": "Three years ago. Same road. Same me.",
+      "cards": [
+        "THREE YEARS AGO.",
+        "SAME ROAD. SAME ME."
+      ]
+    },
+    {
+      "id": "p2_05",
+      "who": "ethanvideo",
+      "s": 17.0,
+      "text": "Day one. Camera's rolling.",
+      "cards": [
+        "DAY ONE. CAMERA'S ROLLING."
+      ]
+    },
+    {
+      "id": "p2_06",
+      "who": "ethanvideo",
+      "s": 20.4,
+      "text": "Keep the GPS turned on. Always.",
+      "cards": [
+        "KEEP THE GPS TURNED",
+        "ON. ALWAYS."
+      ]
+    },
+    {
+      "id": "p2_07",
+      "who": "narrator",
+      "s": 23.0,
+      "text": "His own jeep just wouldn't start.",
+      "cards": [
+        "HIS OWN JEEP JUST",
+        "WOULDN'T START."
+      ]
+    },
+    {
+      "id": "p2_08",
+      "who": "ethan",
+      "s": 26.0,
+      "text": "Come on. Come on.",
+      "cards": [
+        "COME ON. COME ON."
+      ]
+    },
+    {
+      "id": "p2_09",
+      "who": "gps",
+      "s": 35.4,
+      "text": "Your destination is two miles ahead.",
+      "cards": [
+        "YOUR DESTINATION IS",
+        "TWO MILES AHEAD."
+      ],
+      "keys": [
+        "DESTINATION"
+      ]
+    },
+    {
+      "id": "p2_10",
+      "who": "narrator",
+      "s": 40.8,
+      "text": "He took the flashlight and walked into the rain.",
+      "cards": [
+        "HE TOOK THE FLASHLIGHT",
+        "AND WALKED INTO",
+        "THE RAIN."
+      ]
+    },
+    {
+      "id": "p2_11",
+      "who": "narrator",
+      "s": 52.0,
+      "text": "Fresh prints in the wet mud.",
+      "cards": [
+        "FRESH PRINTS IN",
+        "THE WET MUD."
+      ]
+    },
+    {
+      "id": "p2_12",
+      "who": "narrator",
+      "s": 54.4,
+      "text": "His boot tread is leading forward.",
+      "cards": [
+        "HIS BOOT TREAD IS",
+        "LEADING FORWARD."
+      ],
+      "keys": [
+        "FORWARD"
+      ]
+    }
+  ],
+  "sfx": [
+    {
+      "file": "sfx/static.wav",
+      "s": 10.2,
+      "vol": 0.25
+    },
+    {
+      "file": "sfx/sputter.wav",
+      "s": 26.4,
+      "vol": 0.5
+    },
+    {
+      "file": "sfx/chime.wav",
+      "s": 35.2,
+      "vol": 0.4
+    },
+    {
+      "file": "sfx/rumble.wav",
+      "s": 44.0,
+      "vol": 0.6
+    }
+  ],
+  "bed": {
+    "vol": 0.8
+  }
+}

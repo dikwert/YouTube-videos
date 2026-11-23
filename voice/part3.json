@@ -1,0 +1,152 @@
+{
+  "part": 3,
+  "title": "THE TEMPLE",
+  "duration": 60,
+  "lines": [
+    {
+      "id": "p3_01",
+      "who": "narrator",
+      "s": 0.3,
+      "text": "His own footprints led into the jungle.",
+      "cards": [
+        "HIS OWN FOOTPRINTS",
+        "LED INTO THE JUNGLE."
+      ]
+    },
+    {
+      "id": "p3_02",
+      "who": "narrator",
+      "s": 4.2,
+      "text": "Then the stone walls slowly appeared.",
+      "cards": [
+        "THEN THE STONE",
+        "WALLS SLOWLY APPEARED."
+      ]
+    },
+    {
+      "id": "p3_03",
+      "who": "ethan",
+      "s": 9.0,
+      "text": "Nobody would build a temple here.",
+      "cards": [
+        "NOBODY WOULD BUILD",
+        "A TEMPLE HERE."
+      ]
+    },
+    {
+      "id": "p3_04",
+      "who": "narrator",
+      "s": 14.0,
+      "text": "Inside, the walls were covered in screens.",
+      "cards": [
+        "INSIDE, THE WALLS",
+        "WERE COVERED",
+        "IN SCREENS."
+      ]
+    },
+    {
+      "id": "p3_05",
+      "who": "narrator",
+      "s": 18.4,
+      "text": "Dozens of rusted navigators. Every screen lit.",
+      "cards": [
+        "DOZENS OF RUSTED NAVIGATORS.",
+        "EVERY SCREEN LIT."
+      ]
+    },
+    {
+      "id": "p3_06",
+      "who": "ethan",
+      "s": 24.6,
+      "text": "Each one of them has a name.",
+      "cards": [
+        "EACH ONE OF THEM",
+        "HAS A NAME."
+      ],
+      "keys": [
+        "NAME"
+      ]
+    },
+    {
+      "id": "p3_07",
+      "who": "narrator",
+      "s": 28.0,
+      "text": "Marcus Hale. Two thousand and nineteen.",
+      "cards": [
+        "MARCUS HALE. TWO",
+        "THOUSAND AND NINETEEN."
+      ]
+    },
+    {
+      "id": "p3_08",
+      "who": "narrator",
+      "s": 31.6,
+      "text": "Lena Ward. Twenty twenty-four.",
+      "cards": [
+        "LENA WARD.",
+        "TWENTY TWENTY-FOUR."
+      ]
+    },
+    {
+      "id": "p3_09",
+      "who": "narrator",
+      "s": 37.0,
+      "text": "The last screen was still empty.",
+      "cards": [
+        "THE LAST SCREEN",
+        "WAS STILL EMPTY."
+      ]
+    },
+    {
+      "id": "p3_10",
+      "who": "narrator",
+      "s": 42.0,
+      "text": "Its cursor kept blinking.",
+      "cards": [
+        "ITS CURSOR KEPT BLINKING."
+      ]
+    },
+    {
+      "id": "p3_11",
+      "who": "narrator",
+      "s": 49.6,
+      "text": "Then, one letter at a time:",
+      "cards": [
+        "THEN, ONE LETTER",
+        "AT A TIME:"
+      ]
+    },
+    {
+      "id": "p3_12",
+      "who": "narrator",
+      "s": 55.0,
+      "text": "It says: Ethan.",
+      "cards": [
+        "IT SAYS: ETHAN."
+      ],
+      "keys": [
+        "ETHAN"
+      ]
+    }
+  ],
+  "sfx": [
+    {
+      "file": "sfx/drip.wav",
+      "s": 2.9,
+      "vol": 0.4
+    },
+    {
+      "file": "sfx/static.wav",
+      "s": 47.8,
+      "vol": 0.3
+    },
+    {
+      "file": "sfx/beep.wav",
+      "s": 54.6,
+      "vol": 0.35
+    }
+  ],
+  "bed": {
+    "vol": 0.8
+  }
+}

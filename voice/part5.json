@@ -1,0 +1,153 @@
+{
+  "part": 5,
+  "title": "RECALCULATING",
+  "duration": 60,
+  "lines": [
+    {
+      "id": "p5_01",
+      "who": "narrator",
+      "s": 0.3,
+      "text": "The GPS said: you have arrived.",
+      "cards": [
+        "THE GPS SAID:",
+        "YOU HAVE ARRIVED."
+      ]
+    },
+    {
+      "id": "p5_02",
+      "who": "ethan",
+      "s": 4.0,
+      "text": "Shut up. Shut up.",
+      "cards": [
+        "SHUT UP. SHUT UP."
+      ]
+    },
+    {
+      "id": "p5_03",
+      "who": "narrator",
+      "s": 10.0,
+      "text": "He broke every screen he could reach.",
+      "cards": [
+        "HE BROKE EVERY SCREEN",
+        "HE COULD REACH."
+      ]
+    },
+    {
+      "id": "p5_04",
+      "who": "narrator",
+      "s": 17.0,
+      "text": "Then he ran into the rain.",
+      "cards": [
+        "THEN HE RAN",
+        "INTO THE RAIN."
+      ]
+    },
+    {
+      "id": "p5_05",
+      "who": "ethan",
+      "s": 21.0,
+      "text": "There. That's my jeep.",
+      "cards": [
+        "THERE. THAT'S MY JEEP."
+      ]
+    },
+    {
+      "id": "p5_06",
+      "who": "gps",
+      "s": 27.0,
+      "text": "Recalculating... Hold on.",
+      "cards": [
+        "RECALCULATING... HOLD ON."
+      ],
+      "keys": [
+        "RECALCULATING"
+      ]
+    },
+    {
+      "id": "p5_07",
+      "who": "narrator",
+      "s": 36.0,
+      "text": "Dawn came. The rain finally stopped.",
+      "cards": [
+        "DAWN CAME. THE RAIN",
+        "FINALLY STOPPED."
+      ]
+    },
+    {
+      "id": "p5_08",
+      "who": "ethan",
+      "s": 41.0,
+      "text": "We made it.",
+      "cards": [
+        "WE MADE IT."
+      ]
+    },
+    {
+      "id": "p5_09",
+      "who": "narrator",
+      "s": 48.0,
+      "text": "But the mirror showed the back seat.",
+      "cards": [
+        "BUT THE MIRROR SHOWED",
+        "THE BACK SEAT."
+      ]
+    },
+    {
+      "id": "p5_10",
+      "who": "narrator",
+      "s": 53.6,
+      "text": "The old camera was recording. Live.",
+      "cards": [
+        "THE OLD CAMERA",
+        "WAS RECORDING. LIVE."
+      ]
+    },
+    {
+      "id": "p5_11",
+      "who": "gps",
+      "s": 57.0,
+      "text": "See you soon, Ethan.",
+      "cards": [
+        "SEE YOU SOON, ETHAN."
+      ],
+      "keys": [
+        "SEE YOU SOON"
+      ]
+    }
+  ],
+  "sfx": [
+    {
+      "file": "sfx/smash.wav",
+      "s": 6.0,
+      "vol": 0.7
+    },
+    {
+      "file": "sfx/smash.wav",
+      "s": 8.6,
+      "vol": 0.7
+    },
+    {
+      "file": "sfx/smash.wav",
+      "s": 11.0,
+      "vol": 0.7
+    },
+    {
+      "file": "sfx/smash.wav",
+      "s": 13.2,
+      "vol": 0.7
+    },
+    {
+      "file": "sfx/engine.wav",
+      "s": 24.0,
+      "vol": 0.3
+    },
+    {
+      "file": "sfx/rumble.wav",
+      "s": 17.5,
+      "vol": 0.5
+    }
+  ],
+  "bed": {
+    "vol": 0.8
+  }
+}
