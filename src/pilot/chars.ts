@@ -4,7 +4,7 @@
  */
 
 export type Kind = 'kevin' | 'rick' | 'dave' | 'gloria' | 'edna' | 'tommy' | 'cashier' | 'pax';
-export type Pose = 'stand' | 'sit' | 'raise' | 'armsup' | 'slump' | 'knit' | 'fork' | 'run' | 'point' | 'thumb' | 'shrug' | 'seated_hand' | 'eat' | 'socks';
+export type Pose = 'stand' | 'sit' | 'raise' | 'armsup' | 'slump' | 'knit' | 'fork' | 'run' | 'point' | 'thumb' | 'shrug' | 'seated_hand' | 'eat' | 'socks' | 'note';
 export type Expr = 'neutral' | 'shock' | 'grin' | 'smug' | 'sleep' | 'panic' | 'angry' | 'proud' | 'bored' | 'pain';
 
 export type CharState = {kind: Kind; pose: Pose; expr: Expr; mouth?: number; variant?: number; blink?: boolean};
@@ -41,13 +41,14 @@ const POSES: Record<Pose, {lh: [number, number]; rh: [number, number]; lk?: [num
   sit: {lh: [215, 560], rh: [390, 560], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [0, 0], tilt: 0},
   eat: {lh: [215, 560], rh: [455, 470], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [0, 0], tilt: 0},
   socks: {lh: [190, 640], rh: [410, 640], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
-  raise: {lh: [185, 640], rh: [470, 250], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
+  note: {lh: [190, 640], rh: [410, 640], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
+  raise: {lh: [185, 640], rh: [520, 170], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   armsup: {lh: [150, 230], rh: [450, 230], lf: [265, GROUND], rf: [335, GROUND], head: [0, -6], tilt: 0},
-  slump: {lh: [250, 640], rh: [350, 630], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [18, 56], tilt: 0.25},
+  slump: {lh: [250, 640], rh: [350, 630], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [40, 150], tilt: 0.25},
   knit: {lh: [245, 540], rh: [355, 540], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: -0.05},
   fork: {lh: [190, 640], rh: [480, 520], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   run: {lh: [175, 470], rh: [425, 620], lf: [225, GROUND - 40], rf: [380, GROUND], head: [0, 0], tilt: 0.04},
-  point: {lh: [190, 640], rh: [560, 430], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
+  point: {lh: [190, 640], rh: [560, 320], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   thumb: {lh: [190, 640], rh: [470, 330], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0.04},
   shrug: {lh: [120, 330], rh: [480, 330], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   seated_hand: {lh: [215, 560], rh: [480, 470], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [0, 0], tilt: 0},
@@ -282,8 +283,8 @@ export function drawChar(st: CharState): HTMLCanvasElement {
   if (st.pose === 'socks') {
     // striped socks above the ankles
     for (const x of [pose.lf[0], pose.rf[0]]) {
-      stick(ctx, [x, 770], [x, 800], '#e84a3b', 27);
-      stick(ctx, [x, 800], [x, 828], '#fff6d8', 27);
+      stick(ctx, [x, 740], [x, 790], '#e84a3b', 38);
+      stick(ctx, [x, 790], [x, 840], '#fff6d8', 38);
     }
   }
 
@@ -386,7 +387,16 @@ export function drawChar(st: CharState): HTMLCanvasElement {
   if (st.pose === 'knit') {
     stick(ctx, [240, 500], [150, 370], '#c8c8c8', 8);
     stick(ctx, [360, 500], [455, 360], '#c8c8c8', 8);
-    shape(ctx, '#ff8a3d', 7, () => ctx.arc(120, 420, 52, 0, Math.PI * 2));
+    shape(ctx, '#ff8a3d', 7, () => ctx.arc(150, 415, 50, 0, Math.PI * 2));
+  }
+  if (st.pose === 'note') {
+    // a folded note held in the right hand
+    shape(ctx, '#ffffff', 5, () => ctx.rect(412, 560, 50, 62));
+    ink(ctx, 3);
+    ctx.beginPath();
+    ctx.moveTo(420, 580); ctx.lineTo(454, 580);
+    ctx.moveTo(420, 600); ctx.lineTo(454, 600);
+    ctx.stroke();
   }
   if (st.pose === 'eat') {
     // fork in the right hand

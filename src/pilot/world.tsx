@@ -381,15 +381,18 @@ export const Clouds: React.FC<{seed: number; n: number; span: number; y: [number
 /** A SKYPAL airliner, nose towards +z. Built from a fuselage, a blue livery band, wings, tail and two engines. */
 export const Airliner: React.FC<{p: [number, number, number]; s?: number; ry?: number}> = ({p, s = 1, ry = 0}) => (
   <group position={p} scale={s} rotation={[0, ry, 0]}>
-    <Cyl p={[0, 0, 0]} r={2.2} h={18} c="#f4f4f1" rot={[Math.PI / 2, 0, 0]} seg={28} />
+    <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
+      <cylinderGeometry args={[2.2, 2.2, 18, 28]} />
+      <meshBasicMaterial color="#f4f4f1" toneMapped={false} />
+    </mesh>
     {/* nose and tail cones */}
     <mesh position={[0, 0, 10.3]} rotation={[Math.PI / 2, 0, 0]}>
       <coneGeometry args={[2.2, 2.6, 28]} />
-      <meshLambertMaterial color="#f4f4f1" />
+      <meshBasicMaterial color="#f4f4f1" toneMapped={false} />
     </mesh>
     <mesh position={[0, 0, -10.2]} rotation={[-Math.PI / 2, 0, 0]}>
       <coneGeometry args={[2.2, 2.4, 28]} />
-      <meshLambertMaterial color="#f4f4f1" />
+      <meshBasicMaterial color="#f4f4f1" toneMapped={false} />
     </mesh>
     {/* blue livery stripe along each side, cabin windows above it */}
     {[-1, 1].map((side) => (
@@ -407,6 +410,11 @@ export const Airliner: React.FC<{p: [number, number, number]; s?: number; ry?: n
     {/* engines under the wings */}
     <Cyl p={[-3.4, -1.7, 1.2]} r={0.8} h={2.2} c="#2a2f36" rot={[Math.PI / 2, 0, 0]} seg={18} />
     <Cyl p={[3.4, -1.7, 1.2]} r={0.8} h={2.2} c="#2a2f36" rot={[Math.PI / 2, 0, 0]} seg={18} />
+    {/* landing gear: two main wheels under the wings, a nose wheel */}
+    {[-1.8, 1.8].map((x) => (
+      <Cyl key={x} p={[x, -2.0, -1.5]} r={0.5} h={0.4} c="#1d1f24" rot={[0, 0, Math.PI / 2]} seg={16} />
+    ))}
+    <Cyl p={[0, -2.0, 7]} r={0.5} h={0.4} c="#1d1f24" rot={[0, 0, Math.PI / 2]} seg={16} />
   </group>
 );
 
@@ -442,7 +450,7 @@ export const CabinSet: React.FC<{passengers?: boolean; bathroomOpen?: boolean}> 
         <Box p={[side * 2.9, 2.35, -12]} s={[0.9, 0.7, 40]} c="#d7c7a6" />
       </group>
     ))}
-    {Array.from({length: 17}, (_, r) =>
+    {Array.from({length: bathroomOpen ? 14 : 17}, (_, r) =>
       SEAT_X.map((x) => (
         <group key={`${r}-${x}`}>
           <Box p={[x, 0.36, ROW_Z(r)]} s={[0.55, 0.12, 0.6]} c="#4f6175" />
@@ -453,11 +461,13 @@ export const CabinSet: React.FC<{passengers?: boolean; bathroomOpen?: boolean}> 
     {passengers && <Passengers />}
     {bathroomOpen ? (
       <>
-        {/* the doorway is open: a dark room behind, the door panel swung back against the wall */}
-        <mesh position={[0, 1.05, -21.25]}>
+        {/* the doorway is open: a lit bathroom with a toilet, the door panel swung back against the wall */}
+        <mesh position={[0, 1.05, -22.4]}>
           <planeGeometry args={[1.1, 2.1]} />
-          <meshBasicMaterial color="#1c2530" toneMapped={false} />
+          <meshBasicMaterial color="#ffe9b0" toneMapped={false} />
         </mesh>
+        <Box p={[0, 0.42, -21.9]} s={[0.45, 0.4, 0.55]} c="#f4f4f1" />
+        <Box p={[0, 0.86, -22.1]} s={[0.45, 0.5, 0.2]} c="#f4f4f1" />
         <Box p={[-0.55, 1.05, -21.75]} s={[0.05, 2.1, 1.1]} c="#9db3c8" />
       </>
     ) : (
@@ -499,6 +509,13 @@ export const CockpitSet: React.FC<{dave?: 'slump' | 'upright' | 'eat'; kevin?: C
       <planeGeometry args={[7, 18]} />
       <meshLambertMaterial color="#2a2f36" />
     </mesh>
+    {/* crew seats: a cushion and a backrest for each pilot */}
+    {[0, -1.15].map((x) => (
+      <group key={x}>
+        <Box p={[x, 0.46, -0.85]} s={[0.55, 0.14, 0.55]} c="#3a4656" />
+        <Box p={[x, 1.05, -1.12]} s={[0.55, 1.2, 0.12]} c="#3a4656" />
+      </group>
+    ))}
     <mesh position={[0, 1.42, -1.6]}>
       <planeGeometry args={[3.2, 1.1]} />
       <meshBasicMaterial map={panelTex()} toneMapped={false} />
@@ -508,7 +525,7 @@ export const CockpitSet: React.FC<{dave?: 'slump' | 'upright' | 'eat'; kevin?: C
     <Box p={[-1.9, 1.2, -1.2]} s={[0.25, 1.8, 0.4]} c="#1d2329" />
     <Box p={[1.9, 1.2, -1.2]} s={[0.25, 1.8, 0.4]} c="#1d2329" />
     <Box p={[0, 1.35, -2.1]} s={[0.1, 0.6, 0.1]} c="#515b66" />
-    {[-0.33, 0.33].map((x) => (
+    {[-1.48, -0.82, -0.33, 0.33].map((x) => (
       <group key={x} position={[x, 1.1, -1.0]}>
         <mesh rotation={[0, 0, 0]}>
           <torusGeometry args={[0.32, 0.035, 10, 28]} />
@@ -552,11 +569,19 @@ export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: 
     <Box p={[-8.2, 6.6, -30]} s={[4.8, 1.2, 0.2]} c="#2c6bd6" />
     <Pic p={[-8.2, 6.6, -29.85]} s={[4.6, 1.0]} tex={burgerSignTex()} />
     {/* burger shop with drive-thru */}
-    <Box p={[18, 3, -10]} s={[10, 6, 8]} c="#e7dcc4" />
+    {/* a hollow box, open on the road side at the drive-thru window */}
+    <Box p={[22.95, 3, -10]} s={[0.1, 6, 8]} c="#e7dcc4" />
+    <Box p={[18, 3, -14.05]} s={[10, 6, 0.1]} c="#e7dcc4" />
+    <Box p={[18, 3, -5.95]} s={[10, 6, 0.1]} c="#e7dcc4" />
+    <Box p={[13.05, 3, -12.6]} s={[0.1, 6, 2.8]} c="#e7dcc4" />
+    <Box p={[13.05, 3, -7.4]} s={[0.1, 6, 2.8]} c="#e7dcc4" />
+    <Box p={[13.05, 4.5, -10]} s={[0.1, 3, 2.4]} c="#e7dcc4" />
+    <Box p={[13.05, 0.7, -10]} s={[0.1, 1.4, 2.4]} c="#e7dcc4" />
     <Box p={[18, 6.4, -10]} s={[10.4, 0.6, 8.4]} c="#b8553f" />
-    <Pic p={[18, 4.8, -5.94]} s={[6, 1.9]} tex={burgerSignTex()} />
-    <mesh position={[12.9, 2.2, -10]} rotation={[0, -Math.PI / 2, 0]}>
-      <planeGeometry args={[2.4, 1.6]} />
+    <Pic p={[18, 4.8, -5.85]} s={[6, 1.9]} tex={burgerSignTex()} />
+    {/* the lit kitchen behind the drive-thru window */}
+    <mesh position={[13.9, 2.2, -10]} rotation={[0, -Math.PI / 2, 0]}>
+      <planeGeometry args={[8, 6]} />
       <meshBasicMaterial color="#ffe9a8" toneMapped={false} />
     </mesh>
     <Box p={[9.2, 1.15, -10]} s={[0.32, 0.5, 0.26]} c="#3a3f47" />
@@ -574,6 +599,11 @@ export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: 
 /** The reinforced cockpit door in its bulkhead, with a keypad beside it. */
 export const CockpitDoor: React.FC = () => (
   <group>
+    {/* the bulkhead ceiling, so no sky shows above the wall */}
+    <mesh position={[0, 3.0, 1.2]} rotation={[Math.PI / 2, 0, 0]}>
+      <planeGeometry args={[7, 8]} />
+      <meshBasicMaterial color="#efe8da" toneMapped={false} />
+    </mesh>
     <mesh position={[0, 0, 0.5]} rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[7, 8]} />
       <meshLambertMaterial color="#2a2f36" />

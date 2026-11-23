@@ -12,9 +12,10 @@ export const Subtitles: React.FC<{cards: Card[]}> = ({cards}) => {
   const f = useCurrentFrame();
   let card = cards.find((c) => f >= sec(c.s) && f < sec(c.e));
   if (!card) {
-    // A gap of a few milliseconds between two phrases: hold the previous one so the text never blinks out.
+    // A gap of one or two frames between two phrases: hold the previous one so the text never blinks out.
+    // Longer pauses stay empty, so a phrase is not shown over the wrong picture.
     const prev = [...cards].reverse().find((c) => f >= sec(c.s));
-    if (prev && f - sec(prev.e) < 5) card = prev;
+    if (prev && f - sec(prev.e) < 2) card = prev;
   }
   if (!card) return null;
   // A phrase that starts at 0 s is already opaque on the first frame.
