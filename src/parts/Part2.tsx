@@ -243,8 +243,8 @@ const FaceClose: React.FC = () => {
     <Stage p={P}>
       <CameraRig
         keys={[
-          {f: 0, z: 1.0},
-          {f: 450, z: 1.06},
+          {f: 0, z: 1.0, x: 0, y: 0, r: 0},
+          {f: 450, z: 1.09, x: -50, y: -40, r: -2},
         ]}
         shakes={[{at: 120, dur: 24, amp: 3}]}
       >
