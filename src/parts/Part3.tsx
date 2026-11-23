@@ -202,7 +202,7 @@ export const Part3: React.FC = () => (
     <Sequence from={0} durationInFrames={sec(4)}>
       <PressPlay />
     </Sequence>
-    <Sequence from={sec(4)} durationInFrames={sec(8)}>
+    <Sequence from={sec(4)} durationInFrames={sec(16)}>
       <VideoTalk />
     </Sequence>
     <Sequence from={sec(20)} durationInFrames={sec(5)}>
