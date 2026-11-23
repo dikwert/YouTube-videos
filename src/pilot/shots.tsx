@@ -1,6 +1,6 @@
 import React from 'react';
 import {WORDS} from './timing.generated';
-import {Airliner, Box, CabinSet, Clouds, CockpitDoor, CockpitSet, Cyl, HighwaySet, Person, Pic, ROW_Z, Sphere, SkyDome, fishTex} from './world';
+import {Airliner, Box, CabinSet, Clouds, CockpitDoor, CockpitSet, HighwaySet, Person, Pic, ROW_Z, SkyDome, panelTex} from './world';
 
 export type Vec3 = [number, number, number];
 export type Cam = {p: Vec3; l: Vec3; f: number; r?: number};
@@ -16,9 +16,12 @@ export function mouthAt(g: number): number {
 }
 
 const R = ROW_Z;
+/** The camera's own smootherstep, so a prop that moves with the camera keeps pace with it. */
+const ease = (s: number) => s * s * s * (s * (s * 6 - 15) + 10);
 
 /**
  * 27 shots. Times are seconds of the narration (words.json). Each shot has its own set and camera.
+ * Each close-up puts the chin above the subtitle band (the band sits at 68% of the frame height).
  * Characters: kevin, rick, dave, gloria, edna, tommy, cashier, pax.
  */
 export const SHOTS: ShotDef[] = [
@@ -59,7 +62,7 @@ export const SHOTS: ShotDef[] = [
   // 4. cabin: Kevin in the middle seat
   {
     id: 'kevin-seat', a: 6.05, b: 7.9,
-    cam0: {p: [-1.5, 1.2, -0.9], l: [-1.5, 1.05, -3.2], f: 42}, cam1: {p: [-1.5, 1.2, -0.8], l: [-1.5, 1.05, -3.2], f: 42}, creep: 0.06,
+    cam0: {p: [-1.5, 1.2, -0.9], l: [-1.5, 0.85, -3.2], f: 42}, cam1: {p: [-1.5, 1.2, -0.8], l: [-1.5, 0.85, -3.2], f: 42}, creep: 0.06,
     view: ({mouth}) => (
       <>
         <SkyDome />
@@ -69,65 +72,54 @@ export const SHOTS: ShotDef[] = [
       </>
     ),
   },
-  // 5. food trays: two meals
+  // 5. the cockpit meals: "Fun fact: many airlines make pilots eat different meals."
   {
     id: 'trays', a: 7.9, b: 11.1,
-    cam0: {p: [0.0, 1.9, -2.0], l: [-1.5, 0.9, R(2) + 0.35], f: 42}, cam1: {p: [0.05, 1.9, -1.9], l: [-1.5, 0.9, R(2) + 0.35], f: 42}, creep: 0.08,
+    cam0: {p: [-2.6, 1.5, 3.6], l: [-0.6, 1.0, -0.4], f: 50}, cam1: {p: [-2.4, 1.5, 3.4], l: [-0.6, 1.0, -0.4], f: 50}, creep: 0.05,
     view: () => (
       <>
         <SkyDome />
-        <CabinSet />
-        <Cyl p={[-1.5, 0.92, R(2) + 0.35]} r={0.22} h={0.03} c="#f7f7f2" />
-        <Cyl p={[1.5, 0.92, R(2) + 0.35]} r={0.22} h={0.03} c="#f7f7f2" />
-        <Pic p={[-1.5, 0.945, R(2) + 0.35]} s={[0.36, 0.22]} tex={fishTex()} rx={-Math.PI / 2} />
-        <Sphere p={[1.5, 0.98, R(2) + 0.35]} r={0.14} c="#f1c75c" />
+        <CockpitSet rick={{pose: 'sit', expr: 'bored', mouth: 0}} dave="eat" trays={{fish: true, pasta: true}} />
       </>
     ),
   },
-  // 6. two-shot of the two passengers with trays
+  // 6. both pilots, each with a different meal: "So food poisoning is less likely to get both."
   {
     id: 'two-shot', a: 11.1, b: 13.55,
-    cam0: {p: [0, 1.3, -2.3], l: [0, 1.0, R(2)], f: 46}, cam1: {p: [0.05, 1.3, -2.2], l: [0, 1.0, R(2)], f: 46}, creep: 0.05,
-    view: ({mouth}) => (
+    cam0: {p: [0.0, 1.3, 4.2], l: [-0.6, 1.18, -0.4], f: 50}, cam1: {p: [0.05, 1.3, 4.15], l: [-0.6, 1.18, -0.4], f: 50}, creep: 0.05,
+    view: () => (
       <>
         <SkyDome />
-        <CabinSet />
-        <Person st={{kind: 'pax', pose: 'seated_hand', expr: 'bored', variant: 2}} feet={[-1.5, 0, R(2) + 0.2]} height={1.3} />
-        <Person st={{kind: 'pax', pose: 'fork', expr: 'shock', variant: 1}} feet={[1.5, 0, R(2) + 0.2]} height={1.3} />
-        <Cyl p={[0, 0.92, R(2) + 0.35]} r={0.2} h={0.03} c="#f7f7f2" />
-        <Pic p={[0, 0.95, R(2) + 0.1]} s={[0.3, 0.18]} tex={fishTex()} rx={-Math.PI / 2} />
+        <CockpitSet rick={{pose: 'sit', expr: 'neutral', mouth: 0}} dave="eat" trays={{fish: true, pasta: true}} />
       </>
     ),
   },
   // 7. close-up of the fish: "Our co-pilot ate the fish anyway."
   {
     id: 'fish', a: 13.55, b: 15.4,
-    cam0: {p: [-1.2, 1.1, R(2) + 1.0], l: [-1.5, 0.92, R(2) + 0.35], f: 42}, cam1: {p: [-1.15, 1.08, R(2) + 0.9], l: [-1.5, 0.92, R(2) + 0.35], f: 42}, creep: 0.1,
+    cam0: {p: [-0.3, 1.25, 0.9], l: [-1.15, 1.03, -0.4], f: 42}, cam1: {p: [-0.25, 1.25, 0.8], l: [-1.15, 1.03, -0.4], f: 42}, creep: 0.08,
     view: () => (
       <>
         <SkyDome />
-        <CabinSet />
-        <Cyl p={[-1.5, 0.92, R(2) + 0.35]} r={0.25} h={0.03} c="#f7f7f2" />
-        <Pic p={[-1.5, 0.95, R(2) + 0.35]} s={[0.46, 0.28]} tex={fishTex()} rx={-Math.PI / 2} />
-        <Box p={[-1.25, 0.95, R(2) + 0.3]} s={[0.02, 0.01, 0.2]} c="#c0c0c0" />
+        <CockpitSet dave="eat" trays={{fish: true}} />
       </>
     ),
   },
-  // 8. cockpit: Dave passes out on the controls
+  // 8. the cockpit: Dave passes out on the controls, the captain beside him
   {
     id: 'dave-out', a: 15.4, b: 17.95,
-    cam0: {p: [-0.6, 1.2, 2.0], l: [-0.6, 1.1, -1.2], f: 52}, cam1: {p: [-0.6, 1.2, 1.85], l: [-0.6, 1.1, -1.2], f: 52}, creep: 0.05,
-    view: ({mouth}) => (
+    cam0: {p: [-0.6, 1.25, 4.4], l: [-0.6, 1.15, -0.4], f: 52}, cam1: {p: [-0.6, 1.25, 4.3], l: [-0.6, 1.15, -0.4], f: 52}, creep: 0.05,
+    view: () => (
       <>
         <SkyDome />
-        <CockpitSet kevin={{pose: 'sit', expr: 'shock', mouth}} dave="slump" />
+        <CockpitSet rick={{pose: 'sit', expr: 'shock', mouth: 0}} dave="slump" />
       </>
     ),
   },
   // 9. the captain runs to the bathroom; the lock jams
   {
     id: 'run', a: 17.95, b: 21.2,
-    cam0: {p: [0, 1.35, 0.2], l: [0, 1.4, -6], f: 50}, cam1: {p: [0, 1.35, -3], l: [0, 1.4, -9], f: 50}, creep: 0,
+    cam0: {p: [0, 1.35, 0.2], l: [0, 1.0, -6], f: 50}, cam1: {p: [0, 1.35, -3], l: [0, 1.0, -9], f: 50}, creep: 0,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
       const z = -8 + (-19.6 + 8) * k;
@@ -143,7 +135,7 @@ export const SHOTS: ShotDef[] = [
   // 10. Gloria asks the question
   {
     id: 'gloria', a: 21.2, b: 25.4,
-    cam0: {p: [0, 1.4, -2.3], l: [0, 1.4, -6.4], f: 45}, cam1: {p: [0, 1.4, -2.6], l: [0, 1.4, -6.4], f: 45}, creep: 0.06,
+    cam0: {p: [0, 1.4, -2.3], l: [0, 1.0, -6.4], f: 45}, cam1: {p: [0, 1.4, -2.6], l: [0, 1.0, -6.4], f: 45}, creep: 0.06,
     view: ({mouth}) => (
       <>
         <SkyDome />
@@ -167,19 +159,21 @@ export const SHOTS: ShotDef[] = [
   // 12. Kevin shrugs: "I'd played a flight simulator. Twice."
   {
     id: 'shrug', a: 26.2, b: 28.6,
-    cam0: {p: [-1.5, 1.3, -1.7], l: [-1.5, 0.8, -3.2], f: 42}, cam1: {p: [-1.5, 1.3, -1.65], l: [-1.5, 0.8, -3.2], f: 42}, creep: 0.05,
+    cam0: {p: [-1.5, 1.35, 0.2], l: [-1.5, 0.95, -3.0], f: 42}, cam1: {p: [-1.5, 1.35, 0.25], l: [-1.5, 0.95, -3.0], f: 42}, creep: 0.05,
     view: ({mouth, t}) => (
       <>
         <SkyDome />
         <CabinSet passengers={false} />
         <Person st={{kind: 'kevin', pose: 'shrug', expr: t > 1.6 ? 'smug' : 'neutral', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.45} />
+        {/* the flight-simulator screen he holds up */}
+        <Pic p={[-1.5, 0.95, -2.6]} s={[0.36, 0.24]} tex={panelTex()} />
       </>
     ),
   },
   // 13. the cockpit door: "Since 2003, cockpit doors must resist bullets."
   {
     id: 'cockpit-door', a: 28.6, b: 31.5,
-    cam0: {p: [0, 1.2, 0.7], l: [0, 1.1, -1.4], f: 40}, cam1: {p: [0.05, 1.2, 0.6], l: [0, 1.1, -1.4], f: 40}, creep: 0.07,
+    cam0: {p: [0, 1.4, 3.6], l: [0, 1.2, -1.4], f: 46}, cam1: {p: [0.05, 1.4, 3.5], l: [0, 1.2, -1.4], f: 46}, creep: 0.07,
     view: () => (
       <>
         <SkyDome />
@@ -190,7 +184,7 @@ export const SHOTS: ShotDef[] = [
   // 14. the bathroom door: "So the captain shouted instructions through the bathroom door."
   {
     id: 'bathroom-door', a: 31.5, b: 34.1,
-    cam0: {p: [0, 1.45, -17.8], l: [0, 1.4, -21.2], f: 38}, cam1: {p: [0, 1.45, -18.1], l: [0, 1.4, -21.2], f: 38}, creep: 0.06,
+    cam0: {p: [0, 1.45, -17.8], l: [0, 1.13, -21.2], f: 38}, cam1: {p: [0, 1.45, -18.1], l: [0, 1.13, -21.2], f: 38}, creep: 0.06,
     view: () => (
       <>
         <SkyDome />
@@ -202,7 +196,7 @@ export const SHOTS: ShotDef[] = [
   // 15. passengers passing the message down the aisle
   {
     id: 'aisle-chain', a: 34.1, b: 36.2,
-    cam0: {p: [0, 1.4, -1.5], l: [0.4, 1.4, -6], f: 50}, cam1: {p: [0, 1.4, -2.0], l: [0.4, 1.4, -6], f: 50}, creep: 0.08,
+    cam0: {p: [0, 1.4, -1.5], l: [0.4, 1.11, -6], f: 50}, cam1: {p: [0, 1.4, -2.0], l: [0.4, 1.11, -6], f: 50}, creep: 0.08,
     view: ({mouth, t}) => (
       <>
         <SkyDome />
@@ -213,35 +207,34 @@ export const SHOTS: ShotDef[] = [
       </>
     ),
   },
-  // 16. a passenger says "pull up your socks"
+  // 16. a passenger says "pull up your socks": the camera is low, on the socks
   {
     id: 'socks', a: 36.2, b: 38.7,
-    cam0: {p: [0, 1.6, -3.6], l: [0.6, 1.4, -6.5], f: 44}, cam1: {p: [0, 1.6, -3.9], l: [0.6, 1.4, -6.5], f: 44}, creep: 0.1,
+    cam0: {p: [0.0, 0.55, -0.6], l: [0.0, 0.3, -2.6], f: 46}, cam1: {p: [0.0, 0.55, -0.45], l: [0.0, 0.3, -2.6], f: 46}, creep: 0.08,
     view: ({mouth}) => (
       <>
         <SkyDome />
         <CabinSet passengers={false} />
-        <Person st={{kind: 'pax', pose: 'stand', expr: 'grin', mouth, variant: 4}} feet={[0.6, 0, -6.5]} height={2.2} />
+        <Person st={{kind: 'pax', pose: 'socks', expr: 'grin', mouth, variant: 4}} feet={[0.0, 0, -2.6]} height={2.2} />
       </>
     ),
   },
   // 17. Grandma knits: "Grandma, watch your knitting."
   {
     id: 'grandma', a: 38.7, b: 41.55,
-    cam0: {p: [0, 1.3, R(6) + 2.4], l: [0, 1.15, R(6)], f: 42}, cam1: {p: [0, 1.3, R(6) + 2.2], l: [0, 1.15, R(6)], f: 42}, creep: 0.06,
+    cam0: {p: [0, 1.3, R(6) + 2.4], l: [0, 0.92, R(6)], f: 42}, cam1: {p: [0, 1.3, R(6) + 2.2], l: [0, 0.92, R(6)], f: 42}, creep: 0.06,
     view: ({mouth}) => (
       <>
         <SkyDome />
         <CabinSet passengers={false} />
         <Person st={{kind: 'edna', pose: 'knit', expr: 'neutral', mouth, variant: 0}} feet={[0.0, 0, R(6)]} height={1.45} />
-        <Sphere p={[0.25, 0.95, R(6) + 0.3]} r={0.2} c="#ff8a3d" />
       </>
     ),
   },
   // 18. Tommy in row nine: "Do a barrel roll!" (camera rolls)
   {
     id: 'tommy', a: 41.55, b: 44.2,
-    cam0: {p: [0, 1.3, R(8) + 2.4], l: [0, 1.0, R(8)], f: 46, r: 0}, cam1: {p: [0, 1.3, R(8) + 2.2], l: [0, 1.0, R(8)], f: 46, r: 0.09}, creep: 0.05,
+    cam0: {p: [0, 1.3, R(8) + 2.4], l: [0, 0.83, R(8)], f: 46, r: 0}, cam1: {p: [0, 1.3, R(8) + 2.2], l: [0, 0.83, R(8)], f: 46, r: 0.09}, creep: 0.05,
     view: ({mouth}) => (
       <>
         <SkyDome />
@@ -263,31 +256,31 @@ export const SHOTS: ShotDef[] = [
       </>
     ),
   },
-  // 20. the clouds open: the airliner comes down through them
+  // 20. the clouds open: the airliner crosses in profile, below the cloud deck
   {
     id: 'clouds', a: 45.9, b: 49.45,
-    cam0: {p: [0, 22, -6], l: [0, 22, -60], f: 45}, cam1: {p: [0, 20, -4], l: [0, 22, -60], f: 45}, creep: 0.2,
+    cam0: {p: [0, 20, -4], l: [0, 20.5, -60], f: 46}, cam1: {p: [0, 20, -3.6], l: [0, 20.5, -60], f: 46}, creep: 0.1,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
       return (
         <>
           <SkyDome />
-          <Clouds seed={21} n={9} span={40} y={[18, 30]} near />
-          <Airliner p={[0, 24 - k * 8, -80 + k * 46]} s={2.4} />
+          <Clouds seed={21} n={10} span={80} y={[26, 40]} />
+          <Airliner p={[-10 + 20 * k, 20 - 1.2 * k, -60]} s={1} ry={Math.PI / 2} />
         </>
       );
     },
   },
-  // 21. the highway: "Just a highway." The airliner lands; the road is empty
+  // 21. the highway: "Just a highway." The airliner lands; the camera rides alongside it
   {
     id: 'landing', a: 49.45, b: 52.0,
-    cam0: {p: [3.2, 1.1, 14], l: [0, 2.6, -60], f: 55}, cam1: {p: [3.0, 1.1, 10], l: [0, 2.6, -60], f: 55}, creep: 0.05,
+    cam0: {p: [-55, 2.2, -75], l: [0, 3.0, -75], f: 50}, cam1: {p: [-55, 2.2, -15], l: [0, 3.0, -15], f: 50}, creep: 0,
     view: ({t, dur}) => {
-      const k = Math.min(1, t / dur);
+      const e = ease(Math.min(1, t / dur));
       return (
         <>
           <SkyDome />
-          <HighwaySet airliner={[0, 6 - k * 3.9, -110 + k * 98]} />
+          <HighwaySet airliner={[0, 6 - 3.58 * e, -75 + 60 * e]} airRy={0} airS={1.1} />
         </>
       );
     },
@@ -295,7 +288,7 @@ export const SHOTS: ShotDef[] = [
   // 22. the drive-thru lane: "it was the drive-thru lane."
   {
     id: 'drive-thru', a: 52.0, b: 54.5,
-    cam0: {p: [5.5, 2.3, 6], l: [15, 2.6, -10], f: 48}, cam1: {p: [6.2, 2.3, -2], l: [15, 2.6, -10], f: 48}, creep: 0.04,
+    cam0: {p: [-6.5, 2.1, -10], l: [12, 2.0, -10], f: 55}, cam1: {p: [-5.2, 2.1, -10], l: [12, 2.0, -10], f: 55}, creep: 0,
     view: () => (
       <>
         <SkyDome />
@@ -303,21 +296,21 @@ export const SHOTS: ShotDef[] = [
       </>
     ),
   },
-  // 23. the airliner stops right at the speaker
+  // 23. the airliner stops right at the speaker: its nose by the speaker post
   {
     id: 'speaker', a: 54.5, b: 56.8,
-    cam0: {p: [6.9, 1.8, -6.3], l: [9.2, 1.5, -10], f: 46}, cam1: {p: [6.7, 1.8, -6.6], l: [9.2, 1.5, -10], f: 46}, creep: 0.05,
+    cam0: {p: [8.6, 1.9, -1.0], l: [8.0, 1.9, -10], f: 46}, cam1: {p: [8.4, 1.9, -1.4], l: [8.0, 1.9, -10], f: 46}, creep: 0.05,
     view: () => (
       <>
         <SkyDome />
-        <HighwaySet airliner={[3.0, 2.0, -9]} />
+        <HighwaySet airliner={[-2.7, 2.42, -10]} airRy={Math.PI / 2} airS={1.1} />
       </>
     ),
   },
   // 24. the cashier: "Welcome! Can I take your order?"
   {
     id: 'cashier', a: 56.8, b: 59.2,
-    cam0: {p: [6.5, 1.9, -6.0], l: [12.2, 1.8, -10.0], f: 40}, cam1: {p: [6.7, 1.9, -6.1], l: [12.2, 1.8, -10.0], f: 40}, creep: 0.05,
+    cam0: {p: [6.5, 1.9, -6.0], l: [12.2, 1.28, -10.0], f: 40}, cam1: {p: [6.7, 1.9, -6.1], l: [12.2, 1.28, -10.0], f: 40}, creep: 0.05,
     view: ({mouth}) => (
       <>
         <SkyDome />
@@ -353,14 +346,14 @@ export const SHOTS: ShotDef[] = [
   // 27. finale: Kevin wedged in the middle seat between two huge passengers
   {
     id: 'finale', a: 65.4, b: 67.6,
-    cam0: {p: [-1.5, 1.35, -0.8], l: [-1.5, 1.0, -3.0], f: 62}, cam1: {p: [-1.5, 1.35, -0.9], l: [-1.5, 1.0, -3.0], f: 62}, creep: 0.05,
+    cam0: {p: [-1.5, 1.35, 1.1], l: [-1.5, 1.1, -3.0], f: 70}, cam1: {p: [-1.5, 1.35, 1.0], l: [-1.5, 1.1, -3.0], f: 70}, creep: 0.05,
     view: ({mouth}) => (
       <>
         <SkyDome />
         <CabinSet passengers={false} />
         <Person st={{kind: 'kevin', pose: 'sit', expr: 'grin', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.35} />
-        <Person st={{kind: 'pax', pose: 'sit', expr: 'bored', variant: 3}} feet={[-2.3, 0, R(0) + 0.35]} height={2.3} />
-        <Person st={{kind: 'pax', pose: 'sit', expr: 'neutral', variant: 1}} feet={[-0.7, 0, R(0) + 0.35]} height={2.3} />
+        <Person st={{kind: 'pax', pose: 'sit', expr: 'bored', variant: 3}} feet={[-2.3, 0, R(0) + 0.35]} height={2.0} />
+        <Person st={{kind: 'pax', pose: 'sit', expr: 'neutral', variant: 1}} feet={[-0.7, 0, R(0) + 0.35]} height={2.0} />
       </>
     ),
   },

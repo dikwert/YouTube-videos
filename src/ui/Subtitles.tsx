@@ -10,9 +10,15 @@ import {SUB_Y, sec} from '../lib/theme';
  */
 export const Subtitles: React.FC<{cards: Card[]}> = ({cards}) => {
   const f = useCurrentFrame();
-  const card = cards.find((c) => f >= sec(c.s) && f < sec(c.e));
+  let card = cards.find((c) => f >= sec(c.s) && f < sec(c.e));
+  if (!card) {
+    // A gap of a few milliseconds between two phrases: hold the previous one so the text never blinks out.
+    const prev = [...cards].reverse().find((c) => f >= sec(c.s));
+    if (prev && f - sec(prev.e) < 5) card = prev;
+  }
   if (!card) return null;
-  const alpha = interpolate(f - sec(card.s), [0, 3], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  // A phrase that starts at 0 s is already opaque on the first frame.
+  const alpha = sec(card.s) === 0 ? 1 : interpolate(f - sec(card.s), [0, 3], [0.5, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const keyWords = (card.keys ?? []).flatMap((k) => k.split(' '));
   const words = card.text.split(' ');
   return (
