@@ -44,7 +44,7 @@ const skyTex = () =>
       const grd = g.createLinearGradient(0, 0, 0, 512);
       grd.addColorStop(0, '#3e7fd2');
       grd.addColorStop(0.55, '#8fb9e6');
-      grd.addColorStop(1, '#f1e4c6');
+      grd.addColorStop(1, '#c9e0f4');
       g.fillStyle = grd;
       g.fillRect(0, 0, 512, 512);
     }),
@@ -240,6 +240,27 @@ export const fishTex = () =>
     }),
   );
 
+/** A menu board with pictures only: a burger and a carton of fries. */
+const menuTex = () =>
+  cached('menu', () =>
+    canvas(256, 160, (g) => {
+      g.fillStyle = '#23472f';
+      g.fillRect(0, 0, 256, 160);
+      g.fillStyle = '#e8a04a';
+      g.beginPath();
+      g.ellipse(72, 80, 46, 22, 0, 0, Math.PI * 2);
+      g.fill();
+      g.fillStyle = '#b5552a';
+      g.fillRect(34, 72, 76, 10);
+      g.fillStyle = '#5fae55';
+      g.fillRect(34, 88, 76, 8);
+      g.fillStyle = '#ffd23a';
+      for (let i = 0; i < 5; i++) g.fillRect(160 + i * 9, 56, 7, 52);
+      g.fillStyle = '#d73c2c';
+      g.fillRect(152, 104, 56, 24);
+    }),
+  );
+
 export const pastaTex = () =>
   cached('pasta', () =>
     canvas(256, 160, (g) => {
@@ -385,6 +406,23 @@ export const Airliner: React.FC<{p: [number, number, number]; s?: number; ry?: n
       <cylinderGeometry args={[2.2, 2.2, 18, 28]} />
       <meshBasicMaterial color="#f4f4f1" toneMapped={false} />
     </mesh>
+    {/* a plum outline: a slightly larger back-face shell around the fuselage and the cones */}
+    <mesh rotation={[Math.PI / 2, 0, 0]}>
+      <cylinderGeometry args={[2.36, 2.36, 18.1, 28]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
+    <mesh position={[0, 0, 10.3]} rotation={[Math.PI / 2, 0, 0]}>
+      <coneGeometry args={[2.36, 2.7, 28]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
+    <mesh position={[0, 0, -10.2]} rotation={[-Math.PI / 2, 0, 0]}>
+      <coneGeometry args={[2.36, 2.5, 28]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
+    {/* nose windows */}
+    {[-1, 1].map((side) => (
+      <Box key={side} p={[side * 2.23, 0.55, 8.2]} s={[0.05, 0.4, 0.9]} c="#1d2a3a" />
+    ))}
     {/* nose and tail cones */}
     <mesh position={[0, 0, 10.3]} rotation={[Math.PI / 2, 0, 0]}>
       <coneGeometry args={[2.2, 2.6, 28]} />
@@ -405,7 +443,7 @@ export const Airliner: React.FC<{p: [number, number, number]; s?: number; ry?: n
     ))}
     {/* wings, tail fin and tailplane */}
     <Box p={[0, -0.7, -1.5]} s={[13, 0.25, 3.6]} c="#e7e7e3" />
-    <Box p={[0, 0.9, -8]} s={[0.25, 3.6, 2.2]} c="#2c6bd6" />
+    <Box p={[0, 1.8, -8.2]} s={[0.3, 4.5, 3.0]} c="#2c6bd6" />
     <Box p={[0, 0.2, -7.4]} s={[6, 0.15, 1.6]} c="#e7e7e3" />
     {/* engines under the wings */}
     <Cyl p={[-3.4, -1.7, 1.2]} r={0.8} h={2.2} c="#2a2f36" rot={[Math.PI / 2, 0, 0]} seg={18} />
@@ -466,8 +504,12 @@ export const CabinSet: React.FC<{passengers?: boolean; bathroomOpen?: boolean}> 
           <planeGeometry args={[1.1, 2.1]} />
           <meshBasicMaterial color="#ffe9b0" toneMapped={false} />
         </mesh>
-        <Box p={[0, 0.42, -21.9]} s={[0.45, 0.4, 0.55]} c="#f4f4f1" />
-        <Box p={[0, 0.86, -22.1]} s={[0.45, 0.5, 0.2]} c="#f4f4f1" />
+        {/* a toilet: tank at the back, bowl with a plum outline, seat and lid */}
+        <Box p={[0, 1.0, -22.25]} s={[0.52, 0.65, 0.23]} c="#f4f4f1" />
+        <Box p={[0, 0.33, -21.92]} s={[0.5, 0.5, 0.6]} c="#241726" />
+        <Box p={[0, 0.33, -21.95]} s={[0.47, 0.47, 0.58]} c="#f4f4f1" />
+        <Box p={[0, 0.6, -21.95]} s={[0.5, 0.05, 0.55]} c="#8a8f98" />
+        <Box p={[0, 0.65, -22.0]} s={[0.47, 0.04, 0.52]} c="#f4f4f1" />
         <Box p={[-0.55, 1.05, -21.75]} s={[0.05, 2.1, 1.1]} c="#9db3c8" />
       </>
     ) : (
@@ -485,14 +527,8 @@ export const CabinSet: React.FC<{passengers?: boolean; bathroomOpen?: boolean}> 
 const Passengers: React.FC = () => (
   <>
     {/* rows 3 and 5 are left empty so close-ups of Kevin in row 2 stay clear */}
-    <Person st={{kind: 'pax', pose: 'sit', expr: 'bored', variant: 1}} feet={[-1.5, 0, ROW_Z(2) + 0.2]} height={1.3} />
-    <Person st={{kind: 'pax', pose: 'sit', expr: 'neutral', variant: 2}} feet={[1.5, 0, ROW_Z(2) + 0.2]} height={1.3} />
-    <Person st={{kind: 'pax', pose: 'sit', expr: 'grin', variant: 3}} feet={[-2.4, 0, ROW_Z(4) + 0.2]} height={1.3} />
-    <Person st={{kind: 'pax', pose: 'sit', expr: 'shock', variant: 0}} feet={[2.4, 0, ROW_Z(4) + 0.2]} height={1.3} />
     <Person st={{kind: 'pax', pose: 'sit', expr: 'sleep', variant: 4}} feet={[-1.5, 0, ROW_Z(6) + 0.2]} height={1.3} />
     <Person st={{kind: 'pax', pose: 'sit', expr: 'angry', variant: 2}} feet={[1.5, 0, ROW_Z(6) + 0.2]} height={1.3} />
-    <Person st={{kind: 'edna', pose: 'sit', expr: 'bored', variant: 0}} feet={[-2.4, 0, ROW_Z(8) + 0.2]} height={1.3} />
-    <Person st={{kind: 'pax', pose: 'sit', expr: 'neutral', variant: 1}} feet={[2.4, 0, ROW_Z(8) + 0.2]} height={1.3} />
     <Person st={{kind: 'tommy', pose: 'sit', expr: 'shock', variant: 0}} feet={[-1.5, 0, ROW_Z(8) + 0.2]} height={1.1} />
     <Person st={{kind: 'pax', pose: 'sit', expr: 'smug', variant: 3}} feet={[1.5, 0, ROW_Z(8) + 0.2]} height={1.3} />
   </>
@@ -526,7 +562,7 @@ export const CockpitSet: React.FC<{dave?: 'slump' | 'upright' | 'eat'; kevin?: C
     <Box p={[1.9, 1.2, -1.2]} s={[0.25, 1.8, 0.4]} c="#1d2329" />
     <Box p={[0, 1.35, -2.1]} s={[0.1, 0.6, 0.1]} c="#515b66" />
     {[-1.48, -0.82, -0.33, 0.33].map((x) => (
-      <group key={x} position={[x, 1.1, -1.0]}>
+      <group key={x} position={[x, 0.62, -0.1]}>
         <mesh rotation={[0, 0, 0]}>
           <torusGeometry args={[0.32, 0.035, 10, 28]} />
           <meshLambertMaterial color="#1d1f24" />
@@ -579,6 +615,13 @@ export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: 
     <Box p={[13.05, 0.7, -10]} s={[0.1, 1.4, 2.4]} c="#e7dcc4" />
     <Box p={[18, 6.4, -10]} s={[10.4, 0.6, 8.4]} c="#b8553f" />
     <Pic p={[18, 4.8, -5.85]} s={[6, 1.9]} tex={burgerSignTex()} />
+    {/* the window frame, a canopy over it, and a menu board with pictures only */}
+    <Box p={[13.1, 3.05, -10]} s={[0.12, 0.1, 2.6]} c="#2b2b2b" />
+    <Box p={[13.1, 1.35, -10]} s={[0.12, 0.1, 2.6]} c="#2b2b2b" />
+    <Box p={[13.1, 2.2, -11.3]} s={[0.12, 1.8, 0.1]} c="#2b2b2b" />
+    <Box p={[13.1, 2.2, -8.7]} s={[0.12, 1.8, 0.1]} c="#2b2b2b" />
+    <Box p={[12.6, 3.45, -10]} s={[1.2, 0.12, 3.4]} c="#d2452b" />
+    <Pic p={[9.7, 2.0, -9.0]} s={[0.9, 0.56]} tex={menuTex()} ry={-Math.PI / 2} />
     {/* the lit kitchen behind the drive-thru window */}
     <mesh position={[13.9, 2.2, -10]} rotation={[0, -Math.PI / 2, 0]}>
       <planeGeometry args={[8, 6]} />

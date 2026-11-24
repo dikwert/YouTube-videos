@@ -148,7 +148,7 @@ export const SHOTS: ShotDef[] = [
   // 11. Kevin raises his hand
   {
     id: 'hand', a: 25.4, b: 26.2,
-    cam0: {p: [-1.5, 1.4, -1.8], l: [-1.5, 0.85, -3.2], f: 44}, cam1: {p: [-1.5, 1.35, -1.75], l: [-1.5, 0.85, -3.2], f: 44},
+    cam0: {p: [-1.5, 1.35, -0.9], l: [-1.5, 0.92, -3.0], f: 44}, cam1: {p: [-1.5, 1.3, -0.85], l: [-1.5, 0.92, -3.0], f: 44},
     view: ({mouth}) => (
       <>
         <SkyDome />
@@ -167,7 +167,7 @@ export const SHOTS: ShotDef[] = [
         <CabinSet passengers={false} />
         <Person st={{kind: 'kevin', pose: 'shrug', expr: t > 1.6 ? 'smug' : 'neutral', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.45} />
         {/* the flight-simulator screen he holds up */}
-        <Pic p={[-1.5, 0.95, -2.6]} s={[0.36, 0.24]} tex={panelTex()} />
+        <Pic p={[-1.5, 0.72, -2.6]} s={[0.36, 0.24]} tex={panelTex()} />
       </>
     ),
   },
@@ -241,7 +241,7 @@ export const SHOTS: ShotDef[] = [
         <SkyDome />
         <CabinSet passengers={false} />
         <Person st={{kind: 'tommy', pose: 'raise', expr: 'shock', mouth, variant: 0}} feet={[0.0, 0, R(8)]} height={1.2} />
-        <Airliner p={[0.29, 0.97, R(8) + 0.06]} s={0.016} ry={0.3} />
+        <Airliner p={[0.35, 1.05, R(8) + 0.06]} s={0.016} ry={0.3} />
       </>
     ),
   },
@@ -260,14 +260,14 @@ export const SHOTS: ShotDef[] = [
   // 20. the clouds open: the airliner crosses in profile, below a few clouds
   {
     id: 'clouds', a: 45.98, b: 49.55,
-    cam0: {p: [0, 20, -4], l: [0, 20.5, -60], f: 46}, cam1: {p: [0, 20, -3.6], l: [0, 20.5, -60], f: 46}, creep: 0.1,
+    cam0: {p: [0, 20, -4], l: [0, 20.5, -90], f: 46}, cam1: {p: [0, 20, -3.6], l: [0, 20.5, -90], f: 46}, creep: 0.1,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
       return (
         <>
           <SkyDome />
-          <Clouds seed={21} n={4} span={60} y={[30, 42]} />
-          <Airliner p={[-10 + 20 * k, 20 - 1.2 * k, -60]} s={1} ry={Math.PI / 2} />
+          <Clouds seed={21} n={4} span={60} y={[44, 60]} />
+          <Airliner p={[-3 + 6 * k, 20 - 1.2 * k, -90]} s={1.5} ry={Math.PI / 2} />
         </>
       );
     },
@@ -300,7 +300,7 @@ export const SHOTS: ShotDef[] = [
   // 23. the airliner stops right at the speaker: its nose by the speaker post
   {
     id: 'speaker', a: 54.5, b: 56.9,
-    cam0: {p: [8.6, 1.9, -1.0], l: [8.0, 1.9, -10], f: 46}, cam1: {p: [8.4, 1.9, -1.4], l: [8.0, 1.9, -10], f: 46}, creep: 0.05,
+    cam0: {p: [9.4, 2.0, 3.0], l: [8.2, 1.9, -10], f: 46}, cam1: {p: [9.2, 2.0, 2.6], l: [8.2, 1.9, -10], f: 46}, creep: 0.05,
     view: () => (
       <>
         <SkyDome />
@@ -340,7 +340,7 @@ export const SHOTS: ShotDef[] = [
       <>
         <SkyDome />
         <CabinSet passengers={false} />
-        <Person st={{kind: 'kevin', pose: 'thumb', expr: 'proud', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.45} />
+        <Person st={{kind: 'kevin', pose: 'thumb', expr: 'smug', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.45} />
       </>
     ),
   },

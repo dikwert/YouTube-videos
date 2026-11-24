@@ -42,10 +42,10 @@ const POSES: Record<Pose, {lh: [number, number]; rh: [number, number]; lk?: [num
   eat: {lh: [215, 560], rh: [455, 470], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [0, 0], tilt: 0},
   socks: {lh: [190, 640], rh: [410, 640], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   note: {lh: [190, 640], rh: [410, 640], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
-  raise: {lh: [185, 640], rh: [520, 170], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
+  raise: {lh: [185, 640], rh: [560, 110], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   armsup: {lh: [150, 230], rh: [450, 230], lf: [265, GROUND], rf: [335, GROUND], head: [0, -6], tilt: 0},
-  slump: {lh: [250, 640], rh: [350, 630], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [40, 150], tilt: 0.25},
-  knit: {lh: [245, 540], rh: [355, 540], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: -0.05},
+  slump: {lh: [250, 640], rh: [350, 630], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [60, 230], tilt: 0.25},
+  knit: {lh: [245, 430], rh: [355, 430], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: -0.05},
   fork: {lh: [190, 640], rh: [480, 520], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   run: {lh: [175, 470], rh: [425, 620], lf: [225, GROUND - 40], rf: [380, GROUND], head: [0, 0], tilt: 0.04},
   point: {lh: [190, 640], rh: [560, 320], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
@@ -189,7 +189,8 @@ function faceOf(ctx: CanvasRenderingContext2D, expr: Expr, cx: number, cy: numbe
   const y = (v: number) => cy + (v - 230) * s;
   const eyeL = [x(238), y(250)];
   const eyeR = [x(362), y(250)];
-  const open = (mouth ?? 0) > 0.08;
+  // a smug face keeps its smirk while the narrator speaks: no open mouth
+  const open = expr !== 'smug' && (mouth ?? 0) > 0.08;
   const mo = Math.max(0, Math.min(1, mouth ?? 0));
   const eyeRx = expr === 'shock' ? 22 : expr === 'sleep' ? 14 : 15;
   const eyeRy = expr === 'shock' ? 28 : expr === 'sleep' ? 3 : expr === 'smug' ? 9 : 17;
@@ -207,6 +208,14 @@ function faceOf(ctx: CanvasRenderingContext2D, expr: Expr, cx: number, cy: numbe
     ctx.beginPath();
     ctx.arc(ex + (expr === 'angry' ? 2 : 0), ey + (expr === 'shock' ? 2 : 3), (expr === 'shock' ? 6 : 8) * s, 0, Math.PI * 2);
     ctx.fill();
+    if (expr === 'smug') {
+      // half-lidded: a lid line across the top of each eye
+      ink(ctx, 9);
+      ctx.beginPath();
+      ctx.moveTo(ex - eyeRx * s - 2, ey - eyeRy * s * 0.45);
+      ctx.lineTo(ex + eyeRx * s + 2, ey - eyeRy * s * 0.45);
+      ctx.stroke();
+    }
   }
   // brows
   ink(ctx, 10);
@@ -385,9 +394,11 @@ export function drawChar(st: CharState): HTMLCanvasElement {
 
   // pose props
   if (st.pose === 'knit') {
-    stick(ctx, [240, 500], [150, 370], '#c8c8c8', 8);
-    stick(ctx, [360, 500], [455, 360], '#c8c8c8', 8);
-    shape(ctx, '#ff8a3d', 7, () => ctx.arc(150, 415, 50, 0, Math.PI * 2));
+    // needles held up from the hands; the ball of yarn sits beside the needle tips, a strand runs to the hand
+    stick(ctx, [245, 430], [160, 330], '#c8c8c8', 8);
+    stick(ctx, [355, 430], [440, 330], '#c8c8c8', 8);
+    stick(ctx, [245, 430], [130, 452], '#ff8a3d', 4);
+    shape(ctx, '#ff8a3d', 7, () => ctx.arc(110, 452, 46, 0, Math.PI * 2));
   }
   if (st.pose === 'note') {
     // a folded note held in the right hand
