@@ -40,7 +40,7 @@ if (mode === 'cover') {
     outputLocation,
     browserExecutable,
     scale: 4 / 3,
-    concurrency: 4,
+    concurrency: 2,  // 4 crashed the headless browser at frame 1128 in an earlier run
     crf: 16,
     pixelFormat: 'yuv420p',
     // PNG frames keep the output in limited range; JPEG frames would give full-range yuvj420p

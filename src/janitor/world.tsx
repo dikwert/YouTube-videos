@@ -526,7 +526,7 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
       <Wall p={[0, 1.25, 2]} s={[3.6, 2.5]} c="#6b7380" />
     )}
     {/* the seat */}
-    <Box p={[0, 0.3, -2.4]} s={[1.6, 0.3, 1.4]} c="#3b4656" />
+    <Box p={[0, 0.3, -2.4]} s={[1.6, 0.3, 1.4]} c="#b5523b" />
     <Box p={[0, 1.6, -3.2]} s={[1.6, 1.8, 0.4]} c="#3b4656" />
     <Box p={[-0.7, 1.2, -2.3]} s={[0.06, 1.4, 0.06]} c="#e8c12a" />
     <Box p={[0.7, 1.2, -2.3]} s={[0.06, 1.4, 0.06]} c="#e8c12a" />
@@ -582,7 +582,7 @@ export const StationSet: React.FC<{cat?: boolean; catExpr?: 'judge' | 'smug' | '
     <Box p={[-2.14, 2.2, -6]} s={[0.04, 0.3, 12]} c="#2c6bd6" />
     <Box p={[2.14, 2.2, -6]} s={[0.04, 0.3, 12]} c="#2c6bd6" />
     {/* handrails */}
-    {[-1.4, 1.4].map((x) => (
+    {[-1.95, 1.4].map((x) => (
       <Box key={x} p={[x, 1.1, -6]} s={[0.08, 0.08, 12]} c="#c9cdd6" />
     ))}
     {/* laptops and bags */}
@@ -692,7 +692,7 @@ export const BreakRoomSet: React.FC = () => (
     <Box p={[-1.5, 0.9, -2.8]} s={[0.7, 0.3, 0.6]} c="#c95f8a" />
     {/* a coffee machine */}
     <Box p={[3, 1.0, -5]} s={[0.9, 1.6, 0.9]} c="#3a4656" />
-    <Pic p={[-2.6, 1.8, -5.96]} s={[1.8, 1.2]} tex={signTex('BREAK ROOM', '#2c6bd6', '#ffffff')} />
+    <Pic p={[-1.25, 1.8, -5.96]} s={[1.8, 1.2]} tex={signTex('BREAK ROOM', '#2c6bd6', '#ffffff')} />
   </group>
 );
 
@@ -708,7 +708,7 @@ export const OfficeSet: React.FC = () => (
       <meshLambertMaterial color="#e6dccb" />
     </mesh>
     <Box p={[0, 0.8, -4]} s={[3.6, 0.1, 1.6]} c="#5a4a3a" />
-    <Pic p={[3.6, 2.2, -5.9]} s={[2.2, 1.6]} tex={skyDayTex()} />
+    <Pic p={[1.3, 2.2, -5.9]} s={[2.2, 1.6]} tex={skyDayTex()} />
   </group>
 );
 

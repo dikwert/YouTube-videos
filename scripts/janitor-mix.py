@@ -166,22 +166,22 @@ def ringtone(dur):
 EVENTS = [
     (1.00, lambda: splat(), 0.70),                  # the mop drifts across his face
     (2.00, lambda: whoosh(0.3), 0.55),              # the white flash after the hook
-    (8.70, lambda: snore(2.0), 0.60),               # the nap
+    (8.70, lambda: snore(2.0), 0.35),               # the nap
     (12.89, lambda: beep(880), 0.55),               # "Three..."
     (14.10, lambda: beep(880), 0.55),               # "Two..."
     (14.93, lambda: beep(1320, 0.25), 0.60),        # "One..."
     (16.20, lambda: roar(2.7), 0.40),               # ignition
     (22.00, lambda: boing(180, 520, 0.4), 0.35),    # the mop and the sandwich float
     (24.80, lambda: radio(), 0.50),                 # Mission Control on the radio
-    (26.65, lambda: radio(), 0.45),                 # "Who is this?"
+    (26.55, lambda: radio(0.15), 0.45),                 # "Who is this?"
     (28.49, lambda: spit(), 0.60),                  # the coffee
     (33.40, lambda: boing(200, 700, 0.45), 0.40),   # the spine stretches
     (43.70, lambda: meow(), 0.30),                  # "An experiment cat."
     (48.25, lambda: slurp(), 0.50),                 # the sip: "drink recycled pee"
-    (51.80, lambda: whoosh(2.2), 0.50),             # re-entry
+    (51.80, lambda: whoosh(2.2), 0.30),             # re-entry
     (57.00, lambda: impact(), 0.90),                # the car
     (59.03, lambda: car_alarm(2.2), 0.12),          # the car alarm
-    (61.20, lambda: snore(1.8), 0.50),              # the break room: "janitors nap"
+    (61.20, lambda: snore(1.8), 0.30),              # the break room: "janitors nap"
     (62.90, lambda: ringtone(1.6), 0.20),           # the boss calls
     (66.10, lambda: splat(), 0.50),                 # "you missed a spot"
 ]

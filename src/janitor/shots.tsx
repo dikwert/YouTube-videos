@@ -157,7 +157,7 @@ export const SHOTS: ShotDef[] = [
           <CapsuleInterior panel={false} />
           <Person st={{kind: 'gary', pose: 'float', expr: 'proud', variant: 0}} feet={[0, 0.9, 1.0]} height={1.5} ry={Math.PI} roll={0.2} />
           <Cyl p={[-1.4 + 2.8 * k, 1.9, 0.9]} r={0.05} h={1.2} c="#8a6a4a" rot={[0, 0, Math.PI / 2 + 0.4]} seg={6} />
-          <Box p={[1.2 - 2.2 * k, 1.1 + 0.3 * Math.sin(k * 6), 1.1]} s={[0.4, 0.2, 0.3]} c="#f2c94c" r={k} />
+          <Box p={[1.2 - 2.2 * k, 1.6 + 0.3 * Math.sin(k * 6), 1.1]} s={[0.4, 0.2, 0.3]} c="#f2c94c" r={k} />
         </>
       );
     },
@@ -169,7 +169,7 @@ export const SHOTS: ShotDef[] = [
     view: ({mouth, g}) => (
       <>
         <ControlRoomSet />
-        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth: g > 26.6 && g < 27.1 ? mouth : 0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
+        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth: g > 26.6 && g < 27.64 ? mouth : 0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
         <Person st={{kind: 'ops', pose: 'sit', expr: 'bored', variant: 0}} feet={[-1.3, 0, -10]} height={1.6} />
         <Person st={{kind: 'ops', pose: 'sit', expr: 'neutral', variant: 1}} feet={[1.3, 0, -10]} height={1.6} />
       </>
@@ -328,7 +328,7 @@ export const SHOTS: ShotDef[] = [
         <>
           <SkyDome dawn />
           <ParkingSet />
-          <Capsule p={[0, 7 - 5.5 * ease(k), -14]} s={1.3} />
+          <Capsule p={[0, 7 - 3.5 * ease(k), -14]} s={1.3} />
         </>
       );
     },
@@ -339,12 +339,12 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [2.5, 1.4, -4], l: [0, 1.0, -14], f: 48}, cam1: {p: [2.2, 1.4, -3.6], l: [0, 1.0, -14], f: 48}, creep: 0.05,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
-      const squash = Math.min(1, Math.max(0, (k - 0.1) * 3));
+      const squash = Math.min(1, Math.max(0, k * 3));
       return (
         <>
           <SkyDome dawn />
           <ParkingSet squash={squash} />
-          <Capsule p={[0, 1.4, -14]} s={0.9} />
+          <Capsule p={[0, 2.0 * Math.max(0.25, 1 - squash) + 1.5, -14]} s={1.3} />
           <Smoke p={[0, 0.2, -17]} k={squash * 0.3} />
         </>
       );
@@ -354,10 +354,10 @@ export const SHOTS: ShotDef[] = [
   {
     id: 'break-room', a: 59.25, b: 62.8,
     cam0: {p: [0, 1.5, 2.2], l: [0, 1.2, -3], f: 50}, cam1: {p: [0, 1.5, 2.0], l: [0, 1.2, -3], f: 50}, creep: 0.05,
-    view: () => (
+    view: ({t}) => (
       <>
         <BreakRoomSet />
-        <Person st={{kind: 'gary', pose: 'sit', expr: 'sleep', variant: 0}} feet={[0, 0.8, -3]} height={1.5} />
+        <Person st={{kind: 'gary', pose: 'sit', expr: 'sleep', variant: 0}} feet={[0, 0.8, -3]} height={1.5} roll={0.025 * Math.sin(t * 3.2)} />
       </>
     ),
   },

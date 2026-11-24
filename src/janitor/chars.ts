@@ -368,7 +368,7 @@ export function drawChar(st: CharState): HTMLCanvasElement {
   }
   if (st.pose === 'drink') {
     // a water pouch at the mouth
-    shape(ctx, '#b8e3ff', 6, () => ctx.rect(340, 380, 44, 70));
+    shape(ctx, '#b8e3ff', 6, () => ctx.rect(340, 300, 44, 70));
   }
   if (st.pose === 'spit') {
     // coffee spray
