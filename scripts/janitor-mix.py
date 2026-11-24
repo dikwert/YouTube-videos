@@ -6,6 +6,7 @@ countdown, the long silence and the impact, and stays low for the nap and the br
 Writes public/audio/janitor/mix.wav (48 kHz mono, 67.0 s). The loudness step is loudnorm to -14 LUFS with a
 -1.5 dBTP ceiling; the result is about -15.5 LUFS because the voice's own peaks set the ceiling.
 """
+import json
 import re
 import subprocess
 import wave
@@ -266,11 +267,24 @@ def music_gate():
     return g
 
 
-def duck_curve(voice):
-    win = int(0.3 * SR)
-    env = np.sqrt(np.convolve(voice ** 2, np.ones(win) / win, mode="same"))
-    env = env / (np.percentile(env, 99.5) + 1e-9)
-    return 1.0 - 0.5 * np.clip(env * 2.0, 0, 1)
+def speech_env(voice, win_ms=30, attack_ms=80.0, release_ms=300.0):
+    """Speech activity from 0 to 1: a 30 ms RMS, normalised, then followed with an 80 ms attack and a 300 ms release."""
+    step = SR // 1000  # 1 ms
+    n = len(voice) // step
+    x = voice[: n * step].reshape(n, step)
+    rms = np.sqrt(np.mean(x ** 2, axis=1))
+    kern = np.ones(win_ms) / win_ms
+    rms = np.sqrt(np.convolve(rms ** 2, kern, mode="same"))
+    rms = rms / (np.percentile(rms, 99.5) + 1e-9)
+    ca, cr = np.exp(-1.0 / attack_ms), np.exp(-1.0 / release_ms)
+    env = np.empty(n)
+    e = 0.0
+    for i in range(n):
+        c = ca if rms[i] > e else cr
+        e = c * e + (1.0 - c) * rms[i]
+        env[i] = e
+    centres = np.arange(n) * step + step // 2
+    return np.interp(np.arange(len(voice)), centres, env)
 
 
 def ebur_summary(path):
@@ -299,15 +313,28 @@ def main():
     v_peak = np.max(np.abs(voice))
 
     # music: reference 21 dB under the voice's speech RMS, then the standard +3 dB
-    music = score()[:N] * music_gate() * duck_curve(voice)
+    env = speech_env(voice)
+    music = score()[:N] * music_gate() * (1.0 - 0.5 * np.clip(2.0 * env, 0.0, 1.0))
     music = music / np.sqrt(np.mean(music ** 2)) * v_rms * 10 ** (-21 / 20) * 10 ** (3 / 20)
 
     # sound effects: while they play, their RMS sits 6 dB under the voice's speech RMS (standard SFX -6 dB)
     sfx = np.zeros(N)
+    spans = []
     for t, make, gain in EVENTS:
-        add(sfx, t, make() * gain)
+        sig = make() * gain
+        add(sfx, t, sig)
+        spans.append((t, t + len(sig) / SR))
     active = np.abs(sfx) > 1e-6
     sfx = sfx / (np.sqrt(np.mean(sfx[active] ** 2)) + 1e-12) * v_rms * 10 ** (-6 / 20)
+    sfx = sfx * (1.0 - 0.75 * np.clip(2.0 * env, 0.0, 1.0))  # SFX sidechain: -12 dB while a word is spoken
+    words = json.loads((ROOT / 'janitor-short' / 'voice' / 'words.json').read_text(encoding='utf-8'))
+    words = words if isinstance(words, list) else words.get('words', words)
+    clashes = []
+    for a, b in spans:
+        ov = sum(max(0.0, min(b, w['e']) - max(a, w['s'])) for w in words)
+        if ov > 0.03:
+            clashes.append(f'{a:.2f}s overlaps speech {ov:.2f}s')
+    print('SFX events over speech:', len(clashes), clashes[:6])
 
     mix = voice + music + sfx
     mix = mix / np.max(np.abs(mix)) * 10 ** (-1.5 / 20)  # the sample peak at -1.5 dBFS keeps the true peak under the ceiling

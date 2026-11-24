@@ -1,5 +1,6 @@
 import React from 'react';
 import {WORDS} from './timing.generated';
+import {Pl, skyCloudTex} from './decor';
 import {
   Box, Capsule, CapsuleInterior, Cat, ControlRoomSet, Cyl, Earth, HangarSet, LaunchSet, OfficeSet, BreakRoomSet,
   ParkingSet, Person, Pic, Rocket, SkyDome, SpaceDome, Sphere, StationSet, Smoke, ZLetter,
@@ -314,6 +315,8 @@ export const SHOTS: ShotDef[] = [
           <SkyDome dawn />
           <Capsule p={[0, 8 - 3 * k, -10]} s={1.1} />
           <Smoke p={[0, 10 - 3 * k, -10]} k={0.4 + k * 0.6} />
+          <Pl p={[-6, 9, -24]} s={[14, 7]} tex={skyCloudTex()} cut />
+          <Pl p={[7, 12, -28]} s={[16, 8]} tex={skyCloudTex()} cut />
         </>
       );
     },
