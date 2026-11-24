@@ -172,6 +172,18 @@ const concreteTex = () =>
       g.fillStyle = r() > 0.5 ? '#9b9da2' : '#82858a';
       g.fillRect(r() * 256, r() * 256, 2, 2);
     }
+    g.strokeStyle = '#7a7d83';
+    g.lineWidth = 3;
+    for (let k = 0; k <= 256; k += 64) {
+      g.beginPath();
+      g.moveTo(k, 0);
+      g.lineTo(k, 256);
+      g.stroke();
+      g.beginPath();
+      g.moveTo(0, k);
+      g.lineTo(256, k);
+      g.stroke();
+    }
     g.strokeStyle = '#6f7277';
     g.lineWidth = 3;
     g.strokeRect(0, 0, 256, 256);
@@ -186,7 +198,11 @@ const asphaltTex = () =>
       g.fillStyle = r() > 0.5 ? '#6a6f77' : '#4a4f57';
       g.fillRect(r() * 256, r() * 256, 2, 2);
     }
-  }), [6, 6]);
+    g.fillStyle = 'rgba(242,242,238,0.85)';
+    for (let x = 40; x < 256; x += 64) g.fillRect(x, 0, 10, 256);
+    g.fillStyle = 'rgba(255,209,102,0.8)';
+    g.fillRect(0, 120, 256, 10);
+  }), [9, 9]);
 
 const floorTex = () =>
   cached('floor', () => canvas(256, 256, (g) => {
@@ -263,8 +279,8 @@ const countdownTex = (digit: string) =>
 const heightTex = () =>
   cached('height', () => canvas(256, 512, (g) => {
     const hbg = g.createLinearGradient(0, 0, 0, 512);
-    hbg.addColorStop(0, '#f4ead8');
-    hbg.addColorStop(1, '#f2d2b4');
+    hbg.addColorStop(0, '#f9e2c4');
+    hbg.addColorStop(1, '#eda875');
     g.fillStyle = hbg;
     g.fillRect(0, 0, 256, 512);
     g.fillStyle = '#2ec4b6';
@@ -612,6 +628,7 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
       </>
     )}
     {window && <SpaceDome />}
+    {window && <Pl p={[0, 0.5, 40]} s={[50, 25]} tex={nebulaSpriteTex()} cut />}
   </group>
 );
 

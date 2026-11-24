@@ -417,7 +417,7 @@ export const foodBagTex = (hue: string) =>
 export const stationMuralTex = () =>
   paint('mural', 1024, 512, (g, w, h) => {
     const bg = g.createLinearGradient(0, 0, 0, h);
-    bg.addColorStop(0, '#f7ead8');
+    bg.addColorStop(0, '#f6b26b');
     bg.addColorStop(1, '#f9d7c4');
     g.fillStyle = bg;
     g.fillRect(0, 0, w, h);
@@ -524,7 +524,7 @@ export const skyCloudTex = () =>
 /** Parking-lot building facade: beige with rows of blue windows. */
 export const facadeTex = () =>
   paint('facade', 256, 512, (g, w, h) => {
-    g.fillStyle = '#e8d5b7';
+    g.fillStyle = '#f4b9a0';
     g.fillRect(0, 0, w, h);
     for (let row = 0; row < 8; row++) {
       for (let col = 0; col < 4; col++) {
