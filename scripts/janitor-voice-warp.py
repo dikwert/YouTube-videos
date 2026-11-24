@@ -237,7 +237,8 @@ def main(test):
                               'tr': (in1 - in0) / (out1 - out0)})
         return found
 
-    # a piece that would need more than MAX_T is split at the word nearest its middle, so no speech gets cut
+    # a piece that would need more than MAX_T is split at the word nearest its middle, so no speech gets cut;
+    # a split keeps MIN_SPAN on both sides, so no piece is left with a sliver of the old timeline
     for _ in range(3):
         bad = [pc for pc in pieces(keep) if pc['tr'] > MAX_T and pc['b'] - pc['a'] >= 2]
         if not bad:
@@ -245,7 +246,10 @@ def main(test):
         for pc in bad:
             end = OS[pc['b']] if pc['b'] < N else TOTAL
             mid = 0.5 * (OS[pc['a']] + end)
-            keep.add(min(range(pc['a'] + 1, pc['b']), key=lambda k: abs(OS[k] - mid)))
+            inner = [k for k in range(pc['a'] + 1, pc['b'])
+                     if OS[k] - OS[pc['a']] >= MIN_SPAN and end - OS[k] >= MIN_SPAN]
+            if inner:
+                keep.add(min(inner, key=lambda k: abs(OS[k] - mid)))
 
     out = np.zeros(int(round(TOTAL * SR)))
     pred_on, pred_end, raw, cut = {}, {}, [], 0.0
