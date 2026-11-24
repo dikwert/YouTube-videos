@@ -112,7 +112,7 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [0, 1.25, -0.3], l: [0, 1.6, 0.8], f: 46}, cam1: {p: [0, 1.25, -0.45], l: [0, 1.6, 0.8], f: 44}, creep: 0.05,
     view: ({g, mouth}) => (
       <>
-        <CapsuleInterior digit={digitAt(g)} />
+        <CapsuleInterior digit={digitAt(g)} dawn />
         <Person st={{kind: 'gary', pose: 'sit', expr: 'worry', mouth, variant: 0}} feet={[0, 0, -2.4]} height={1.5} roll={Math.sin(g * 70) * 0.02} />
       </>
     ),

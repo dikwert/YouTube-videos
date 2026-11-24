@@ -575,8 +575,9 @@ export const HangarSet: React.FC = () => (
   </group>
 );
 
-/** Inside the capsule: the seat, the panel with the countdown screen, and a window onto space and Earth. */
-export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?: boolean}> = ({digit = '', window = true, panel = true}) => (
+/** Inside the capsule: the seat, the panel with the countdown screen, and a window onto space and Earth
+ *  (or, with dawn, onto the sky of the launch pad before the launch). */
+export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?: boolean; dawn?: boolean}> = ({digit = '', window = true, panel = true, dawn = false}) => (
   <group>
     {/* floor, ceiling, side walls and the back wall */}
     <Wall p={[0, 0, -1]} s={[3.6, 6]} rot={[-Math.PI / 2, 0, 0]} c="#4f7c8a" />
@@ -627,8 +628,8 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
         ))}
       </>
     )}
-    {window && <SpaceDome />}
-    {window && <Pl p={[0, 0.5, 40]} s={[50, 25]} tex={nebulaSpriteTex()} cut />}
+    {window && (dawn ? <SkyDome dawn /> : <SpaceDome />)}
+    {window && !dawn && <Pl p={[0, 0.5, 40]} s={[50, 25]} tex={nebulaSpriteTex()} cut />}
   </group>
 );
 
