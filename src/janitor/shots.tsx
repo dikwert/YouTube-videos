@@ -1,6 +1,6 @@
 import React from 'react';
 import {WORDS} from './timing.generated';
-import {Pl, panelTileTex, skyCloudTex} from './decor';
+import {nebulaSpriteTex, Pl, panelTileTex, skyCloudTex} from './decor';
 import {
   Box, Capsule, CapsuleInterior, Cat, ControlRoomSet, Cyl, Earth, HangarSet, LaunchSet, OfficeSet, BreakRoomSet,
   ParkingSet, Person, Pic, Rocket, SkyDome, SpaceDome, Sphere, StationSet, Smoke, ZLetter,
@@ -247,6 +247,7 @@ export const SHOTS: ShotDef[] = [
         <>
           <SpaceDome />
           <Earth p={[0, -20, -60]} r={22} />
+          <Pl p={[-8, 12, -60]} s={[40, 20]} tex={nebulaSpriteTex()} cut />
           <mesh position={[0, 1.5, -6]}>
             <boxGeometry args={[4.4, 4.4, 12]} />
             <meshLambertMaterial map={panelTileTex('#e8e8e4')} />
@@ -337,6 +338,8 @@ export const SHOTS: ShotDef[] = [
           <Capsule p={[0, 7 - 3.5 * ease(k), -14]} s={1.3} />
           <Pl p={[-6, 9, -26]} s={[14, 7]} tex={skyCloudTex()} cut />
           <Pl p={[8, 12, -30]} s={[16, 8]} tex={skyCloudTex()} cut />
+          <Pl p={[-3, 12, -34]} s={[16, 8]} tex={skyCloudTex()} cut />
+          <Pl p={[6, 10.5, -38]} s={[18, 9]} tex={skyCloudTex()} cut />
         </>
       );
     },

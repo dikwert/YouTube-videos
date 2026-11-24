@@ -416,7 +416,10 @@ export const foodBagTex = (hue: string) =>
 /** A station wall mural: cream with teal, pink and yellow circles and triangles. */
 export const stationMuralTex = () =>
   paint('mural', 1024, 512, (g, w, h) => {
-    g.fillStyle = '#f7ead8';
+    const bg = g.createLinearGradient(0, 0, 0, h);
+    bg.addColorStop(0, '#f7ead8');
+    bg.addColorStop(1, '#f9d7c4');
+    g.fillStyle = bg;
     g.fillRect(0, 0, w, h);
     const r = rng(21);
     const cols = ['#2ec4b6', '#ff8fab', '#ffd166', '#f4a261', '#9b5de5'];
@@ -710,6 +713,25 @@ export const panelTileTex = (base: string) =>
       g.fill();
     }
   }, [2, 2]);
+
+/** Nebula clouds on a transparent sprite, for the dock view's dark space. */
+export const nebulaSpriteTex = () =>
+  paint('nebula-sprite', 512, 256, (g, w, h) => {
+    const blobs: [number, number, number, string][] = [
+      [150, 120, 160, 'rgba(160,90,220,0.55)'],
+      [330, 150, 170, 'rgba(40,180,200,0.45)'],
+      [440, 80, 110, 'rgba(255,120,170,0.4)'],
+      [80, 200, 110, 'rgba(90,140,255,0.4)'],
+      [260, 60, 90, 'rgba(255,200,120,0.25)'],
+    ];
+    for (const [x, y, rad, col] of blobs) {
+      const grd = g.createRadialGradient(x, y, 4, x, y, rad);
+      grd.addColorStop(0, col);
+      grd.addColorStop(1, 'rgba(0,0,0,0)');
+      g.fillStyle = grd;
+      g.fillRect(0, 0, w, h);
+    }
+  });
 
 // ---------- meshes ----------
 

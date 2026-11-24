@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import * as THREE from 'three';
 import {CharState, charKey, drawCat, drawChar} from './chars';
-import {arrowSignTex, Bin, Bx, BookShelf, Buttons, Cable, Cactus, Car, Cy, carpetTex, Chair, checkerFloorTex, ChipsBag, clockFaceTex, controlWallTex, DeskLamp, facadeTex, familyPhotoTex, FlowerBed, FlowerPot, Flag, foodBagTex, Fridge, Glow, Globe, Keyboard, Pl, posterTex, Puddle, RocketFig, rugTex, screenDashTex, skyCloudTex, Sp, stickerTex, stationMuralTex, Tree, TrafficCone, warningTex, worldMapTex, quiltTex, wallPatternTex, woodPanelTex, gratePatternTex, floorZoneTex, quiltSlateTex, quiltPurpleTex, panelTileTex} from './decor';
+import {arrowSignTex, Bin, Bx, BookShelf, Buttons, Cable, Cactus, Car, Cy, carpetTex, Chair, checkerFloorTex, ChipsBag, clockFaceTex, controlWallTex, DeskLamp, facadeTex, familyPhotoTex, FlowerBed, FlowerPot, Flag, foodBagTex, Fridge, Glow, Globe, Keyboard, Pl, posterTex, Puddle, RocketFig, rugTex, screenDashTex, skyCloudTex, Sp, stickerTex, stationMuralTex, Tree, TrafficCone, warningTex, worldMapTex, quiltTex, wallPatternTex, woodPanelTex, gratePatternTex, floorZoneTex, quiltSlateTex, quiltPurpleTex, panelTileTex, nebulaSpriteTex} from './decor';
 
 /** Module-level texture cache: each canvas texture is painted once per render process. */
 const TEX = new Map<string, THREE.Texture>();
@@ -65,7 +65,7 @@ const spaceTex = () =>
     g.fillStyle = '#05060f';
     g.fillRect(0, 0, 1024, 512);
     // soft nebula clouds in violet, blue and teal
-    for (const [x, y, rad, col] of [[260, 150, 280, 'rgba(120,60,180,0.6)'], [700, 300, 320, 'rgba(30,140,160,0.55)'], [520, 90, 200, 'rgba(60,90,200,0.5)'], [880, 120, 180, 'rgba(200,80,140,0.45)']] as [number, number, number, string][]) {
+    for (const [x, y, rad, col] of [[170, 140, 170, 'rgba(120,60,180,0.6)'], [640, 260, 200, 'rgba(30,140,160,0.55)'], [120, 380, 160, 'rgba(255,140,90,0.25)'], [600, 420, 150, 'rgba(255,200,120,0.18)'], [950, 330, 140, 'rgba(90,200,255,0.22)'], [520, 90, 130, 'rgba(60,90,200,0.5)'], [880, 120, 120, 'rgba(200,80,140,0.45)']] as [number, number, number, string][]) {
       const grd = g.createRadialGradient(x, y, 10, x, y, rad);
       grd.addColorStop(0, col);
       grd.addColorStop(1, 'rgba(0,0,0,0)');
@@ -239,14 +239,16 @@ const countdownTex = (digit: string) =>
   cached(`count_${digit}`, () => canvas(512, 256, (g) => {
     g.fillStyle = '#0b1a14';
     g.fillRect(0, 0, 512, 256);
-    g.fillStyle = 'rgba(52,255,154,0.38)';
-    for (let x = 16; x < 512; x += 32) {
-      for (let y = 16; y < 256; y += 32) {
+    g.fillStyle = 'rgba(52,255,154,0.55)';
+    for (let x = 16; x < 512; x += 22) {
+      for (let y = 16; y < 256; y += 22) {
         g.beginPath();
         g.arc(x, y, 3, 0, Math.PI * 2);
         g.fill();
       }
     }
+    g.fillStyle = 'rgba(52,255,154,0.08)';
+    for (let y = 0; y < 256; y += 8) g.fillRect(0, y, 512, 2);
     g.strokeStyle = 'rgba(52,255,154,0.5)';
     g.lineWidth = 6;
     g.strokeRect(12, 12, 488, 232);
@@ -260,7 +262,10 @@ const countdownTex = (digit: string) =>
 /** The height marker on the station wall: ticks every foot, a 6 FT line. */
 const heightTex = () =>
   cached('height', () => canvas(256, 512, (g) => {
-    g.fillStyle = '#e9e1d2';
+    const hbg = g.createLinearGradient(0, 0, 0, 512);
+    hbg.addColorStop(0, '#f4ead8');
+    hbg.addColorStop(1, '#f2d2b4');
+    g.fillStyle = hbg;
     g.fillRect(0, 0, 256, 512);
     g.fillStyle = '#2ec4b6';
     g.fillRect(0, 0, 256, 36);
@@ -499,7 +504,9 @@ export const HangarSet: React.FC = () => (
       <planeGeometry args={[24, 8]} />
       <meshLambertMaterial map={stationMuralTex()} />
     </mesh>
-    {/* painted floor zones */}
+    {/* painted floor zones and lines */}
+    <Bx p={[0, 0.012, -1.6]} s={[12, 0.01, 0.12]} c="#f2c94c" />
+    <Bx p={[0, 0.012, -8.5]} s={[12, 0.01, 0.12]} c="#2ec4b6" />
     <Pl p={[0, 0.02, 1.5]} s={[2.6, 0.9]} tex={floorZoneTex('#ffd166')} rx={-Math.PI / 2} lit />
     <Pl p={[-2.0, 0.02, -0.8]} s={[1.6, 1.0]} tex={floorZoneTex('#2ec4b6')} rx={-Math.PI / 2} lit />
     <Bx p={[-4.2, 0.012, -4]} s={[0.12, 0.01, 12]} c="#f2c94c" />
@@ -558,7 +565,7 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
     {/* floor, ceiling, side walls and the back wall */}
     <Wall p={[0, 0, -1]} s={[3.6, 6]} rot={[-Math.PI / 2, 0, 0]} c="#4f7c8a" />
     <Pl p={[0, 0.01, -1]} s={[3.6, 6]} tex={gratePatternTex()} rx={-Math.PI / 2} cut />
-    <Wall p={[0, 2.5, -1]} s={[3.6, 6]} rot={[Math.PI / 2, 0, 0]} c="#2e4a5e" />
+    <Wall p={[0, 2.5, -1]} s={[3.6, 6]} rot={[Math.PI / 2, 0, 0]} c="#3b6a7e" />
     <Pl p={[0, 2.49, -1]} s={[3.6, 6]} tex={wallPatternTex()} rx={Math.PI / 2} cut />
     <Wall p={[-1.8, 1.25, -1]} s={[6, 2.5]} rot={[0, Math.PI / 2, 0]} c="#2f7f86" />
     <Pl p={[-1.77, 1.25, -1]} s={[6, 2.5]} tex={wallPatternTex()} ry={Math.PI / 2} cut />
@@ -696,16 +703,16 @@ export const ControlRoomSet: React.FC = () => (
       <meshLambertMaterial map={controlWallTex()} />
     </mesh>
     {/* the big wall screen with the orbit */}
-    <Pic p={[0, 2.6, -19.8]} s={[4.6, 2.8]} tex={monitorTex()} />
+    <Pic p={[0, 2.3, -19.8]} s={[4.2, 2.4]} tex={monitorTex()} />
     {/* a world map and ORBITA posters on the wall */}
     <Pl p={[-4.2, 2.6, -19.75]} s={[2.6, 2.2]} tex={worldMapTex()} />
     <Pl p={[-10.6, 2.6, -19.75]} s={[2.2, 3.3]} tex={posterTex('rocket')} />
     <Pl p={[4.2, 2.4, -19.75]} s={[2.0, 2.8]} tex={posterTex('planet')} />
     <Pl p={[10.6, 2.6, -19.75]} s={[2.2, 3.3]} tex={posterTex('rocket')} />
     {/* clocks in several time zones above the screen */}
-    <Pl p={[-1.2, 4.5, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(3, 15, '#2ec4b6')} />
-    <Pl p={[0, 4.5, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(8, 40, '#ffd166')} />
-    <Pl p={[1.2, 4.5, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(12, 5, '#ff9ecd')} />
+    <Pl p={[-1.2, 3.9, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(3, 15, '#2ec4b6')} />
+    <Pl p={[0, 3.9, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(8, 40, '#ffd166')} />
+    <Pl p={[1.2, 3.9, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(12, 5, '#ff9ecd')} />
     {/* a raised back row of staff, so their heads show above the desks */}
     <Bx p={[0, 0.3, -16.5]} s={[14, 0.6, 1.4]} c="#243a5e" />
     {[-6, -2, 2, 6].map((x, i) => (
@@ -769,6 +776,9 @@ export const ParkingSet: React.FC<{squash?: number}> = ({squash = 0}) => (
     <Box p={[0, 12.2, -40]} s={[30.4, 0.4, 6.4]} c="#3a4656" />
     <Pl p={[0, 6, -36.9]} s={[30, 12]} tex={facadeTex()} lit />
     {/* coloured bays painted on the asphalt */}
+    <Pl p={[-0.6, 0.01, -5.8]} s={[1.6, 0.9]} tex={floorZoneTex('#ff8fab')} rx={-Math.PI / 2} lit />
+    <Pl p={[4.4, 0.01, -3.6]} s={[1.6, 0.9]} tex={floorZoneTex('#2ec4b6')} rx={-Math.PI / 2} lit />
+    <Pl p={[-5.8, 0.01, -2.4]} s={[1.6, 0.9]} tex={floorZoneTex('#ffd166')} rx={-Math.PI / 2} lit />
     <Pl p={[-4.0, 0.01, -4.6]} s={[2.0, 1.2]} tex={floorZoneTex('#9b5de5')} rx={-Math.PI / 2} lit />
     <Pl p={[3.6, 0.01, -6.4]} s={[2.0, 1.2]} tex={floorZoneTex('#ffd166')} rx={-Math.PI / 2} lit />
     <Pl p={[-1.2, 0.01, -4.2]} s={[1.4, 0.9]} tex={floorZoneTex('#2ec4b6')} rx={-Math.PI / 2} lit />
@@ -862,7 +872,7 @@ export const OfficeSet: React.FC = () => (
     </mesh>
     {/* a bookshelf, a globe, a plant, a framed photo and a poster */}
     <BookShelf p={[-4.6, 1.2, -5.7]} s={[2.4, 2.4, 0.5]} />
-    <Globe p={[-1.5, 1.2, -5.3]} r={0.45} />
+    <Globe p={[-1.0, 1.2, -5.3]} r={0.45} />
     <Tree p={[-5.6, 0, -4.4]} s={0.5} />
     <Pl p={[-1.6, 2.3, -5.9]} s={[0.7, 0.5]} tex={familyPhotoTex()} />
     <Pl p={[-0.2, 2.6, -5.9]} s={[0.6, 0.9]} tex={posterTex('planet')} />
