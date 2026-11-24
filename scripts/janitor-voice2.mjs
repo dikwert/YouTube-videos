@@ -4,6 +4,7 @@
 // The API key is injected by the network proxy; it is never written here.
 // Usage: node scripts/janitor-voice2.mjs            all paragraphs, take 0
 //        node scripts/janitor-voice2.mjs 4 2        paragraph 4, take 2 (for regenerating one paragraph)
+//        JANITOR_SPEED=1.2 node scripts/janitor-voice2.mjs 0 1   the same, spoken at speed 1.2
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
@@ -13,6 +14,9 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const VOICE_ID = 'nPczCjzI2devNBz1zQrb'; // Brian (premade). Mike (cBTYF7NiJbR8Bvmdeuse) is a library voice: 402 on this plan.
 const MODEL = 'eleven_multilingual_v2';
 const SETTINGS = {stability: 0.5, similarity_boost: 0.75, style: 0.0, use_speaker_boost: true};
+// JANITOR_SPEED=1.2 makes the model speak about 20% faster, so the fit needs less stretching; unset keeps speed 1.0
+const SPEED = process.env.JANITOR_SPEED ? Number(process.env.JANITOR_SPEED) : null;
+const VOICE_SETTINGS = SPEED ? {...SETTINGS, speed: SPEED} : SETTINGS;
 const FORMAT = 'mp3_44100_128'; // pcm_44100 needs the Pro tier, mp3_44100_192 the Creator tier
 const DIR = path.join(ROOT, 'janitor-short', 'voice', 'takes');
 const paras = fs.readFileSync(path.join(ROOT, 'janitor-short', 'voice', 'script.txt'), 'utf8')
@@ -22,7 +26,7 @@ const take = Number(process.argv[3] ?? 0);
 fs.mkdirSync(DIR, {recursive: true});
 
 for (const i of only) {
-  const body = {text: paras[i], model_id: MODEL, voice_settings: SETTINGS};
+  const body = {text: paras[i], model_id: MODEL, voice_settings: VOICE_SETTINGS};
   if (i > 0) body.previous_text = paras[i - 1];
   if (i < paras.length - 1) body.next_text = paras[i + 1];
   const bodyFile = path.join(DIR, `p${i}_t${take}.body.json`);

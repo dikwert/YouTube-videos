@@ -43,11 +43,13 @@ EDGE = 0.01       # audio kept before a word's onset (s)
 TAIL = 0.02       # audio kept after a word inside a paragraph (s)
 TAIL_END = 0.05   # audio kept after the last word of a paragraph (s)
 MIN_GAP = 0.035   # the shortest gap between two words (s)
-MIN_T, MAX_T = 0.85, 1.25  # tempo limits for one stretch (pitch kept)
+MIN_T, MAX_T = 0.85, 1.4  # tempo limits for one stretch (pitch kept); the last 1.25 to 1.4 is for two beats
 MIN_SPAN = 0.6    # anchors closer than this on the old timeline: the less important one is dropped (s)
 NEAR = 0.3        # a shot cut or sound event anchors the nearest word within this distance (s)
 FADE = int(0.010 * SR)
 VERBOSE = '--verbose' in sys.argv
+_take = sys.argv[sys.argv.index('--take') + 1] if '--take' in sys.argv else '0'
+TAKE = _take if _take == 'auto' else int(_take)  # a take number, or auto: the closest to each paragraph's old span
 GATE_CUT = 0.02   # s of speech that may be cut in total
 SENT_END = re.compile(r'[.!?…]["”\')\]]*$')
 
@@ -78,9 +80,9 @@ def paragraphs():
     return [p.split() for p in re.split(r'\n\s*\n', text) if p.strip()]
 
 
-def take(i):
-    """Words of paragraph i (onset and end in take time) and its decoded audio, or None if not generated."""
-    path = VOICE / 'takes' / f'p{i}_t0.json'
+def take(i, t):
+    """Words of paragraph i in take t (onset and end in take time) and its decoded audio, or None if not generated."""
+    path = VOICE / 'takes' / f'p{i}_t{t}.json'
     if not path.exists():
         return None
     d = json.loads(path.read_text(encoding='utf-8'))
@@ -202,40 +204,57 @@ def main(test):
     cand = candidates(counts, flat, OS)
     keep = set(select(cand, OS))
 
-    rebuilt, missing = {}, []
-    for i in range(len(paras)):
-        got = take(i)
-        if got is None:
-            missing.append(i)
-            continue
-        words, audio = got
-        if len(words) != counts[i]:
-            raise SystemExit(f'paragraph {i}: the take has {len(words)} words, the script has {counts[i]}')
+    def paragraph_pieces(i, ra, R, RE, anchors):
+        """The speech between two anchors of paragraph i: its place in the rebuilt take and on the old timeline."""
         g0, g1 = starts[i], starts[i + 1]
-        gaps = [max(MIN_GAP, OS[g + 1] - OE[g]) for g in range(g0, g1 - 1)]
-        rebuilt[i] = relay(words, audio, gaps)
+        found = []
+        ks = sorted(k for k in anchors if g0 <= k < g1)
+        for j, a in enumerate(ks):
+            b = ks[j + 1] if j + 1 < len(ks) else g1
+            p_a = min(PAD, R[a - g0], OS[a])
+            in0, out0 = R[a - g0] - p_a, OS[a] - p_a
+            if b < g1:
+                p_b = min(PAD, R[b - g0], OS[b])
+                in1, out1 = R[b - g0] - p_b, OS[b] - p_b
+            else:
+                in1 = len(ra) / SR
+                out1 = (OS[g1] - PAD) if g1 < N else TOTAL
+            if in1 <= in0 or out1 <= out0:
+                raise SystemExit(f'paragraph {i}, anchor word {a}: empty piece')
+            found.append({'i': i, 'a': a, 'b': b, 'in0': in0, 'in1': in1, 'out0': out0, 'out1': out1,
+                          'tr': (in1 - in0) / (out1 - out0)})
+        return found
 
     def pieces(anchors):
-        """The speech between two anchors: its place in the rebuilt take and on the old timeline, and the tempo."""
         found = []
         for i, (ra, R, RE) in rebuilt.items():
-            g0, g1 = starts[i], starts[i + 1]
-            ks = sorted(k for k in anchors if g0 <= k < g1)
-            for j, a in enumerate(ks):
-                b = ks[j + 1] if j + 1 < len(ks) else g1
-                p_a = min(PAD, R[a - g0], OS[a])
-                in0, out0 = R[a - g0] - p_a, OS[a] - p_a
-                if b < g1:
-                    p_b = min(PAD, R[b - g0], OS[b])
-                    in1, out1 = R[b - g0] - p_b, OS[b] - p_b
-                else:
-                    in1 = len(ra) / SR
-                    out1 = (OS[g1] - PAD) if g1 < N else TOTAL
-                if in1 <= in0 or out1 <= out0:
-                    raise SystemExit(f'paragraph {i}, anchor word {a}: empty piece')
-                found.append({'i': i, 'a': a, 'b': b, 'in0': in0, 'in1': in1, 'out0': out0, 'out1': out1,
-                              'tr': (in1 - in0) / (out1 - out0)})
+            found += paragraph_pieces(i, ra, R, RE, anchors)
         return found
+
+    rebuilt, chosen, missing = {}, {}, []
+    for i in range(len(paras)):
+        g0, g1 = starts[i], starts[i + 1]
+        gaps = [max(MIN_GAP, OS[g + 1] - OE[g]) for g in range(g0, g1 - 1)]
+        best = None
+        for t in ([0, 1, 2] if TAKE == 'auto' else [TAKE]):
+            got = take(i, t)
+            if got is None:
+                continue
+            words, audio = got
+            if len(words) != counts[i]:
+                raise SystemExit(f'paragraph {i} take {t}: {len(words)} words, the script has {counts[i]}')
+            ra, R, RE = relay(words, audio, gaps)
+            # a take costs its pieces' distance from natural speed, weighted by their length on the old timeline;
+            # a piece above MAX_T also pays heavily, because its speech would be cut
+            score = sum((abs(np.log(pc['tr'])) + 20 * max(0.0, pc['tr'] - MAX_T)) * (pc['out1'] - pc['out0'])
+                        for pc in paragraph_pieces(i, ra, R, RE, keep))
+            if best is None or score < best[0]:
+                best = (score, t, ra, R, RE)
+        if best is None:
+            missing.append(i)
+            continue
+        chosen[i] = best[1]
+        rebuilt[i] = best[2:]
 
     # a piece that would need more than MAX_T is split at the word nearest its middle, so no speech gets cut;
     # a split keeps MIN_SPAN on both sides, so no piece is left with a sliver of the old timeline
@@ -251,6 +270,8 @@ def main(test):
             if inner:
                 keep.add(min(inner, key=lambda k: abs(OS[k] - mid)))
 
+    if not rebuilt:
+        raise SystemExit('no takes found in janitor-short/voice/takes')
     out = np.zeros(int(round(TOTAL * SR)))
     pred_on, pred_end, raw, cut = {}, {}, [], 0.0
     for pc in pieces(keep):
@@ -261,10 +282,12 @@ def main(test):
         n_out = int(round((pc['out1'] - pc['out0']) * SR))
         x = ra[int(round(pc['in0'] * SR)):int(round(pc['in1'] * SR))]
         y = x if abs(tu - 1.0) < 0.004 else stretch(x, tu)
-        if len(y) > n_out:
-            cut += (len(y) - n_out) / SR
+        trimmed = max(0.0, (len(y) - n_out) / SR)
+        if trimmed > 0:
             y = y[:n_out]
-        else:
+        # the piece ends in PAD seconds of silence before the next anchor; only trimming beyond that cuts speech
+        cut += max(0.0, trimmed - PAD)
+        if len(y) < n_out:
             y = np.pad(y, (0, n_out - len(y)))
         y[:FADE] *= np.linspace(0.0, 1.0, FADE)
         y[n_out - FADE:] *= np.linspace(1.0, 0.0, FADE)
@@ -277,10 +300,8 @@ def main(test):
             pred_end[g0 + jj] = pc['out0'] + (RE[jj] - pc['in0']) / tu
         if VERBOSE:
             print(f"p{pc['i']} anchor {pc['a']} ({flat[pc['a']]}) to {pc['b']}: old {pc['out0']:.3f}-{pc['out1']:.3f} "
-                  f"recon {pc['in0']:.3f}-{pc['in1']:.3f} tempo {tr:.3f}")
+                  f"recon {pc['in0']:.3f}-{pc['in1']:.3f} tempo {tr:.3f} trimmed {trimmed * 1000:.1f} ms")
 
-    if not rebuilt:
-        raise SystemExit('no takes found in janitor-short/voice/takes')
     tp = np.array(raw)
     fitted = sorted(pred_on)
     err = np.array([pred_on[g] - OS[g] for g in fitted if g not in keep])
@@ -288,6 +309,7 @@ def main(test):
     a_err = np.abs(err)
     held = int(np.sum((tp < MIN_T) | (tp > MAX_T)))
     print(f'takes: paragraphs {sorted(rebuilt)}; missing {missing} ({sum(counts[i] for i in missing)} words)')
+    print('take per paragraph:', chosen)
     print(f'anchors: {len(keep)} kept of {len(cand)} candidates (MIN_SPAN {MIN_SPAN} s)')
     print(f'pieces: {len(tp)}; tempo min {tp.min():.3f}, p10 {np.percentile(tp, 10):.3f}, '
           f'median {np.median(tp):.3f}, p90 {np.percentile(tp, 90):.3f}, max {tp.max():.3f}; held at a limit: {held}')
