@@ -10,6 +10,8 @@ import {Part5} from './parts/Part5';
 import {CoverPart} from './thumbs/CoverPart';
 import {PilotShort} from './pilot/PilotShort';
 import {PilotCover} from './pilot/PilotCover';
+import {JanitorShort} from './janitor/JanitorShort';
+import {JanitorCover} from './janitor/JanitorCover';
 
 const Cover1: React.FC = () => <CoverPart n={1} name="ETHAN NEVER TOLD IT" seed={3} />;
 const Cover2: React.FC = () => <CoverPart n={2} name="THE OTHER JEEP" seed={8} />;
@@ -31,5 +33,7 @@ export const RemotionRoot: React.FC = () => (
     <Still id="Cover4" component={Cover4} width={W} height={H} />
     <Still id="Cover5" component={Cover5} width={W} height={H} />
     <Composition id="PilotCover" component={PilotCover} durationInFrames={2028} fps={FPS} width={W} height={H} />
+    <Composition id="JanitorShort" component={JanitorShort} durationInFrames={2010} fps={FPS} width={W} height={H} />
+    <Composition id="JanitorCover" component={JanitorCover} durationInFrames={2010} fps={FPS} width={W} height={H} />
   </>
 );
