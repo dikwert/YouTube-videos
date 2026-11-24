@@ -56,7 +56,7 @@ export const SHOTS: ShotDef[] = [
       <>
         <SkyDome />
         <Clouds seed={3} n={14} span={60} y={[18, 50]} />
-        <Airliner p={[0, 30, -30]} s={0.78} ry={0.9} />
+        <Airliner p={[-1, 30, -30]} s={0.78} ry={0.9} />
       </>
     ),
   },
@@ -279,7 +279,7 @@ export const SHOTS: ShotDef[] = [
       return (
         <>
           <SkyDome />
-          <HighwaySet airliner={[0, 2.75, -75 + 60 * e]} airRy={0} airS={1.1} />
+          <HighwaySet airliner={[0, 2.75, -75 + 60 * e]} airRy={0} airS={1.1} shop={false} />
         </>
       );
     },

@@ -536,23 +536,30 @@ export const CabinSet: React.FC<{passengers?: boolean; bathroomOpen?: boolean}> 
     {bathroomOpen ? (
       <>
         {/* the doorway is open: a lit bathroom with a toilet, the door panel swung back against the wall */}
-        <mesh position={[0, 1.05, -22.4]}>
+        <mesh position={[0, 1.05, -22.9]}>
           <planeGeometry args={[1.1, 2.1]} />
           <meshBasicMaterial color="#ffe9b0" toneMapped={false} />
         </mesh>
-        {/* a toilet: a tank joined to the back of the bowl, a white bowl and an oval seat ring, all with plum outlines */}
-        <mesh position={[0, 0.5, -22.28]}>
-          <boxGeometry args={[0.46, 0.66, 0.24]} />
+        {/* a toilet: a tank on the back, an oval bowl with an oval seat ring and a tapered pedestal, plum outlines */}
+        <mesh position={[0, 0.62, -22.2]}>
+          <boxGeometry args={[0.46, 0.54, 0.2]} />
           <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
         </mesh>
-        <Box p={[0, 0.5, -22.28]} s={[0.4, 0.6, 0.2]} c="#f4f4f1" />
-        <mesh position={[0, 0.21, -21.95]}>
-          <cylinderGeometry args={[0.245, 0.245, 0.42, 20]} />
+        <Box p={[0, 0.62, -22.2]} s={[0.42, 0.5, 0.16]} c="#f4f4f1" />
+        <mesh position={[0, 0.33, -21.95]} scale={[1, 0.72, 0.9]}>
+          <sphereGeometry args={[0.25, 20, 14]} />
           <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
         </mesh>
-        <Cyl p={[0, 0.21, -21.95]} r={0.22} h={0.4} c="#f4f4f1" seg={20} />
-        <mesh position={[0, 0.43, -21.95]} rotation={[Math.PI / 2, 0, 0]} scale={[1, 0.8, 1]}>
-          <torusGeometry args={[0.2, 0.03, 8, 24]} />
+        <mesh position={[0, 0.33, -21.95]} scale={[1, 0.72, 0.9]}>
+          <sphereGeometry args={[0.23, 20, 14]} />
+          <meshLambertMaterial color="#f4f4f1" />
+        </mesh>
+        <mesh position={[0, 0.52, -21.95]} rotation={[Math.PI / 2, 0, 0]} scale={[1, 0.9, 1]}>
+          <torusGeometry args={[0.18, 0.025, 8, 24]} />
+          <meshLambertMaterial color="#f4f4f1" />
+        </mesh>
+        <mesh position={[0, 0.12, -21.95]}>
+          <cylinderGeometry args={[0.1, 0.16, 0.26, 16]} />
           <meshLambertMaterial color="#f4f4f1" />
         </mesh>
         <Box p={[-0.55, 1.05, -21.75]} s={[0.05, 2.1, 1.1]} c="#9db3c8" />
@@ -629,7 +636,7 @@ export const CockpitSet: React.FC<{dave?: 'slump' | 'upright' | 'eat'; kevin?: C
 
 // ---------- highway and drive-thru ----------
 
-export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: number; airS?: number}> = ({airliner, airRy = 0, airS = 1.1}) => (
+export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: number; airS?: number; shop?: boolean}> = ({airliner, airRy = 0, airS = 1.1, shop = true}) => (
   <group>
     <mesh position={[0, -0.02, -60]} rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[600, 600]} />
@@ -652,6 +659,7 @@ export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: 
     <Box p={[-8.2, 6.6, -30]} s={[4.8, 1.2, 0.2]} c="#2c6bd6" />
     <Pic p={[-8.2, 6.6, -29.85]} s={[4.6, 1.0]} tex={burgerSignTex()} />
     {/* burger shop with drive-thru */}
+    <group visible={shop}>
     {/* a hollow box, open on the road side at the drive-thru window */}
     <Box p={[22.95, 3, -10]} s={[0.1, 6, 8]} c="#e7dcc4" />
     <Box p={[18, 3, -14.05]} s={[10, 6, 0.1]} c="#e7dcc4" />
@@ -680,6 +688,7 @@ export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: 
       <meshBasicMaterial color="#ffb347" toneMapped={false} />
     </mesh>
     <Cyl p={[10.4, 0.55, -10]} r={0.06} h={1.1} c="#6b6f76" />
+    </group>
     {airliner && <Airliner p={airliner} s={airS} ry={airRy} />}
   </group>
 );
