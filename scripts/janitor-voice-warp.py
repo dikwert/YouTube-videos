@@ -80,6 +80,25 @@ def paragraphs():
     return [p.split() for p in re.split(r'\n\s*\n', text) if p.strip()]
 
 
+def refine_onsets(words, audio):
+    """The alignment can start a word on its opening quote mark or on a pause before the sound. The onset is
+    the first audible sample after the alignment start (within the word and up to the next word)."""
+    for j, w in enumerate(words):
+        lo = max(0.0, w['s'] - 0.03)
+        hi = w['e'] + 0.05
+        if j + 1 < len(words):
+            hi = min(hi, words[j + 1]['s'] - 0.005)
+        a, b = int(lo * SR), int(min(hi, len(audio) / SR) * SR)
+        seg = np.abs(audio[a:b])
+        if seg.size == 0 or seg.max() <= 0:
+            continue
+        hot = np.nonzero(seg > 0.12 * seg.max())[0]
+        if hot.size:
+            onset = (a + hot[0]) / SR
+            if onset < w['e'] - 0.02:
+                w['s'] = onset
+
+
 def take(i, t):
     """Words of paragraph i in take t (onset and end in take time) and its decoded audio, or None if not generated."""
     path = VOICE / 'takes' / f'p{i}_t{t}.json'
@@ -100,6 +119,7 @@ def take(i, t):
     if cur is not None:
         words.append(cur)
     audio = decode(base64.b64decode(d['audio_base64']))
+    refine_onsets(words, audio)
     refine_ends(words, audio)
     return words, audio
 
@@ -236,7 +256,11 @@ def main(test):
         g0, g1 = starts[i], starts[i + 1]
         gaps = [max(MIN_GAP, OS[g + 1] - OE[g]) for g in range(g0, g1 - 1)]
         best = None
-        for t in ([0, 1, 2] if TAKE == 'auto' else [TAKE]):
+        if TAKE == 'auto':
+            options = [0, 1, 2]
+        else:
+            options = [TAKE]
+        for t in options:
             got = take(i, t)
             if got is None:
                 continue

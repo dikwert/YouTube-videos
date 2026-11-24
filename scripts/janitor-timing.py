@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 words = json.loads((ROOT / "janitor-short/voice/words.json").read_text())
 KEYS = [["ORBIT"], ["RECYCLED", "PEE"], ["MY", "CAR"]]
 # Forced card breaks at these word start times (seconds): the cards "PARKING LOT." and "ON MY CAR."
-FORCE_BREAK = (57.468, 58.095)  # 'parking' and 'On' in words.json after the voice fit; re-check after each fit
+FORCE_BREAK = (57.378, 58.099)  # the words 'parking' and 'On' in words.json (the voice is fitted to the speech); re-check after each fit
 
 
 def clean(w):
