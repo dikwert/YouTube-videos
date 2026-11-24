@@ -50,7 +50,7 @@ const POSES: Record<Pose, {lh: [number, number]; rh: [number, number]; lk?: [num
   run: {lh: [175, 470], rh: [425, 620], lf: [225, GROUND - 40], rf: [380, GROUND], head: [0, 0], tilt: 0.04},
   point: {lh: [190, 640], rh: [560, 320], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   thumb: {lh: [190, 640], rh: [470, 330], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0.04},
-  shrug: {lh: [120, 330], rh: [480, 330], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
+  shrug: {lh: [188, 470], rh: [412, 470], lf: [265, GROUND], rf: [335, GROUND], head: [0, 0], tilt: 0},
   seated_hand: {lh: [215, 560], rh: [480, 470], lk: [400, 690], rk: [440, 690], lf: [420, 862], rf: [452, 862], head: [0, 0], tilt: 0},
 };
 
@@ -399,6 +399,18 @@ export function drawChar(st: CharState): HTMLCanvasElement {
     stick(ctx, [355, 430], [440, 330], '#c8c8c8', 8);
     stick(ctx, [245, 430], [130, 452], '#ff8a3d', 4);
     shape(ctx, '#ff8a3d', 7, () => ctx.arc(110, 452, 46, 0, Math.PI * 2));
+  }
+  if (st.pose === 'shrug') {
+    // a flight-simulator tablet held at chest height, with the hands on its two edges
+    shape(ctx, '#1b2026', 8, () => ctx.rect(200, 390, 200, 130));
+    shape(ctx, '#0a1620', 4, () => ctx.rect(212, 402, 176, 106));
+    ink(ctx, 5);
+    ctx.strokeStyle = '#5ee3ff';
+    ctx.beginPath();
+    ctx.moveTo(220, 470); ctx.lineTo(280, 440); ctx.lineTo(340, 455); ctx.lineTo(380, 425);
+    ctx.stroke();
+    dot(ctx, pose.lh[0], pose.lh[1], 19, skin);
+    dot(ctx, pose.rh[0], pose.rh[1], 19, skin);
   }
   if (st.pose === 'note') {
     // a folded note held in the right hand

@@ -1,6 +1,6 @@
 import React from 'react';
 import {WORDS} from './timing.generated';
-import {Airliner, Box, CabinSet, Clouds, CockpitDoor, CockpitSet, HighwaySet, Person, Pic, ROW_Z, SkyDome, panelTex} from './world';
+import {Airliner, Box, CabinSet, Clouds, CockpitDoor, CockpitSet, HighwaySet, Person, ROW_Z, SkyDome} from './world';
 
 export type Vec3 = [number, number, number];
 export type Cam = {p: Vec3; l: Vec3; f: number; r?: number};
@@ -33,7 +33,7 @@ export const SHOTS: ShotDef[] = [
     view: ({mouth}) => (
       <>
         <SkyDome />
-        <CockpitSet kevin={{pose: 'sit', expr: 'shock', mouth}} dave="upright" />
+        <CockpitSet kevin={{pose: 'sit', expr: 'shock', mouth}} dave="slump" />
       </>
     ),
   },
@@ -44,7 +44,7 @@ export const SHOTS: ShotDef[] = [
     view: ({mouth}) => (
       <>
         <SkyDome />
-        <CockpitSet kevin={{pose: 'sit', expr: 'neutral', mouth}} dave="upright" />
+        <CockpitSet kevin={{pose: 'sit', expr: 'neutral', mouth}} dave="slump" />
       </>
     ),
   },
@@ -56,7 +56,7 @@ export const SHOTS: ShotDef[] = [
       <>
         <SkyDome />
         <Clouds seed={3} n={14} span={60} y={[18, 50]} />
-        <Airliner p={[0, 30, -30]} s={1.4} ry={0.25} />
+        <Airliner p={[0, 30, -30]} s={1.0} ry={0.9} />
       </>
     ),
   },
@@ -166,8 +166,6 @@ export const SHOTS: ShotDef[] = [
         <SkyDome />
         <CabinSet passengers={false} />
         <Person st={{kind: 'kevin', pose: 'shrug', expr: t > 1.6 ? 'smug' : 'neutral', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.45} />
-        {/* the flight-simulator screen he holds up */}
-        <Pic p={[-1.5, 0.72, -2.6]} s={[0.36, 0.24]} tex={panelTex()} />
       </>
     ),
   },
@@ -323,7 +321,7 @@ export const SHOTS: ShotDef[] = [
   // 25. the new rule: the bathroom door is open, Rick grins in the doorway
   {
     id: 'new-rule', a: 59.25, b: 63.0,
-    cam0: {p: [0, 1.4, -12.2], l: [0, 1.5, -20.6], f: 42}, cam1: {p: [0, 1.42, -12.6], l: [0, 1.5, -20.6], f: 42}, creep: 0.05,
+    cam0: {p: [0, 1.4, -12.2], l: [0, 0.9, -20.6], f: 42}, cam1: {p: [0, 1.42, -12.6], l: [0, 0.9, -20.6], f: 42}, creep: 0.05,
     view: () => (
       <>
         <SkyDome />
