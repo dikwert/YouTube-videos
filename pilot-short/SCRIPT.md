@@ -54,7 +54,7 @@ Flight 312, SKYPAL, Kevin, Captain Rick, Co-pilot Dave, Gloria, Grandma Edna, To
 - Fallback used until that is fixed: Will (premade, American, relaxed), eleven_v3, stability 0.35, similarity 0.80, style 0.35.
 
 ## Production notes (final)
-- **Video:** `out/pilot_short.mp4`, 1440x2560, 30 fps, 2028 frames, 67.6 s, H.264 (crf 16) and AAC 48 kHz. Render: `node scripts/render-pilot.mjs video` (about 16 minutes on 4 cores with software WebGL).
+- **Video:** `out/pilot_short.mp4`, 1440x2560, 30 fps, 2028 frames, 67.6 s, H.264 (crf 16, yuv420p, BT.709, limited range) and AAC 48 kHz. Render: `node scripts/render-pilot.mjs video` (about 16 minutes on 4 cores with software WebGL; PNG frames, so the output is not full-range yuvj420p).
 - **Cover:** `out/pilot_cover.png`, 1080x1920, the hook frame at 1.0 s with the title below Kevin's face. Render: `node scripts/render-pilot.mjs cover 30`.
 - **Voiceover text:** `out/pilot_voiceover.txt`, 190 words in 3–4 word lines, with the start time of each paragraph. Generator: `python3 scripts/pilot-voiceover-text.py`.
 - **QA:** `python3 scripts/pilot-qa.py out/pilot_short.mp4` writes `out/pilot_qa.txt`. Result: PASS. Format, audio, and no black, white or frozen frames outside the hook flash.
