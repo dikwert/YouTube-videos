@@ -63,12 +63,15 @@ export const SHOTS: ShotDef[] = [
   // 4. cabin: Kevin in the middle seat
   {
     id: 'kevin-seat', a: 6.05, b: 7.9,
-    cam0: {p: [-1.5, 1.2, -0.9], l: [-1.5, 0.85, -3.2], f: 42}, cam1: {p: [-1.5, 1.2, -0.8], l: [-1.5, 0.85, -3.2], f: 42}, creep: 0.06,
+    cam0: {p: [-1.5, 1.3, 3.0], l: [-1.5, 0.85, -3.0], f: 50}, cam1: {p: [-1.5, 1.3, 2.9], l: [-1.5, 0.85, -3.0], f: 50}, creep: 0.06,
     view: ({mouth}) => (
       <>
         <SkyDome />
         <CabinSet />
         <Person st={{kind: 'kevin', pose: 'sit', expr: 'neutral', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.35} />
+        {/* a passenger on each side of Kevin, as in the finale */}
+        <Person st={{kind: 'pax', pose: 'sit', expr: 'bored', variant: 1}} feet={[-2.4, 0, R(0) + 0.2]} height={1.3} />
+        <Person st={{kind: 'pax', pose: 'sit', expr: 'grin', variant: 3}} feet={[-0.7, 0, R(0) + 0.2]} height={1.3} />
         <Box p={[-0.9, 0.7, R(0) + 0.2]} s={[0.2, 0.3, 0.12]} c="#f2c230" />
       </>
     ),
@@ -97,7 +100,7 @@ export const SHOTS: ShotDef[] = [
   },
   // 7. close-up of the fish: "Our co-pilot ate the fish anyway."
   {
-    id: 'fish', a: 13.6, b: 15.45,
+    id: 'fish', a: 13.6, b: 463 / 30,
     cam0: {p: [-0.3, 1.25, 0.9], l: [-1.15, 1.03, -0.4], f: 42}, cam1: {p: [-0.25, 1.25, 0.8], l: [-1.15, 1.03, -0.4], f: 42}, creep: 0.08,
     view: () => (
       <>
@@ -108,7 +111,7 @@ export const SHOTS: ShotDef[] = [
   },
   // 8. the cockpit: Dave passes out on the controls, the captain beside him
   {
-    id: 'dave-out', a: 15.45, b: 18.0,
+    id: 'dave-out', a: 463 / 30, b: 18.0,
     cam0: {p: [-0.6, 1.25, 4.4], l: [-0.6, 1.15, -0.4], f: 52}, cam1: {p: [-0.6, 1.25, 4.3], l: [-0.6, 1.15, -0.4], f: 52}, creep: 0.05,
     view: () => (
       <>
@@ -320,7 +323,7 @@ export const SHOTS: ShotDef[] = [
   },
   // 25. the new rule: the bathroom door is open, Rick grins in the doorway
   {
-    id: 'new-rule', a: 59.25, b: 63.0,
+    id: 'new-rule', a: 59.25, b: 1889 / 30,
     cam0: {p: [0, 1.4, -12.2], l: [0, 0.9, -20.6], f: 42}, cam1: {p: [0, 1.42, -12.6], l: [0, 0.9, -20.6], f: 42}, creep: 0.05,
     view: () => (
       <>
@@ -332,7 +335,7 @@ export const SHOTS: ShotDef[] = [
   },
   // 26. Kevin, thumbs up: "And me? Free flights for life."
   {
-    id: 'smug', a: 63.0, b: 65.5,
+    id: 'smug', a: 1889 / 30, b: 65.5,
     cam0: {p: [-1.5, 1.3, -1.9], l: [-1.5, 0.8, -3.2], f: 44}, cam1: {p: [-1.5, 1.3, -1.85], l: [-1.5, 0.8, -3.2], f: 44}, creep: 0.06,
     view: ({mouth}) => (
       <>

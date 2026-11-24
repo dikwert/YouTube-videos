@@ -43,8 +43,9 @@ if (mode === 'cover') {
     concurrency: 4,
     crf: 16,
     pixelFormat: 'yuv420p',
-    imageFormat: 'jpeg',
-    jpegQuality: 92,
+    // PNG frames keep the output in limited range; JPEG frames would give full-range yuvj420p
+    imageFormat: 'png',
+    colorSpace: 'bt709',
     audioCodec: 'aac',
     overwrite: true,
     onProgress: ({renderedFrames}) => {

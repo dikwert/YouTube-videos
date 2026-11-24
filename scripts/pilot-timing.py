@@ -54,10 +54,16 @@ def chunk(n):
         sizes.append(s); left -= s
     return sizes
 
+# Hand-set card sizes where the default split wraps a card to three lines. Here "THROUGH" starts
+# the next cue, so "SHOUTED INSTRUCTIONS" stays on one line.
+OVERRIDE = {
+    "so the captain shouted instructions through the bathroom door.": [3, 2, 4],
+}
 cards = []
 for g in groups:
     pos = 0
-    for size in chunk(len(g)):
+    key = " ".join(clean(words[i]).lower() for i in g)
+    for size in OVERRIDE.get(key, chunk(len(g))):
         idx = g[pos:pos + size]; pos += size
         text = " ".join(clean(words[i]) for i in idx)
         s = words[idx[0]]["s"]; e = words[idx[-1]]["e"]
