@@ -420,8 +420,7 @@ export const Airliner: React.FC<{p: [number, number, number]; s?: number; ry?: n
       <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
     </mesh>
     {/* the windscreen on the nose */}
-    <Box p={[0.9, 1.0, 11.0]} s={[0.7, 0.4, 0.08]} c="#1d2a3a" />
-    <Box p={[-0.9, 1.0, 11.0]} s={[0.7, 0.4, 0.08]} c="#1d2a3a" />
+    <Box p={[0, 1.0, 10.9]} s={[2.2, 0.5, 0.1]} c="#1d2a3a" />
     {/* nose windows */}
     {[-1, 1].map((side) => (
       <Box key={side} p={[side * 2.23, 0.55, 8.2]} s={[0.05, 0.4, 0.9]} c="#1d2a3a" />
@@ -447,22 +446,42 @@ export const Airliner: React.FC<{p: [number, number, number]; s?: number; ry?: n
       </React.Fragment>
     ))}
     {/* wings, tail fin and tailplane */}
-    {/* swept wings */}
+    {/* swept wings with a plum outline */}
     <mesh position={[3.3, -0.7, -1.2]} rotation={[0, 0.3, 0]}>
-      <boxGeometry args={[6.6, 0.22, 2.6]} />
+      <boxGeometry args={[6.72, 0.34, 3.5]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
+    <mesh position={[-3.3, -0.7, -1.2]} rotation={[0, -0.3, 0]}>
+      <boxGeometry args={[6.72, 0.34, 3.5]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
+    <mesh position={[3.3, -0.7, -1.2]} rotation={[0, 0.3, 0]}>
+      <boxGeometry args={[6.6, 0.22, 3.4]} />
       <meshLambertMaterial color="#e7e7e3" />
     </mesh>
     <mesh position={[-3.3, -0.7, -1.2]} rotation={[0, -0.3, 0]}>
-      <boxGeometry args={[6.6, 0.22, 2.6]} />
+      <boxGeometry args={[6.6, 0.22, 3.4]} />
       <meshLambertMaterial color="#e7e7e3" />
     </mesh>
-    {/* the tail fin, swept back */}
+    {/* the tail fin, swept back, with a plum outline */}
+    <mesh position={[0, 1.8, -8.2]} rotation={[-0.4, 0, 0]}>
+      <boxGeometry args={[0.42, 4.62, 3.12]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
     <mesh position={[0, 1.8, -8.2]} rotation={[-0.4, 0, 0]}>
       <boxGeometry args={[0.3, 4.5, 3.0]} />
       <meshLambertMaterial color="#2c6bd6" />
     </mesh>
     <Box p={[0, 0.2, -7.4]} s={[6, 0.15, 1.6]} c="#e7e7e3" />
-    {/* engines under the wings */}
+    {/* engines under the wings, with a plum outline */}
+    <mesh position={[-3.4, -1.7, 1.2]} rotation={[Math.PI / 2, 0, 0]}>
+      <cylinderGeometry args={[0.86, 0.86, 2.26, 18]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
+    <mesh position={[3.4, -1.7, 1.2]} rotation={[Math.PI / 2, 0, 0]}>
+      <cylinderGeometry args={[0.86, 0.86, 2.26, 18]} />
+      <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+    </mesh>
     <Cyl p={[-3.4, -1.7, 1.2]} r={0.8} h={2.2} c="#2a2f36" rot={[Math.PI / 2, 0, 0]} seg={18} />
     <Cyl p={[3.4, -1.7, 1.2]} r={0.8} h={2.2} c="#2a2f36" rot={[Math.PI / 2, 0, 0]} seg={18} />
     {/* landing gear: two main wheels under the wings, a nose wheel */}
@@ -521,15 +540,19 @@ export const CabinSet: React.FC<{passengers?: boolean; bathroomOpen?: boolean}> 
           <planeGeometry args={[1.1, 2.1]} />
           <meshBasicMaterial color="#ffe9b0" toneMapped={false} />
         </mesh>
-        {/* a toilet: tank at the back, a white bowl with a plum outline, an oval seat */}
-        <Box p={[0, 1.0, -22.25]} s={[0.52, 0.65, 0.23]} c="#f4f4f1" />
-        <mesh position={[0, 0.3, -21.95]}>
-          <cylinderGeometry args={[0.245, 0.245, 0.46, 20]} />
+        {/* a toilet: a tank joined to the back of the bowl, a white bowl and an oval seat ring, all with plum outlines */}
+        <mesh position={[0, 0.5, -22.28]}>
+          <boxGeometry args={[0.46, 0.66, 0.24]} />
           <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
         </mesh>
-        <Cyl p={[0, 0.3, -21.95]} r={0.22} h={0.42} c="#f4f4f1" seg={20} />
-        <mesh position={[0, 0.56, -21.95]} scale={[1, 1, 0.8]}>
-          <cylinderGeometry args={[0.24, 0.24, 0.06, 20]} />
+        <Box p={[0, 0.5, -22.28]} s={[0.4, 0.6, 0.2]} c="#f4f4f1" />
+        <mesh position={[0, 0.21, -21.95]}>
+          <cylinderGeometry args={[0.245, 0.245, 0.42, 20]} />
+          <meshBasicMaterial color="#241726" side={THREE.BackSide} toneMapped={false} />
+        </mesh>
+        <Cyl p={[0, 0.21, -21.95]} r={0.22} h={0.4} c="#f4f4f1" seg={20} />
+        <mesh position={[0, 0.43, -21.95]} rotation={[Math.PI / 2, 0, 0]} scale={[1, 0.8, 1]}>
+          <torusGeometry args={[0.2, 0.03, 8, 24]} />
           <meshLambertMaterial color="#f4f4f1" />
         </mesh>
         <Box p={[-0.55, 1.05, -21.75]} s={[0.05, 2.1, 1.1]} c="#9db3c8" />
@@ -645,18 +668,18 @@ export const HighwaySet: React.FC<{airliner?: [number, number, number]; airRy?: 
     <Box p={[13.1, 2.2, -11.3]} s={[0.12, 1.8, 0.1]} c="#2b2b2b" />
     <Box p={[13.1, 2.2, -8.7]} s={[0.12, 1.8, 0.1]} c="#2b2b2b" />
     <Box p={[12.6, 3.45, -10]} s={[1.2, 0.12, 3.4]} c="#d2452b" />
-    <Pic p={[9.7, 2.0, -13.2]} s={[0.9, 0.56]} tex={menuTex()} ry={-Math.PI / 2} />
+    <Pic p={[12.95, 2.0, -13.0]} s={[0.9, 0.56]} tex={menuTex()} ry={-Math.PI / 2} />
     {/* the lit kitchen behind the drive-thru window */}
     <mesh position={[13.9, 2.2, -10]} rotation={[0, -Math.PI / 2, 0]}>
       <planeGeometry args={[8, 6]} />
       <meshBasicMaterial color="#ffe9a8" toneMapped={false} />
     </mesh>
-    <Box p={[9.2, 1.15, -10]} s={[0.32, 0.5, 0.26]} c="#3a3f47" />
-    <mesh position={[9.02, 1.2, -10]} rotation={[0, Math.PI / 2, 0]}>
+    <Box p={[10.4, 1.15, -10]} s={[0.32, 0.5, 0.26]} c="#3a3f47" />
+    <mesh position={[10.22, 1.2, -10]} rotation={[0, Math.PI / 2, 0]}>
       <circleGeometry args={[0.13, 20]} />
       <meshBasicMaterial color="#ffb347" toneMapped={false} />
     </mesh>
-    <Cyl p={[9.2, 0.55, -10]} r={0.06} h={1.1} c="#6b6f76" />
+    <Cyl p={[10.4, 0.55, -10]} r={0.06} h={1.1} c="#6b6f76" />
     {airliner && <Airliner p={airliner} s={airS} ry={airRy} />}
   </group>
 );

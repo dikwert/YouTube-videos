@@ -29,7 +29,7 @@ export const SHOTS: ShotDef[] = [
   // 1. hook: Kevin in the captain seat, headphones on, eyes like saucers, hands on the yoke
   {
     id: 'hook', a: 0, b: 2.0,
-    cam0: {p: [0, 1.36, 1.7], l: [0, 1.02, -0.4], f: 44}, cam1: {p: [0, 1.36, 1.58], l: [0, 1.02, -0.4], f: 44}, creep: 0.05,
+    cam0: {p: [0, 1.4, 2.8], l: [0, 0.8, -0.4], f: 44}, cam1: {p: [0, 1.4, 2.7], l: [0, 0.8, -0.4], f: 44}, creep: 0.05,
     view: ({mouth}) => (
       <>
         <SkyDome />
@@ -40,7 +40,7 @@ export const SHOTS: ShotDef[] = [
   // 2. cockpit wide: "Flight 312." Both pilots in frame
   {
     id: 'cockpit-wide', a: 2.0, b: 4.55,
-    cam0: {p: [-0.4, 1.2, 2.5], l: [-0.6, 1.2, -1.0], f: 60}, cam1: {p: [-0.3, 1.2, 2.3], l: [-0.6, 1.2, -1.0], f: 60}, creep: 0.04,
+    cam0: {p: [-0.4, 1.2, 2.5], l: [-0.6, 0.95, -1.0], f: 60}, cam1: {p: [-0.3, 1.2, 2.3], l: [-0.6, 0.95, -1.0], f: 60}, creep: 0.04,
     view: ({mouth}) => (
       <>
         <SkyDome />
@@ -56,7 +56,7 @@ export const SHOTS: ShotDef[] = [
       <>
         <SkyDome />
         <Clouds seed={3} n={14} span={60} y={[18, 50]} />
-        <Airliner p={[0, 30, -30]} s={1.0} ry={0.9} />
+        <Airliner p={[0, 30, -30]} s={0.78} ry={0.9} />
       </>
     ),
   },
