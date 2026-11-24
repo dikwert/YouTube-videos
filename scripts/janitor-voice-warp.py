@@ -4,7 +4,7 @@
 The picture (shot cuts, reactions, subtitles) and the sound events were timed to the old narration. Its word times
 are frozen in janitor-short/voice/words_v1.json, and the picture keeps them.
 
-The new voice says the same words about 4% slower, but with 2 to 4 times longer pauses between words. So each take is
+The new voice says the same words about 4% slower, but with pauses between words up to about 4 times longer. So each take is
 first rebuilt with the old gaps between its words (a word keeps its own length). The result is then fitted onto the
 old timeline piece by piece: the anchors (paragraph starts, the word nearest each shot cut and sound event, and the
 sentence starts) keep their old onsets, and the speech between two anchors is stretched by one tempo, pitch kept,
