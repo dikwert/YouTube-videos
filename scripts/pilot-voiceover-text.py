@@ -6,11 +6,18 @@ import json
 import math
 import os
 import re
+import sys
 
+# Usage: python3 scripts/pilot-voiceover-text.py [script] [words] [out] [title] [speaker]
+# Defaults are the PilotShort files; for JanitorShort pass janitor-short/voice/script.txt
+# janitor-short/voice/words.json out/janitor_voiceover.txt "I'M A JANITOR. I JUST WOKE UP IN ORBIT - VOICEOVER" GARY
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SCRIPT = os.path.join(ROOT, 'pilot-short', 'voice', 'script.txt')
-WORDS = os.path.join(ROOT, 'pilot-short', 'voice', 'words.json')
-OUT = os.path.join(ROOT, 'out', 'pilot_voiceover.txt')
+ARGS = sys.argv[1:]
+SCRIPT = ARGS[0] if len(ARGS) > 0 else os.path.join(ROOT, 'pilot-short', 'voice', 'script.txt')
+WORDS = ARGS[1] if len(ARGS) > 1 else os.path.join(ROOT, 'pilot-short', 'voice', 'words.json')
+OUT = ARGS[2] if len(ARGS) > 2 else os.path.join(ROOT, 'out', 'pilot_voiceover.txt')
+TITLE = ARGS[3] if len(ARGS) > 3 else 'THE PILOT WENT TO THE BATHROOM - VOICEOVER'
+SPEAKER = ARGS[4] if len(ARGS) > 4 else 'KEVIN'
 
 
 def phrases(ws):
@@ -39,13 +46,13 @@ def main():
         raise SystemExit(f'word count mismatch: script {len(flat)} vs words.json {len(words)}')
 
     warnings = []
-    lines = ['THE PILOT WENT TO THE BATHROOM - VOICEOVER',
+    lines = [TITLE,
              '3-4 words per line, in spoken order. Bracketed lines give the start time (seconds) of each paragraph and the speaker.']
     idx = 0
     for p in paras:
         start = words[idx]['s']
         lines.append('')
-        lines.append(f'[{start:.1f} s  KEVIN]')
+        lines.append(f'[{start:.1f} s  {SPEAKER}]')
         for line in phrases(p):
             if len(line) < 3 or len(line) > 4:
                 warnings.append(f'"{" ".join(line)}" has {len(line)} words')

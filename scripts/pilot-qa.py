@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # QA for the final PilotShort MP4: format, every frame for black, white and frozen runs, loudness.
-# Usage: python3 scripts/pilot-qa.py [out/pilot_short.mp4]
-# Writes the report to out/pilot_qa.txt and exits 1 if any check fails.
+# Usage: python3 scripts/pilot-qa.py [mp4] [report] [duration]
+#   defaults: out/pilot_short.mp4, out/pilot_qa.txt, 67.6 s (PilotShort); for JanitorShort pass
+#   out/janitor_short.mp4 out/janitor_qa.txt 67.0
+# Writes the report and exits 1 if any check fails.
 import json
 import os
 import re
@@ -10,11 +12,11 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MP4 = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'out', 'pilot_short.mp4')
-REPORT = os.path.join(ROOT, 'out', 'pilot_qa.txt')
+REPORT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(ROOT, 'out', 'pilot_qa.txt')
 FLASH = (2.0, 2.3)  # the intended white flash after the hook
 FREEZE_RUN = 12  # frozen run length in frames that is flagged (0.4 s at 30 fps)
 EXPECT_W, EXPECT_H, EXPECT_FPS = 1440, 2560, 30
-EXPECT_DUR = 67.6
+EXPECT_DUR = float(sys.argv[3]) if len(sys.argv) > 3 else 67.6
 
 
 def run(cmd):

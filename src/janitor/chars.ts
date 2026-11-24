@@ -370,9 +370,9 @@ export function drawChar(st: CharState): HTMLCanvasElement {
   }
   if (st.pose === 'spit') {
     // coffee spray
-    for (const [dx, dy] of [[90, -60], [120, -30], [60, -90], [140, -70]]) dot(ctx, 300 + dx, 300 + dy, 10, '#6b3e1f');
+    for (const [dx, dy] of [[90, -60], [120, -30], [60, -90], [140, -70], [170, -110], [200, -50]]) dot(ctx, 300 + dx, 300 + dy, 20, '#6b3e1f');
   }
-  if (st.pose === 'nap' || st.expr === 'sleep') {
+  if (st.expr === 'sleep' && st.pose !== 'nap') {  // the nap's Zs float in the shot (ZLetter)
     // light letters with a plum outline, so they read on the dark capsule wall
     ctx.lineJoin = 'round';
     ctx.lineWidth = 9;

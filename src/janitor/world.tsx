@@ -298,6 +298,27 @@ export const Cat: React.FC<{expr: 'judge' | 'smug' | 'sleepy' | 'turn'; feet: [n
   );
 };
 
+/** A floating "Z" for the nap: a light letter with a plum outline. The shot moves it up and fades it. */
+export const ZLetter: React.FC<{p: [number, number, number]; s: number; opacity?: number}> = ({p, s, opacity = 1}) => {
+  const tex = cached('letter-z', () => canvas(128, 128, (g) => {
+    g.font = 'bold 96px Arial';
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    g.lineJoin = 'round';
+    g.lineWidth = 14;
+    g.strokeStyle = '#241726';
+    g.fillStyle = '#eaf4ff';
+    g.strokeText('Z', 64, 66);
+    g.fillText('Z', 64, 66);
+  }));
+  return (
+    <mesh position={p}>
+      <planeGeometry args={[s, s]} />
+      <meshBasicMaterial map={tex} transparent alphaTest={0.05} depthWrite={false} toneMapped={false} opacity={opacity} />
+    </mesh>
+  );
+};
+
 // ---------- props ----------
 
 export const Box: React.FC<{p: [number, number, number]; s: [number, number, number]; c: string; r?: number}> = ({p, s, c, r = 0}) => (

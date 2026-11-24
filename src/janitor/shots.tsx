@@ -2,7 +2,7 @@ import React from 'react';
 import {WORDS} from './timing.generated';
 import {
   Box, Capsule, CapsuleInterior, Cat, ControlRoomSet, Cyl, Earth, HangarSet, LaunchSet, OfficeSet, BreakRoomSet,
-  ParkingSet, Person, Pic, Rocket, SkyDome, SpaceDome, Sphere, StationSet, Smoke,
+  ParkingSet, Person, Pic, Rocket, SkyDome, SpaceDome, Sphere, StationSet, Smoke, ZLetter,
 } from './world';
 
 export type Vec3 = [number, number, number];
@@ -83,10 +83,14 @@ export const SHOTS: ShotDef[] = [
     id: 'nap', a: 8.6, b: 10.7,
     cam0: {p: [0, 1.25, 0.5], l: [0, 0.95, -2.4], f: 46}, cam1: {p: [0, 1.25, 0.2], l: [0, 0.95, -2.4], f: 46}, creep: 0.08,
     kicks: [],
-    view: () => (
+    view: ({t, dur}) => (
       <>
-        <CapsuleInterior digit="" />
+        <CapsuleInterior digit="" panel={false} />
         <Person st={{kind: 'gary', pose: 'nap', expr: 'sleep', variant: 0}} feet={[0, 0, -2.4]} height={1.5} roll={0.05} />
+        {[0, 0.5].map((off, i) => {
+          const k = (t / dur + off) % 1;
+          return <ZLetter key={i} p={[0.2 + 0.12 * i, 1.45 + 0.75 * k, -2.25]} s={0.3 + 0.12 * k} opacity={1 - k} />;
+        })}
       </>
     ),
   },
@@ -180,8 +184,8 @@ export const SHOTS: ShotDef[] = [
       return (
         <>
           <ControlRoomSet />
-          <Person st={{kind: 'ops', pose: k > 0.2 ? 'spit' : 'sit', expr: k > 0.2 ? 'shock' : 'neutral', variant: 0}} feet={[-1.0, 0, -10]} height={1.6} />
-          <Person st={{kind: 'linda', pose: 'stand', expr: 'worry', variant: 0}} feet={[1.2, 0, -10]} height={1.8} />
+          <Person st={{kind: 'ops', pose: k > 0.2 ? 'spit' : 'sit', expr: k > 0.2 ? 'shock' : 'neutral', variant: 0}} feet={[-0.8, 0, -10]} height={1.6} />
+          <Person st={{kind: 'linda', pose: 'stand', expr: 'worry', variant: 0}} feet={[0.7, 0, -10]} height={1.8} />
         </>
       );
     },
@@ -275,7 +279,7 @@ export const SHOTS: ShotDef[] = [
     view: ({mouth}) => (
       <>
         <StationSet />
-        <Person st={{kind: 'gary', pose: 'drink', expr: 'smug', mouth, variant: 0}} feet={[-0.8, 0.4, -4.4]} height={1.7} />
+        <Person st={{kind: 'gary', pose: 'drink', expr: 'smug', mouth, variant: 0}} feet={[-0.15, 0, -4.4]} height={1.7} />
       </>
     ),
   },
@@ -341,7 +345,7 @@ export const SHOTS: ShotDef[] = [
           <SkyDome dawn />
           <ParkingSet squash={squash} />
           {k < 0.3 && <Capsule p={[0, 1.4, -14]} s={0.9} />}
-          <Smoke p={[0, 0.2, -14]} k={squash} />
+          <Smoke p={[0, 0.2, -14]} k={squash * 0.3} />
         </>
       );
     },
