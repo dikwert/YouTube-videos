@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import * as THREE from 'three';
 import {CharState, charKey, drawCat, drawChar} from './chars';
-import {arrowSignTex, Bin, Bx, BookShelf, Buttons, Cable, Cactus, Car, Cy, carpetTex, Chair, checkerFloorTex, ChipsBag, clockFaceTex, controlWallTex, DeskLamp, facadeTex, familyPhotoTex, FlowerBed, FlowerPot, Flag, foodBagTex, Fridge, Glow, Globe, Keyboard, Pl, posterTex, Puddle, RocketFig, rugTex, screenDashTex, skyCloudTex, Sp, stickerTex, stationMuralTex, Tree, TrafficCone, warningTex, worldMapTex, quiltTex, wallPatternTex, woodPanelTex, gratePatternTex, floorZoneTex} from './decor';
+import {arrowSignTex, Bin, Bx, BookShelf, Buttons, Cable, Cactus, Car, Cy, carpetTex, Chair, checkerFloorTex, ChipsBag, clockFaceTex, controlWallTex, DeskLamp, facadeTex, familyPhotoTex, FlowerBed, FlowerPot, Flag, foodBagTex, Fridge, Glow, Globe, Keyboard, Pl, posterTex, Puddle, RocketFig, rugTex, screenDashTex, skyCloudTex, Sp, stickerTex, stationMuralTex, Tree, TrafficCone, warningTex, worldMapTex, quiltTex, wallPatternTex, woodPanelTex, gratePatternTex, floorZoneTex, quiltSlateTex, quiltPurpleTex, panelTileTex} from './decor';
 
 /** Module-level texture cache: each canvas texture is painted once per render process. */
 const TEX = new Map<string, THREE.Texture>();
@@ -73,7 +73,7 @@ const spaceTex = () =>
       g.fillRect(0, 0, 1024, 512);
     }
     const r = rnd(42);
-    for (let i = 0; i < 700; i++) {
+    for (let i = 0; i < 1600; i++) {
       const v = r();
       g.fillStyle = v > 0.9 ? '#ffffff' : '#9fb4d8';
       g.globalAlpha = 0.4 + r() * 0.6;
@@ -179,11 +179,11 @@ const concreteTex = () =>
 
 const asphaltTex = () =>
   cached('asphalt', () => canvas(256, 256, (g) => {
-    g.fillStyle = '#3a3d42';
+    g.fillStyle = '#5b6068';
     g.fillRect(0, 0, 256, 256);
     const r = rnd(5);
     for (let i = 0; i < 400; i++) {
-      g.fillStyle = r() > 0.5 ? '#44484e' : '#2e3136';
+      g.fillStyle = r() > 0.5 ? '#6a6f77' : '#4a4f57';
       g.fillRect(r() * 256, r() * 256, 2, 2);
     }
   }), [6, 6]);
@@ -239,7 +239,7 @@ const countdownTex = (digit: string) =>
   cached(`count_${digit}`, () => canvas(512, 256, (g) => {
     g.fillStyle = '#0b1a14';
     g.fillRect(0, 0, 512, 256);
-    g.fillStyle = 'rgba(52,255,154,0.16)';
+    g.fillStyle = 'rgba(52,255,154,0.38)';
     for (let x = 16; x < 512; x += 32) {
       for (let y = 16; y < 256; y += 32) {
         g.beginPath();
@@ -262,6 +262,10 @@ const heightTex = () =>
   cached('height', () => canvas(256, 512, (g) => {
     g.fillStyle = '#e9e1d2';
     g.fillRect(0, 0, 256, 512);
+    g.fillStyle = '#2ec4b6';
+    g.fillRect(0, 0, 256, 36);
+    g.fillStyle = '#ffd166';
+    g.fillRect(0, 476, 256, 36);
     g.strokeStyle = '#3a4656';
     g.lineWidth = 4;
     // one foot is 0.305 m; the wall is 2.1 m tall, so a foot is 74.4 px of the 512 px texture
@@ -481,7 +485,7 @@ export const HangarSet: React.FC = () => (
     </mesh>
     <mesh position={[0, 8, -10]} rotation={[Math.PI / 2, 0, 0]}>
       <planeGeometry args={[24, 40]} />
-      <meshLambertMaterial color="#2a2f3a" />
+      <meshLambertMaterial map={controlWallTex()} />
     </mesh>
     <mesh position={[-9, 4, -10]} rotation={[0, Math.PI / 2, 0]}>
       <planeGeometry args={[40, 8]} />
@@ -496,6 +500,7 @@ export const HangarSet: React.FC = () => (
       <meshLambertMaterial map={stationMuralTex()} />
     </mesh>
     {/* painted floor zones */}
+    <Pl p={[0, 0.02, 1.5]} s={[2.6, 0.9]} tex={floorZoneTex('#ffd166')} rx={-Math.PI / 2} lit />
     <Pl p={[-2.0, 0.02, -0.8]} s={[1.6, 1.0]} tex={floorZoneTex('#2ec4b6')} rx={-Math.PI / 2} lit />
     <Bx p={[-4.2, 0.012, -4]} s={[0.12, 0.01, 12]} c="#f2c94c" />
     <Bx p={[4.2, 0.012, -4]} s={[0.12, 0.01, 12]} c="#f2c94c" />
@@ -523,12 +528,12 @@ export const HangarSet: React.FC = () => (
     <Pic p={[-8.9, 2.2, -10]} s={[3.2, 1.0]} tex={signTex('AUTHORIZED ONLY', '#e8c12a', '#1d1f24')} ry={Math.PI / 2} />
     <Pic p={[0, 2.4, -29.9]} s={[3.6, 1.1]} tex={signTex('AUTHORIZED ONLY', '#e8c12a', '#1d1f24')} />
     {/* crates, a warning band round the stand, flags, puddles and a tool rack */}
-    <Bx p={[-2.8, 0.6, -4.2]} s={[1.2, 1.2, 1.2]} c="#e63946" />
-    <Bx p={[-2.8, 1.85, -4.2]} s={[1.0, 1.0, 1.0]} c="#ffd166" />
-    <Bx p={[2.8, 0.5, -3.6]} s={[1.4, 1.0, 1.2]} c="#2ec4b6" />
+    <Bx p={[-3.5, 0.6, -4.2]} s={[1.2, 1.2, 1.2]} c="#e63946" />
+    <Bx p={[-3.5, 1.85, -4.2]} s={[1.0, 1.0, 1.0]} c="#ffd166" />
+    <Bx p={[3.4, 0.5, -3.6]} s={[1.4, 1.0, 1.2]} c="#2ec4b6" />
     <Bx p={[0, 0.6, -6]} s={[2.46, 0.24, 2.46]} map={warningTex()} />
-    <Flag p={[-3.4, 0, -4.5]} h={3.4} c="#ff9f1c" />
-    <Flag p={[3.6, 0, -5.5]} h={3.4} c="#2ec4b6" />
+    <Flag p={[-2.2, 0, -4.4]} h={3.4} c="#ff9f1c" />
+    <Flag p={[2.2, 0, -4.8]} h={3.4} c="#2ec4b6" />
     <Puddle p={[-1.4, 0.01, -2.2]} s={[2.2, 1.2]} />
     <Puddle p={[1.8, 0.01, -2.9]} s={[1.6, 0.9]} />
     <Bx p={[-2.2, 1.2, -9.2]} s={[1.8, 2.4, 0.4]} c="#3a4656" />
@@ -557,7 +562,7 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
     <Pl p={[0, 2.49, -1]} s={[3.6, 6]} tex={wallPatternTex()} rx={Math.PI / 2} cut />
     <Wall p={[-1.8, 1.25, -1]} s={[6, 2.5]} rot={[0, Math.PI / 2, 0]} c="#2f7f86" />
     <Pl p={[-1.77, 1.25, -1]} s={[6, 2.5]} tex={wallPatternTex()} ry={Math.PI / 2} cut />
-    <Pl p={[-1.74, 1.5, -0.6]} s={[0.6, 0.45]} tex={familyPhotoTex()} ry={Math.PI / 2} />
+    <Pl p={[-1.2, 1.7, -3.95]} s={[0.6, 0.45]} tex={familyPhotoTex()} />
     <Wall p={[1.8, 1.25, -1]} s={[6, 2.5]} rot={[0, -Math.PI / 2, 0]} c="#2f7f86" />
     <Pl p={[1.77, 1.25, -1]} s={[6, 2.5]} tex={wallPatternTex()} ry={-Math.PI / 2} cut />
     <Wall p={[0, 1.25, -4]} s={[3.6, 2.5]} c="#3c5a8a" />
@@ -569,16 +574,20 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
     {window ? (
       <>
         <Wall p={[0, 0.3, 2]} s={[3.6, 0.6]} c="#2f7f86" />
+        <Pl p={[0, 0.3, 1.97]} s={[3.6, 0.6]} tex={wallPatternTex()} ry={Math.PI} cut />
         <Wall p={[0, 2.25, 2]} s={[3.6, 0.5]} c="#2f7f86" />
+        <Pl p={[0, 2.25, 1.97]} s={[3.6, 0.5]} tex={wallPatternTex()} ry={Math.PI} cut />
         <Wall p={[-1.4, 1.2, 2]} s={[0.8, 1.8]} c="#2f7f86" />
+        <Pl p={[-1.4, 1.2, 1.97]} s={[0.8, 1.8]} tex={wallPatternTex()} ry={Math.PI} cut />
         <Wall p={[1.4, 1.2, 2]} s={[0.8, 1.8]} c="#2f7f86" />
+        <Pl p={[1.4, 1.2, 1.97]} s={[0.8, 1.8]} tex={wallPatternTex()} ry={Math.PI} cut />
       </>
     ) : (
       <Wall p={[0, 1.25, 2]} s={[3.6, 2.5]} c="#2f7f86" />
     )}
     {/* the seat */}
     <Bx p={[0, 0.3, -2.4]} s={[1.6, 0.3, 1.4]} map={quiltTex()} />
-    <Box p={[0, 1.6, -3.2]} s={[1.6, 1.8, 0.4]} c="#3b4656" />
+    <Bx p={[0, 1.6, -3.2]} s={[1.6, 1.8, 0.4]} map={quiltSlateTex()} />
     <Box p={[-0.7, 1.2, -2.3]} s={[0.06, 1.4, 0.06]} c="#e8c12a" />
     <Box p={[0.7, 1.2, -2.3]} s={[0.06, 1.4, 0.06]} c="#e8c12a" />
     {/* the panel with the countdown screen, facing the seat (left out of the view of the flight) */}
@@ -589,7 +598,7 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
           <planeGeometry args={[1.8, 0.9]} />
           <meshBasicMaterial map={countdownTex(digit)} toneMapped={false} side={THREE.DoubleSide} />
         </mesh>
-        <Buttons p={[0.9, 0.9, 0.79]} n={6} cols={['#ff6b6b', '#ffd166', '#2ec4b6', '#9b5de5']} />
+        <Buttons p={[0.9, 0.9, 0.22]} n={6} cols={['#ff6b6b', '#ffd166', '#2ec4b6', '#9b5de5']} />
         {Array.from({length: 12}, (_, i) => (
           <Box key={i} p={[-1.5 + (i % 6) * 0.6, 0.9 + Math.floor(i / 6) * 0.14, 0.78]} s={[0.12, 0.08, 0.04]} c={i % 3 === 0 ? '#ff3b30' : '#34d399'} />
         ))}
@@ -630,6 +639,7 @@ export const StationSet: React.FC<{cat?: boolean; catExpr?: 'judge' | 'smug' | '
     {/* a room: checker floor, ceiling, mural walls and a mural back wall, open to the front */}
     <Pl p={[0, -0.02, -6]} s={[4.4, 12]} tex={checkerFloorTex()} rx={-Math.PI / 2} lit />
     <Wall p={[0, 3.0, -6]} s={[4.4, 12]} rot={[Math.PI / 2, 0, 0]} c="#e8e8e4" />
+    <Pl p={[0, 2.98, -6]} s={[4.4, 12]} tex={wallPatternTex()} rx={Math.PI / 2} cut />
     <Pl p={[-2.2, 1.5, -6]} s={[12, 3]} tex={stationMuralTex()} ry={Math.PI / 2} lit />
     <Pl p={[2.2, 1.5, -6]} s={[12, 3]} tex={stationMuralTex()} ry={-Math.PI / 2} lit />
     <Pl p={[0, 1.5, -12]} s={[4.4, 3]} tex={stationMuralTex()} lit />
@@ -686,16 +696,16 @@ export const ControlRoomSet: React.FC = () => (
       <meshLambertMaterial map={controlWallTex()} />
     </mesh>
     {/* the big wall screen with the orbit */}
-    <Pic p={[0, 2.8, -19.8]} s={[8, 4]} tex={monitorTex()} />
+    <Pic p={[0, 2.6, -19.8]} s={[4.6, 2.8]} tex={monitorTex()} />
     {/* a world map and ORBITA posters on the wall */}
-    <Pl p={[-7.4, 2.6, -19.75]} s={[4.2, 2.6]} tex={worldMapTex()} />
+    <Pl p={[-4.2, 2.6, -19.75]} s={[2.6, 2.2]} tex={worldMapTex()} />
     <Pl p={[-10.6, 2.6, -19.75]} s={[2.2, 3.3]} tex={posterTex('rocket')} />
-    <Pl p={[7.4, 2.6, -19.75]} s={[2.2, 3.3]} tex={posterTex('planet')} />
+    <Pl p={[4.2, 2.4, -19.75]} s={[2.0, 2.8]} tex={posterTex('planet')} />
     <Pl p={[10.6, 2.6, -19.75]} s={[2.2, 3.3]} tex={posterTex('rocket')} />
     {/* clocks in several time zones above the screen */}
-    <Pl p={[-2.6, 5.15, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(3, 15, '#2ec4b6')} />
-    <Pl p={[0, 5.15, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(8, 40, '#ffd166')} />
-    <Pl p={[2.6, 5.15, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(12, 5, '#ff9ecd')} />
+    <Pl p={[-1.2, 4.5, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(3, 15, '#2ec4b6')} />
+    <Pl p={[0, 4.5, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(8, 40, '#ffd166')} />
+    <Pl p={[1.2, 4.5, -19.75]} s={[0.8, 0.8]} tex={clockFaceTex(12, 5, '#ff9ecd')} />
     {/* a raised back row of staff, so their heads show above the desks */}
     <Bx p={[0, 0.3, -16.5]} s={[14, 0.6, 1.4]} c="#243a5e" />
     {[-6, -2, 2, 6].map((x, i) => (
@@ -759,9 +769,15 @@ export const ParkingSet: React.FC<{squash?: number}> = ({squash = 0}) => (
     <Box p={[0, 12.2, -40]} s={[30.4, 0.4, 6.4]} c="#3a4656" />
     <Pl p={[0, 6, -36.9]} s={[30, 12]} tex={facadeTex()} lit />
     {/* coloured bays painted on the asphalt */}
+    <Pl p={[-4.0, 0.01, -4.6]} s={[2.0, 1.2]} tex={floorZoneTex('#9b5de5')} rx={-Math.PI / 2} lit />
+    <Pl p={[3.6, 0.01, -6.4]} s={[2.0, 1.2]} tex={floorZoneTex('#ffd166')} rx={-Math.PI / 2} lit />
     <Pl p={[-1.2, 0.01, -4.2]} s={[1.4, 0.9]} tex={floorZoneTex('#2ec4b6')} rx={-Math.PI / 2} lit />
     <Pl p={[-2.2, 0.01, -7]} s={[2.4, 1.6]} tex={floorZoneTex('#ffd166')} rx={-Math.PI / 2} lit />
     <Pl p={[2.6, 0.01, -9.5]} s={[2.4, 1.6]} tex={floorZoneTex('#2ec4b6')} rx={-Math.PI / 2} lit />
+    {/* in the camera's view: a tree, a flowerbed and a bin */}
+    <Tree p={[-3.6, 0, -6.6]} s={0.9} />
+    <FlowerBed p={[3.2, 0, -5.4]} w={2.2} />
+    <Bin p={[2.8, 0, -3.4]} c="#2a9d5c" />
     {/* trees, flowerbeds, parked cars, cones, a bin, a sign and a puddle */}
     <Tree p={[-11, 0, -8]} />
     <Tree p={[11, 0, -9]} s={1.1} />
@@ -808,10 +824,10 @@ export const BreakRoomSet: React.FC = () => (
     </mesh>
     <Pl p={[-7.9, 2.4, -2.5]} s={[1.6, 2.4]} tex={posterTex('planet')} ry={Math.PI / 2} />
     {/* a rug under the sofa */}
-    <Pl p={[0, 0.01, -3.2]} s={[4.2, 2.2]} tex={rugTex()} rx={-Math.PI / 2} lit />
+    <Pl p={[0, 0.01, -1.6]} s={[4.2, 2.2]} tex={rugTex()} rx={-Math.PI / 2} lit />
     {/* the sofa, with cushions */}
-    <Box p={[0, 0.4, -3]} s={[3.6, 0.8, 1.2]} c="#7a4f9e" />
-    <Box p={[0, 1.1, -3.5]} s={[3.6, 0.8, 0.4]} c="#6a4288" />
+    <Bx p={[0, 0.4, -3]} s={[3.6, 0.8, 1.2]} map={quiltPurpleTex()} />
+    <Bx p={[0, 1.1, -3.5]} s={[3.6, 0.8, 0.4]} map={quiltPurpleTex()} />
     <Box p={[-1.5, 0.9, -2.8]} s={[0.7, 0.3, 0.6]} c="#c95f8a" />
     <Bx p={[-1.2, 1.35, -3.2]} s={[0.5, 0.45, 0.2]} c="#ffd166" />
     <Bx p={[1.1, 1.35, -3.2]} s={[0.5, 0.45, 0.2]} c="#2ec4b6" />
@@ -846,13 +862,13 @@ export const OfficeSet: React.FC = () => (
     </mesh>
     {/* a bookshelf, a globe, a plant, a framed photo and a poster */}
     <BookShelf p={[-4.6, 1.2, -5.7]} s={[2.4, 2.4, 0.5]} />
-    <Globe p={[4.0, 1.2, -5.2]} r={0.45} />
+    <Globe p={[-1.5, 1.2, -5.3]} r={0.45} />
     <Tree p={[-5.6, 0, -4.4]} s={0.5} />
     <Pl p={[-1.6, 2.3, -5.9]} s={[0.7, 0.5]} tex={familyPhotoTex()} />
     <Pl p={[-0.2, 2.6, -5.9]} s={[0.6, 0.9]} tex={posterTex('planet')} />
     {/* the desk, with a monitor, a mug and a sheet of paper */}
     <Box p={[0, 0.8, -4]} s={[3.6, 0.1, 1.6]} c="#5a4a3a" />
-    <Pic p={[0, 1.4, -4.85]} s={[0.9, 0.55]} tex={screenDashTex('graphs')} />
+    <Pic p={[1.0, 1.4, -4.85]} s={[0.9, 0.55]} tex={screenDashTex('graphs')} />
     <Cy p={[1.2, 0.95, -3.7]} r={0.07} h={0.12} c="#2ec4b6" />
     <Bx p={[-1.0, 0.87, -3.6]} s={[0.6, 0.02, 0.45]} c="#f2f2ee" />
     <Pic p={[1.3, 2.2, -5.9]} s={[2.2, 1.6]} tex={skyDayTex()} />

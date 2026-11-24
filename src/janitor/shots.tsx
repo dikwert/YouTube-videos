@@ -1,6 +1,6 @@
 import React from 'react';
 import {WORDS} from './timing.generated';
-import {Pl, skyCloudTex} from './decor';
+import {Pl, panelTileTex, skyCloudTex} from './decor';
 import {
   Box, Capsule, CapsuleInterior, Cat, ControlRoomSet, Cyl, Earth, HangarSet, LaunchSet, OfficeSet, BreakRoomSet,
   ParkingSet, Person, Pic, Rocket, SkyDome, SpaceDome, Sphere, StationSet, Smoke, ZLetter,
@@ -247,7 +247,10 @@ export const SHOTS: ShotDef[] = [
         <>
           <SpaceDome />
           <Earth p={[0, -20, -60]} r={22} />
-          <Box p={[0, 1.5, -6]} s={[4.4, 4.4, 12]} c="#e8e8e4" />
+          <mesh position={[0, 1.5, -6]}>
+            <boxGeometry args={[4.4, 4.4, 12]} />
+            <meshLambertMaterial map={panelTileTex('#e8e8e4')} />
+          </mesh>
           <Capsule p={[4.2 - 1.1 * k, 1.5, -4]} s={0.9} ry={Math.PI / 2} />
         </>
       );
@@ -332,6 +335,8 @@ export const SHOTS: ShotDef[] = [
           <SkyDome dawn />
           <ParkingSet />
           <Capsule p={[0, 7 - 3.5 * ease(k), -14]} s={1.3} />
+          <Pl p={[-6, 9, -26]} s={[14, 7]} tex={skyCloudTex()} cut />
+          <Pl p={[8, 12, -30]} s={[16, 8]} tex={skyCloudTex()} cut />
         </>
       );
     },

@@ -420,7 +420,7 @@ export const stationMuralTex = () =>
     g.fillRect(0, 0, w, h);
     const r = rng(21);
     const cols = ['#2ec4b6', '#ff8fab', '#ffd166', '#f4a261', '#9b5de5'];
-    for (let i = 0; i < 26; i++) {
+    for (let i = 0; i < 40; i++) {
       g.fillStyle = cols[i % cols.length];
       const x = r() * w;
       const y = r() * h;
@@ -659,6 +659,57 @@ export const woodPanelTex = () =>
       g.stroke();
     }
   }, [3, 1]);
+
+/** A quilted texture in any palette: diamonds, darker stitching, dots. */
+function quiltPaint(key: string, base: string, line: string, dot: string) {
+  return paint(key, 256, 256, (g, w, h) => {
+    g.fillStyle = base;
+    g.fillRect(0, 0, w, h);
+    g.strokeStyle = line;
+    g.lineWidth = 6;
+    for (let k = -h; k < w + h; k += 64) {
+      g.beginPath();
+      g.moveTo(k, 0);
+      g.lineTo(k + h, h);
+      g.stroke();
+      g.beginPath();
+      g.moveTo(k, h);
+      g.lineTo(k + h, 0);
+      g.stroke();
+    }
+    g.fillStyle = dot;
+    for (let y = 32; y < h; y += 64) {
+      for (let x = 32; x < w; x += 64) {
+        g.beginPath();
+        g.arc(x, y, 5, 0, Math.PI * 2);
+        g.fill();
+      }
+    }
+  }, [2, 2]);
+}
+
+/** Slate quilted upholstery (the capsule backrest). */
+export const quiltSlateTex = () => quiltPaint('quilt-slate', '#3b4656', '#262e3b', '#8fa3bf');
+
+/** Purple quilted upholstery (the break-room sofa). */
+export const quiltPurpleTex = () => quiltPaint('quilt-purple', '#7a4f9e', '#573875', '#c9a0e8');
+
+/** An opaque panel tile: a solid colour with inset panel lines and corner rivets (for a solid box). */
+export const panelTileTex = (base: string) =>
+  paint('panel-tile-' + base, 256, 256, (g, w, h) => {
+    g.fillStyle = base;
+    g.fillRect(0, 0, w, h);
+    g.strokeStyle = '#b9c0ca';
+    g.lineWidth = 5;
+    g.strokeRect(6, 6, w - 12, h - 12);
+    g.strokeRect(40, 40, w - 80, h - 80);
+    g.fillStyle = '#9aa3b0';
+    for (const [x, y] of [[20, 20], [w - 20, 20], [20, h - 20], [w - 20, h - 20]]) {
+      g.beginPath();
+      g.arc(x, y, 4, 0, Math.PI * 2);
+      g.fill();
+    }
+  }, [2, 2]);
 
 // ---------- meshes ----------
 
