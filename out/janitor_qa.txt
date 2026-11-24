@@ -4,5 +4,5 @@ frames analysed: 2010
 black frames: none outside the hook flash -> OK
 white frames: none outside the hook flash -> OK
 frozen runs: none of 12 frames or more -> OK
-loudness: integrated -15.3 LUFS, LRA 1.6 LU, true peak -4.4 dBFS (target -14 LUFS, peak <= -1 dBFS)
+loudness: integrated -15.7 LUFS, LRA 1.7 LU, true peak -4.4 dBFS (target -14 LUFS, peak <= -1 dBFS)
 RESULT: PASS
