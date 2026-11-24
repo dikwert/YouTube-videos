@@ -630,6 +630,17 @@ export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?
     )}
     {window && (dawn ? <SkyDome dawn /> : <SpaceDome />)}
     {window && !dawn && <Pl p={[0, 0.5, 40]} s={[50, 25]} tex={nebulaSpriteTex()} cut />}
+    {window && dawn && (
+      <>
+        {/* the pad outside: concrete with joints, and clouds low over the horizon, so the view has texture */}
+        <mesh position={[0, -0.02, 40]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[200, 200]} />
+          <meshLambertMaterial map={concreteTex()} />
+        </mesh>
+        <Pl p={[-1.2, 1.6, 30]} s={[16, 8]} tex={skyCloudTex()} cut />
+        <Pl p={[2.5, 1.9, 36]} s={[18, 9]} tex={skyCloudTex()} cut />
+      </>
+    )}
   </group>
 );
 
