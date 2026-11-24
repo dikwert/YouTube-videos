@@ -1,6 +1,6 @@
 import React from 'react';
 import {WORDS} from './timing.generated';
-import {Airliner, Box, CabinSet, Clouds, CockpitDoor, CockpitSet, HighwaySet, Person, ROW_Z, SkyDome} from './world';
+import {Airliner, CabinSet, Clouds, CockpitDoor, CockpitSet, HighwaySet, Person, ROW_Z, SkyDome} from './world';
 
 export type Vec3 = [number, number, number];
 export type Cam = {p: Vec3; l: Vec3; f: number; r?: number};
@@ -71,9 +71,7 @@ export const SHOTS: ShotDef[] = [
         <Person st={{kind: 'kevin', pose: 'sit', expr: 'neutral', mouth, variant: 0}} feet={[-1.5, 0, R(0) + 0.2]} height={1.35} />
         {/* a passenger on each side of Kevin, as in the finale */}
         <Person st={{kind: 'pax', pose: 'sit', expr: 'bored', variant: 1}} feet={[-2.4, 0, R(0) + 0.2]} height={1.3} />
-        <Person st={{kind: 'pax', pose: 'sit', expr: 'grin', variant: 3}} feet={[-0.7, 0, R(0) + 0.2]} height={1.3} />
-        <Box p={[-0.9, 0.7, R(0) + 0.2]} s={[0.2, 0.3, 0.12]} c="#f2c230" />
-      </>
+        <Person st={{kind: 'pax', pose: 'sit', expr: 'grin', variant: 3}} feet={[-0.7, 0, R(0) + 0.2]} height={1.3} />      </>
     ),
   },
   // 5. the cockpit meals: "Fun fact: many airlines make pilots eat different meals."
