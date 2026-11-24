@@ -61,3 +61,12 @@ Three days later, they brought me home. Luckily... the landing was perfect. Unlu
 Now capsules lock at night. And janitors nap in the break room.
 
 Then my boss called. "Gary... you missed a spot."
+
+## Production notes
+
+- **Voice.** The take is Brian (premade, eleven_v3, stability 0.35, similarity 0.80, style 0.35); Mike was not usable on this key and plan (see Voice above). `scripts/janitor-voice.mjs` writes `voice/raw_48k.wav` and `voice/words_raw.json`. `scripts/janitor-voice-fit.py` fits the take to about 66 s (pauses after "Long silence.", tempo 1.198 with pitch kept) and writes `public/audio/janitor/voice.wav` and `voice/words.json`.
+- **Picture.** 28 shots in `src/janitor/shots.tsx`, timed to `voice/words.json`. Subtitle cards come from `scripts/janitor-timing.py`: 2 to 4 words, with the red keys ORBIT, RECYCLED PEE and MY CAR on their first card only. Stills every 2 s went through three Opus max review rounds; the last round found no blocker.
+- **Sound.** An original score (G, E minor, C, D at 124 BPM) and synthesized effects, placed at word times by `scripts/janitor-mix.py`. Standard mix: music +3 dB, SFX -6 dB against the voice's speech level, and the voice unchanged in level. The score ducks under speech over 0.3 s and drops out for the countdown, "Long silence." and the impact.
+- **Loudness.** The master is `loudnorm` with a -14 LUFS target and a -1.5 dBTP ceiling, as in PilotShort. The result is -16.0 LUFS. The voice's peaks sit about 20 dB above its average, so the ceiling binds before -14. Reaching -14 would need limiting that flattens the voice, which the mix standard excludes. The dynamic master pass does change the voice's envelope slightly.
+- **Cover.** `out/janitor_cover.png`, 1080x1920, frame 45: the title in the centre, Gary floating with the mop, Earth through the window.
+- **Limits.** The narrator is Brian, not Mike. The facts need a check against the NASA pages above before publishing. Shading is flat, with no depth of field. The score and effects are synthesized, not licensed. `templates/bridge/` is not in this repository, so the project follows the PilotShort pipeline.
