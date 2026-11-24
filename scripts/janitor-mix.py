@@ -165,24 +165,24 @@ def ringtone(dur):
 # (time in seconds, effect, gain)
 EVENTS = [
     (1.00, lambda: splat(), 0.70),                  # the mop drifts across his face
-    (2.00, lambda: whoosh(0.8), 0.55),              # the white flash after the hook
+    (2.00, lambda: whoosh(0.3), 0.55),              # the white flash after the hook
     (8.70, lambda: snore(2.0), 0.60),               # the nap
-    (13.90, lambda: beep(880), 0.55),               # "Three..."
-    (14.90, lambda: beep(880), 0.55),               # "Two..."
-    (15.90, lambda: beep(1320, 0.25), 0.60),        # "One..."
-    (16.20, lambda: roar(2.7), 0.70),               # ignition
-    (21.30, lambda: boing(180, 520, 0.4), 0.35),    # the mop and the sandwich float
+    (12.89, lambda: beep(880), 0.55),               # "Three..."
+    (14.10, lambda: beep(880), 0.55),               # "Two..."
+    (14.93, lambda: beep(1320, 0.25), 0.60),        # "One..."
+    (16.20, lambda: roar(2.7), 0.40),               # ignition
+    (22.00, lambda: boing(180, 520, 0.4), 0.35),    # the mop and the sandwich float
     (24.80, lambda: radio(), 0.50),                 # Mission Control on the radio
     (26.65, lambda: radio(), 0.45),                 # "Who is this?"
-    (28.00, lambda: spit(), 0.60),                  # the coffee
+    (28.49, lambda: spit(), 0.60),                  # the coffee
     (33.40, lambda: boing(200, 700, 0.45), 0.40),   # the spine stretches
-    (43.70, lambda: meow(), 0.60),                  # "An experiment cat."
-    (47.20, lambda: slurp(), 0.50),                 # the sip: "drink recycled pee"
+    (43.70, lambda: meow(), 0.30),                  # "An experiment cat."
+    (48.25, lambda: slurp(), 0.50),                 # the sip: "drink recycled pee"
     (51.80, lambda: whoosh(2.2), 0.50),             # re-entry
     (57.00, lambda: impact(), 0.90),                # the car
-    (58.60, lambda: car_alarm(2.2), 0.30),          # the car alarm
+    (59.03, lambda: car_alarm(2.2), 0.12),          # the car alarm
     (61.20, lambda: snore(1.8), 0.50),              # the break room: "janitors nap"
-    (62.90, lambda: ringtone(1.6), 0.40),           # the boss calls
+    (62.90, lambda: ringtone(1.6), 0.20),           # the boss calls
     (66.10, lambda: splat(), 0.50),                 # "you missed a spot"
 ]
 
@@ -251,9 +251,9 @@ MUSIC_LEVELS = [
     (8.6, 10.7, 0.25),    # the nap
     (12.9, 16.2, 0.0),    # the countdown: only the beeps
     (30.1, 31.5, 0.0),    # "Long silence."
-    (57.0, 60.6, 0.0),    # the impact and the car alarm
-    (59.25, 62.8, 0.3),   # the break-room snore
-    (62.8, 64.2, 0.0),    # the phone rings
+    (57.0, 60.78, 0.0),    # the impact and the car alarm
+    (59.25, 62.68, 0.3),   # the break-room snore
+    (62.68, 64.2, 0.0),    # the phone rings
 ]
 
 
@@ -267,7 +267,7 @@ def music_gate():
 
 
 def duck_curve(voice):
-    win = int(0.06 * SR)
+    win = int(0.3 * SR)
     env = np.sqrt(np.convolve(voice ** 2, np.ones(win) / win, mode="same"))
     env = env / (np.percentile(env, 99.5) + 1e-9)
     return 1.0 - 0.5 * np.clip(env * 2.0, 0, 1)
@@ -302,11 +302,12 @@ def main():
     music = score()[:N] * music_gate() * duck_curve(voice)
     music = music / np.sqrt(np.mean(music ** 2)) * v_rms * 10 ** (-21 / 20) * 10 ** (3 / 20)
 
-    # sound effects: the loudest one sits 6 dB under the voice's peak (standard SFX -6 dB)
+    # sound effects: while they play, their RMS sits 6 dB under the voice's speech RMS (standard SFX -6 dB)
     sfx = np.zeros(N)
     for t, make, gain in EVENTS:
         add(sfx, t, make() * gain)
-    sfx = sfx / (np.max(np.abs(sfx)) + 1e-12) * v_peak * 10 ** (-6 / 20)
+    active = np.abs(sfx) > 1e-6
+    sfx = sfx / (np.sqrt(np.mean(sfx[active] ** 2)) + 1e-12) * v_rms * 10 ** (-6 / 20)
 
     mix = voice + music + sfx
     mix = mix / np.max(np.abs(mix)) * 10 ** (-1.5 / 20)  # the sample peak at -1.5 dBFS keeps the true peak under the ceiling

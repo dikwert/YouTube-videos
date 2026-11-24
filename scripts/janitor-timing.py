@@ -9,6 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 words = json.loads((ROOT / "janitor-short/voice/words.json").read_text())
 KEYS = [["ORBIT"], ["RECYCLED", "PEE"], ["MY", "CAR"]]
+# Forced card breaks at these word start times (seconds): the cards "PARKING LOT." and "ON MY CAR."
+FORCE_BREAK = (57.380, 58.095)
 
 
 def clean(w):
@@ -31,7 +33,8 @@ def key_start(i):
 groups, cur = [], []
 for i, w in enumerate(words):
     k = key_start(i)
-    if k and len(cur) >= 2:
+    forced = any(abs(w["s"] - t) < 0.01 for t in FORCE_BREAK)
+    if (k or forced) and len(cur) >= 2:
         groups.append(cur); cur = []
     cur.append(i)
     if len(cur) == 4 or (ends_sentence(clean(w)) and len(cur) >= 2):

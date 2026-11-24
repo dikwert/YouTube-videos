@@ -509,7 +509,7 @@ export const HangarSet: React.FC = () => (
 export const CapsuleInterior: React.FC<{digit?: string; window?: boolean; panel?: boolean}> = ({digit = '', window = true, panel = true}) => (
   <group>
     {/* floor, ceiling, side walls and the back wall */}
-    <Wall p={[0, 0, -1]} s={[3.6, 6]} rot={[-Math.PI / 2, 0, 0]} c="#5b6270" />
+    <Wall p={[0, 0, -1]} s={[3.6, 6]} rot={[-Math.PI / 2, 0, 0]} c="#7b8496" />
     <Wall p={[0, 2.5, -1]} s={[3.6, 6]} rot={[Math.PI / 2, 0, 0]} c="#5b6270" />
     <Wall p={[-1.8, 1.25, -1]} s={[6, 2.5]} rot={[0, Math.PI / 2, 0]} c="#6b7380" />
     <Wall p={[1.8, 1.25, -1]} s={[6, 2.5]} rot={[0, -Math.PI / 2, 0]} c="#6b7380" />
@@ -586,7 +586,7 @@ export const StationSet: React.FC<{cat?: boolean; catExpr?: 'judge' | 'smug' | '
       <Box key={x} p={[x, 1.1, -6]} s={[0.08, 0.08, 12]} c="#c9cdd6" />
     ))}
     {/* laptops and bags */}
-    <Box p={[-1.7, 1.5, -3]} s={[0.1, 0.8, 0.9]} c="#3a4656" />
+    <Box p={[-1.7, 1.5, -7]} s={[0.1, 0.8, 0.9]} c="#3a4656" />
     <Box p={[1.7, 1.5, -3]} s={[0.1, 0.8, 0.9]} c="#3a4656" />
     <Box p={[1.2, 0.2, -4.5]} s={[0.5, 0.4, 0.6]} c="#f2a33a" />
     <Box p={[-1.2, 0.2, -7]} s={[0.5, 0.4, 0.6]} c="#8ad08a" />
@@ -606,15 +606,15 @@ export const ControlRoomSet: React.FC = () => (
   <group>
     <mesh position={[0, -0.02, -8]} rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[24, 24]} />
-      <meshLambertMaterial color="#2a3240" />
+      <meshLambertMaterial color="#4a5466" />
     </mesh>
     <mesh position={[0, 4.5, -8]} rotation={[Math.PI / 2, 0, 0]}>
       <planeGeometry args={[24, 24]} />
-      <meshLambertMaterial color="#3a4352" />
+      <meshLambertMaterial color="#56607a" />
     </mesh>
     <mesh position={[0, 2.5, -20]}>
       <planeGeometry args={[24, 6]} />
-      <meshLambertMaterial color="#3a4352" />
+      <meshLambertMaterial color="#56607a" />
     </mesh>
     {/* the big wall screen */}
     <Pic p={[0, 2.8, -19.8]} s={[8, 4]} tex={monitorTex()} />
@@ -631,7 +631,7 @@ export const ControlRoomSet: React.FC = () => (
     ))}
     {/* the operator chairs */}
     {[-4, -1.3, 1.3, 4].map((x) => (
-      <Box key={x} p={[x, 0.45, -10.2]} s={[0.8, 0.9, 0.8]} c="#2b313c" />
+      <Box key={x} p={[x, 0.45, -10.2]} s={[0.8, 0.9, 0.8]} c="#3f4858" />
     ))}
   </group>
 );

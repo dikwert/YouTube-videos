@@ -318,8 +318,10 @@ export function drawChar(st: CharState): HTMLCanvasElement {
   const armCol = st.kind === 'gary' ? '#3b6fb6' : p.outfit;
   stick(ctx, [215, 430], pose.lh, armCol, 20);
   stick(ctx, [385, 430], pose.rh, armCol, 20);
-  dot(ctx, pose.lh[0], pose.lh[1], 19, skin);
-  dot(ctx, pose.rh[0], pose.rh[1], 19, skin);
+  // Gary's hands are yellow rubber gloves
+  const hand = st.kind === 'gary' ? '#f5c518' : skin;
+  dot(ctx, pose.lh[0], pose.lh[1], 19, hand);
+  dot(ctx, pose.rh[0], pose.rh[1], 19, hand);
 
   // neck and head
   shape(ctx, shade, 7, () => ctx.rect(hx - 40, 360, 80, 50));

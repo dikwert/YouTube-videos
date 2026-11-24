@@ -22,7 +22,7 @@ export function mouthAt(g: number): number {
 export const ease = (s: number) => s * s * s * (s * (s * 6 - 15) + 10);
 
 /** The countdown digit on the capsule screen at a given narration time. */
-const digitAt = (g: number) => (g < 13.9 ? '3' : g < 14.9 ? '2' : '1');
+const digitAt = (g: number) => (g < 14.1 ? '3' : g < 14.93 ? '2' : '1');
 
 /**
  * 28 shots. Each cut lands on the first frame of the phrase it opens (words.json).
@@ -37,7 +37,7 @@ export const SHOTS: ShotDef[] = [
       const k = Math.min(1, t / dur);
       return (
         <>
-          <Earth p={[0, -7, 24]} r={14} />
+          <Earth p={[0, -13.6, 21]} r={14} />
           <CapsuleInterior panel={false} />
           <Person st={{kind: 'gary', pose: 'float', expr: 'proud', variant: 0}} feet={[0, 0.9, 1.0]} height={1.5} ry={Math.PI} roll={0.2} />
           <Cyl p={[-1.4 + 2.8 * k, 1.6, 0.9]} r={0.05} h={1.2} c="#8a6a4a" rot={[0, 0, Math.PI / 2 + 0.5]} seg={6} />
@@ -52,7 +52,7 @@ export const SHOTS: ShotDef[] = [
     view: ({mouth}) => (
       <>
         <HangarSet />
-        <Person st={{kind: 'gary', pose: 'mop', expr: 'neutral', mouth, variant: 0}} feet={[1.4, 0, -2.4]} height={1.8} />
+        <Person st={{kind: 'gary', pose: 'mop', expr: 'neutral', mouth, variant: 0}} feet={[0.6, 0, -2.4]} height={1.8} />
       </>
     ),
   },
@@ -62,7 +62,7 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [0.4, 1.3, 0.9], l: [0, 1.2, -2.4], f: 46}, cam1: {p: [0.2, 1.3, 0.8], l: [0, 1.2, -2.4], f: 46}, creep: 0.06,
     view: ({mouth}) => (
       <>
-        <CapsuleInterior />
+        <CapsuleInterior panel={false} />
         <Person st={{kind: 'gary', pose: 'sit', expr: 'shock', mouth, variant: 0}} feet={[0, 0, -2.4]} height={1.5} />
       </>
     ),
@@ -73,7 +73,7 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [-0.6, 1.2, 0.6], l: [0, 1.1, -2.4], f: 44}, cam1: {p: [-0.5, 1.2, 0.5], l: [0, 1.1, -2.4], f: 44}, creep: 0.06,
     view: ({mouth}) => (
       <>
-        <CapsuleInterior />
+        <CapsuleInterior panel={false} />
         <Person st={{kind: 'gary', pose: 'sit', expr: 'grin', mouth, variant: 0}} feet={[0, 0, -2.4]} height={1.5} />
       </>
     ),
@@ -100,7 +100,7 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [0.3, 1.3, 0.6], l: [0, 1.1, -2.4], f: 44}, cam1: {p: [0.2, 1.3, 0.5], l: [0, 1.1, -2.4], f: 44}, creep: 0.06,
     view: ({mouth}) => (
       <>
-        <CapsuleInterior digit="3" />
+        <CapsuleInterior digit="3" panel={false} />
         <Person st={{kind: 'gary', pose: 'sit', expr: 'shock', mouth, variant: 0}} feet={[0, 0, -2.4]} height={1.5} />
       </>
     ),
@@ -125,20 +125,20 @@ export const SHOTS: ShotDef[] = [
       return (
         <>
           <SkyDome dawn />
-          <LaunchSet flame={0.5 + k} smoke={k} />
+          <LaunchSet flame={0.5 + k} smoke={0.6 * k} />
         </>
       );
     },
   },
   // 9. the climb to orbit: the Earth through the window
   {
-    id: 'orbit-in', a: 18.9, b: 21.3,
+    id: 'orbit-in', a: 18.9, b: 22.0,
     cam0: {p: [0, 1.3, -2.0], l: [0, 1.4, 0.6], f: 50}, cam1: {p: [0, 1.3, -1.8], l: [0, 1.4, 0.6], f: 50}, creep: 0.05,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
       return (
         <>
-          <Earth p={[0, -7 - k * 2, 24]} r={14} />
+          <Earth p={[0, -13.6 - k * 2, 21]} r={14} />
           <CapsuleInterior panel={false} />
           <Person st={{kind: 'gary', pose: 'float', expr: 'worry', variant: 0}} feet={[0, 0.9 + k * 0.1, 1.0]} height={1.5} ry={Math.PI} roll={0.15} />
         </>
@@ -147,13 +147,13 @@ export const SHOTS: ShotDef[] = [
   },
   // 10. weightless: the mop and the sandwich float past
   {
-    id: 'floating', a: 21.3, b: 24.8,
+    id: 'floating', a: 22.0, b: 24.8,
     cam0: {p: [0, 1.3, -2.0], l: [0, 1.4, 0.6], f: 50}, cam1: {p: [0.2, 1.4, -1.9], l: [0, 1.4, 0.6], f: 50}, creep: 0.04,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
       return (
         <>
-          <Earth p={[0, -7, 24]} r={14} />
+          <Earth p={[0, -13.6, 21]} r={14} />
           <CapsuleInterior panel={false} />
           <Person st={{kind: 'gary', pose: 'float', expr: 'proud', variant: 0}} feet={[0, 0.9, 1.0]} height={1.5} ry={Math.PI} roll={0.2} />
           <Cyl p={[-1.4 + 2.8 * k, 1.9, 0.9]} r={0.05} h={1.2} c="#8a6a4a" rot={[0, 0, Math.PI / 2 + 0.4]} seg={6} />
@@ -165,26 +165,26 @@ export const SHOTS: ShotDef[] = [
   // 11. Mission Control: the radio call, Linda looks up
   {
     id: 'control', a: 24.8, b: 27.8,
-    cam0: {p: [0, 1.6, 2.2], l: [0, 1.7, -12], f: 52}, cam1: {p: [0.2, 1.6, 2.0], l: [0, 1.7, -12], f: 52}, creep: 0.06,
-    view: ({mouth}) => (
+    cam0: {p: [0, 1.6, 0.2], l: [0, 1.7, -12], f: 52}, cam1: {p: [0.2, 1.6, 0.0], l: [0, 1.7, -12], f: 52}, creep: 0.06,
+    view: ({mouth, g}) => (
       <>
         <ControlRoomSet />
-        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth, variant: 0}} feet={[0, 0, -6]} height={1.8} />
-        <Person st={{kind: 'ops', pose: 'sit', expr: 'bored', variant: 0}} feet={[-4, 0, -10]} height={1.6} />
-        <Person st={{kind: 'ops', pose: 'sit', expr: 'neutral', variant: 1}} feet={[4, 0, -10]} height={1.6} />
+        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth: g > 26.6 && g < 27.1 ? mouth : 0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
+        <Person st={{kind: 'ops', pose: 'sit', expr: 'bored', variant: 0}} feet={[-1.3, 0, -10]} height={1.6} />
+        <Person st={{kind: 'ops', pose: 'sit', expr: 'neutral', variant: 1}} feet={[1.3, 0, -10]} height={1.6} />
       </>
     ),
   },
   // 12. "Gary. From cleaning." An operator spits his coffee; a flip kick
   {
-    id: 'spit', a: 27.8, b: 29.7, kicks: [28.0],
+    id: 'spit', a: 27.8, b: 29.7, kicks: [28.49],
     cam0: {p: [0, 1.4, -3], l: [0, 1.5, -10], f: 40}, cam1: {p: [0.2, 1.4, -3.2], l: [0, 1.5, -10], f: 40}, creep: 0.06,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
       return (
         <>
           <ControlRoomSet />
-          <Person st={{kind: 'ops', pose: k > 0.2 ? 'spit' : 'sit', expr: k > 0.2 ? 'shock' : 'neutral', variant: 0}} feet={[-0.8, 0, -10]} height={1.6} />
+          <Person st={{kind: 'ops', pose: k > 0.36 ? 'spit' : 'sit', expr: k > 0.36 ? 'shock' : 'neutral', variant: 0}} feet={[-0.8, 0, -10]} height={1.6} />
           <Person st={{kind: 'linda', pose: 'stand', expr: 'worry', variant: 0}} feet={[0.7, 0, -10]} height={1.8} />
         </>
       );
@@ -198,8 +198,8 @@ export const SHOTS: ShotDef[] = [
       <>
         <ControlRoomSet />
         <Person st={{kind: 'linda', pose: 'stand', expr: 'worry', blink: t > 0.9 && t < 1.0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
-        <Person st={{kind: 'ops', pose: 'sit', expr: 'dazed', variant: 0}} feet={[-4, 0, -10]} height={1.6} />
-        <Person st={{kind: 'ops', pose: 'sit', expr: 'bored', variant: 1}} feet={[4, 0, -10]} height={1.6} />
+        <Person st={{kind: 'ops', pose: 'sit', expr: 'dazed', variant: 0}} feet={[-1.3, 0, -10]} height={1.6} />
+        <Person st={{kind: 'ops', pose: 'sit', expr: 'bored', variant: 1}} feet={[1.3, 0, -10]} height={1.6} />
       </>
     ),
   },
@@ -217,17 +217,17 @@ export const SHOTS: ShotDef[] = [
   // 15. "Astronauts grow up to two inches." The marker in close-up
   {
     id: 'marker', a: 34.6, b: 38.3,
-    cam0: {p: [-0.2, 1.2, -1.2], l: [-1.9, 1.1, -4.2], f: 40}, cam1: {p: [-0.2, 1.25, -1.1], l: [-1.9, 1.1, -4.2], f: 40}, creep: 0.05,
+    cam0: {p: [-0.2, 1.2, -1.2], l: [-1.9, 1.1, -4.2], f: 44}, cam1: {p: [-0.2, 1.25, -1.1], l: [-1.9, 1.1, -4.2], f: 44}, creep: 0.05,
     view: ({mouth}) => (
       <>
         <StationSet />
-        <Person st={{kind: 'gary', pose: 'thumb', expr: 'proud', mouth, variant: 0}} feet={[-0.8, 0, -4.2]} height={1.8} />
+        <Person st={{kind: 'gary', pose: 'thumb', expr: 'proud', mouth, variant: 0}} feet={[-1.5, 0, -4.2]} height={1.8} />
       </>
     ),
   },
   // 16. "For the first time in my life... I was six feet tall." Gary stands tall, grinning
   {
-    id: 'six-feet', a: 38.3, b: 40.1,
+    id: 'six-feet', a: 38.3, b: 39.45,
     cam0: {p: [0.4, 1.3, -1.5], l: [-0.8, 1.0, -4.2], f: 46}, cam1: {p: [0.4, 1.3, -1.6], l: [-0.8, 1.0, -4.2], f: 46}, creep: 0.05,
     view: ({mouth}) => (
       <>
@@ -238,8 +238,8 @@ export const SHOTS: ShotDef[] = [
   },
   // 17. "I docked at the station." The capsule comes in to the dock
   {
-    id: 'dock', a: 40.1, b: 41.0, kicks: [40.9],
-    cam0: {p: [4, 2, 6], l: [0, 1.5, -6], f: 46}, cam1: {p: [3, 2, 5], l: [0, 1.5, -6], f: 46}, creep: 0.1,
+    id: 'dock', a: 39.45, b: 41.0, kicks: [40.9],
+    cam0: {p: [4, 2, 6], l: [2.5, 1.5, -5], f: 46}, cam1: {p: [3, 2, 5], l: [2.5, 1.5, -5], f: 46}, creep: 0.1,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
       return (
@@ -247,7 +247,7 @@ export const SHOTS: ShotDef[] = [
           <SpaceDome />
           <Earth p={[0, -20, -60]} r={22} />
           <Box p={[0, 1.5, -6]} s={[4.4, 4.4, 12]} c="#e8e8e4" />
-          <Capsule p={[5 - 5 * k, 1.5, -2 - k * 2]} s={0.9} ry={Math.PI / 2} />
+          <Capsule p={[4.2 - 1.1 * k, 1.5, -4]} s={0.9} ry={Math.PI / 2} />
         </>
       );
     },
@@ -256,15 +256,15 @@ export const SHOTS: ShotDef[] = [
   {
     id: 'cat-in', a: 41.0, b: 42.8,
     cam0: {p: [0, 1.4, -0.5], l: [0, 1.2, -6], f: 50}, cam1: {p: [0, 1.4, -0.4], l: [0, 1.2, -6], f: 50}, creep: 0.05,
-    view: () => (
+    view: ({t}) => (
       <>
-        <StationSet cat catExpr="judge" />
+        <StationSet cat={t > 0.8} catExpr="judge" />
       </>
     ),
   },
   // 19. "An experiment cat." Close-up: the judgement
   {
-    id: 'cat-close', a: 42.8, b: 45.4,
+    id: 'cat-close', a: 42.8, b: 46.15,
     cam0: {p: [0.2, 1.3, -1.5], l: [0.4, 1.2, -4.6], f: 40}, cam1: {p: [0.2, 1.3, -1.9], l: [0.4, 1.2, -4.6], f: 36}, creep: 0.05,
     view: () => (
       <>
@@ -274,7 +274,7 @@ export const SHOTS: ShotDef[] = [
   },
   // 20. "Fun fact two: on the station, you drink recycled pee." Gary sips
   {
-    id: 'drink', a: 45.4, b: 48.2,
+    id: 'drink', a: 46.15, b: 49.58,
     cam0: {p: [0, 1.4, -0.5], l: [0, 1.3, -6], f: 46}, cam1: {p: [0, 1.4, -0.6], l: [0, 1.3, -6], f: 46}, creep: 0.05,
     view: ({mouth}) => (
       <>
@@ -285,7 +285,7 @@ export const SHOTS: ShotDef[] = [
   },
   // 21. "The cat didn't." The cat turns away
   {
-    id: 'cat-turn', a: 48.2, b: 50.8,
+    id: 'cat-turn', a: 49.58, b: 50.7,
     cam0: {p: [0, 1.4, -0.5], l: [0.4, 1.2, -4.6], f: 44}, cam1: {p: [0, 1.4, -0.6], l: [0.4, 1.2, -4.6], f: 44}, creep: 0.05,
     view: () => (
       <>
@@ -295,7 +295,7 @@ export const SHOTS: ShotDef[] = [
   },
   // 22. "The cat was smarter." The cat's smug close-up
   {
-    id: 'cat-smug', a: 50.8, b: 51.8,
+    id: 'cat-smug', a: 50.7, b: 51.8,
     cam0: {p: [0.2, 1.3, -1.6], l: [0.4, 1.2, -4.6], f: 40}, cam1: {p: [0.2, 1.3, -1.8], l: [0.4, 1.2, -4.6], f: 38}, creep: 0.05,
     view: () => (
       <>
@@ -328,7 +328,7 @@ export const SHOTS: ShotDef[] = [
         <>
           <SkyDome dawn />
           <ParkingSet />
-          <Capsule p={[0, 7 - 5.5 * ease(k), -14]} s={0.9} />
+          <Capsule p={[0, 7 - 5.5 * ease(k), -14]} s={1.3} />
         </>
       );
     },
@@ -344,8 +344,8 @@ export const SHOTS: ShotDef[] = [
         <>
           <SkyDome dawn />
           <ParkingSet squash={squash} />
-          {k < 0.3 && <Capsule p={[0, 1.4, -14]} s={0.9} />}
-          <Smoke p={[0, 0.2, -14]} k={squash * 0.3} />
+          <Capsule p={[0, 1.4, -14]} s={0.9} />
+          <Smoke p={[0, 0.2, -17]} k={squash * 0.3} />
         </>
       );
     },
@@ -365,21 +365,22 @@ export const SHOTS: ShotDef[] = [
   {
     id: 'boss', a: 62.8, b: 64.2,
     cam0: {p: [0, 1.4, 2], l: [0, 1.5, -4], f: 46}, cam1: {p: [0, 1.4, 1.9], l: [0, 1.5, -4], f: 46}, creep: 0.05,
-    view: ({mouth}) => (
+    view: () => (
       <>
         <OfficeSet />
-        <Person st={{kind: 'pike', pose: 'phone', expr: 'neutral', mouth, variant: 0}} feet={[0, 0.8, -4]} height={1.7} />
+        <Person st={{kind: 'pike', pose: 'phone', expr: 'neutral', variant: 0}} feet={[0, 0, -5]} height={1.7} />
       </>
     ),
   },
   // 28. "Gary... you missed a spot." Gary with the phone, the crushed car, the final line
   {
     id: 'finale', a: 64.2, b: 67.0,
-    cam0: {p: [0.5, 1.4, -2.2], l: [0, 1.3, -14], f: 46}, cam1: {p: [0.5, 1.4, -2.0], l: [0, 1.3, -14], f: 46}, creep: 0.05,
-    view: ({mouth}) => (
+    cam0: {p: [0.5, 1.4, -2.2], l: [0, 0.3, -14], f: 46}, cam1: {p: [0.5, 1.4, -2.0], l: [0, 0.3, -14], f: 46}, creep: 0.05,
+    view: () => (
       <>
+        <SkyDome dawn />
         <ParkingSet squash={0.75} />
-        <Person st={{kind: 'gary', pose: 'phone', expr: 'worry', mouth, variant: 0}} feet={[0.6, 0, -4]} height={1.8} />
+        <Person st={{kind: 'gary', pose: 'phone', expr: 'worry', variant: 0}} feet={[0.6, 0, -4]} height={1.8} />
       </>
     ),
   },
