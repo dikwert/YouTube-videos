@@ -45,6 +45,7 @@ def p3_04_corridor():
 def p3_05_tally():
     img = vgrad(W, H, (20, 26, 32), (8, 10, 14))
     img = paste_alpha(img, pallet_wrapped(W, H, seed=95), (0, 0))
+    img = Image.blend(img, Image.new('RGBA', (W, H), (0, 0, 0, 255)), 0.45)
     L = layer()
     d = ImageDraw.Draw(L)
     for g in range(4):
@@ -184,6 +185,7 @@ def p3_20_tires():
 
 def p3_21_branches():
     img = reefer_side(vgrad(W, H, (20, 28, 36), (8, 10, 14)), 120, 500, 840, 900, logo=False)
+    img = Image.blend(img, Image.new('RGBA', (W, H), (0, 0, 0, 255)), 0.35)
     L = layer()
     d = ImageDraw.Draw(L)
     rng = np.random.default_rng(114)

@@ -231,7 +231,7 @@ def p5_26_cuffs():
 
 def p5_27_ambulance():
     img = ambulance_interior(seed=179)
-    img = paste_alpha(img, pass_card('Сергей Котов', 'Выдан: 24.11.2024', x=180, y=1120, w=720, h=440), (0, 0))
+    img = paste_alpha(img, pass_card('Сергей Котов', 'Выдан: 24.11.2024', x=180, y=640, w=720, h=440), (0, 0))
     img = frost_on(img, 179, 300, 90)
     finish(img, 'p5_27_ambulance', 0.7)
 
@@ -250,7 +250,7 @@ def p5_28_empty_field():
 
 def p5_29_pass_back():
     img = vgrad(W, H, (20, 26, 32), (8, 10, 14))
-    img = put(img, pass_back(['Пропуск № 4471', 'Действителен: до 31.12.2024']), 180, 760)
+    img = put(img, pass_back(['Пропуск № 4471', 'До 31.12.2024']), 180, 760)
     img = frost_on(img, 181, 500, 110)
     finish(img, 'p5_29_pass_back', 0.7)
 
