@@ -66,6 +66,9 @@ for c in cards:
 for c, nxt in zip(cards, cards[1:]):
     if c["e"] - c["s"] < 0.6:
         c["e"] = max(c["e"], min(c["s"] + 0.6, nxt["s"] - 0.03))
+# the last card stays on screen for 0.6 s too (the picture runs to 67 s)
+if cards and cards[-1]["e"] - cards[-1]["s"] < 0.6:
+    cards[-1]["e"] = max(cards[-1]["e"], min(cards[-1]["s"] + 0.6, 66.5))
 for a, b in zip(cards, cards[1:]):
     if a["e"] > b["s"]:
         a["e"] = b["s"]

@@ -256,5 +256,5 @@ export const CARDS: Card[] = [
   {s: 61.907, e: 62.725, text: "IN THE BREAK ROOM."},
   {s: 62.777, e: 63.758, text: "THEN MY BOSS CALLED."},
   {s: 64.21, e: 65.068, text: "GARY... YOU MISSED"},
-  {s: 65.073, e: 65.507, text: "A SPOT."},
+  {s: 65.073, e: 65.673, text: "A SPOT."},
 ];
