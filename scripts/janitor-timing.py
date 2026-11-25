@@ -62,6 +62,10 @@ seen = set()
 for c in cards:
     c["keys"] = [k for k in c["keys"] if k not in seen]
     seen.update(c["keys"])
+# readability: a card shorter than 0.6 s stays on screen into the silence before the next card (never past it)
+for c, nxt in zip(cards, cards[1:]):
+    if c["e"] - c["s"] < 0.6:
+        c["e"] = max(c["e"], min(c["s"] + 0.6, nxt["s"] - 0.03))
 for a, b in zip(cards, cards[1:]):
     if a["e"] > b["s"]:
         a["e"] = b["s"]

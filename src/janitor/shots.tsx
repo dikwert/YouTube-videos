@@ -263,7 +263,7 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [0, 1.4, -0.5], l: [0, 1.2, -6], f: 50}, cam1: {p: [0, 1.4, -0.4], l: [0, 1.2, -6], f: 50}, creep: 0.05,
     view: ({t}) => (
       <>
-        <StationSet cat={t > 0.8} catExpr="judge" />
+        <StationSet cat={t > 1.125} catExpr="judge" />
       </>
     ),
   },
