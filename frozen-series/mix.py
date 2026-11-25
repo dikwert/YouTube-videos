@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-"""Звук части: голос + гул компрессора, ветер и глухие удары по сценам; нормализация −16 LUFS, пик −1.5 dBTP.
+"""Звук части: чистый голос с лёгкой обработкой и тихая комната, без гула.
 
-  python3 frozen-series/mix.py 1
-Пишет public/frozen/part{n}_mix.wav (генерируется, в git не попадает).
+  python3 frozen-series/mix.py 1 [2 ...]
+
+Раньше под голосом шли гул 50 Гц с гармониками и шипящий ветер (около −38 dBFS в каждой паузе, слышно как фон).
+Теперь: голос очищен фильтрами (срез низов, мягкая эквализация, компрессор), под ним комнатный шум около −66 dBFS
+(почти не слышен, но без цифровой тишины между фразами) и глухие удары только там, где они есть в сценах.
+Нормализация −16 LUFS, пик −1.5 dBTP. Пишет public/frozen/part{n}_mix.wav (генерируется, в git не попадает).
 """
 import json
 import subprocess
@@ -15,32 +19,52 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 SR = 48000
 
+VOICE_CHAIN = ','.join([
+    'highpass=f=90',                                                      # без рокота ниже 90 Гц
+    'equalizer=f=250:t=q:w=1.0:g=-2',                                     # меньше «коробки» в голосе
+    'equalizer=f=3500:t=q:w=1.2:g=2',                                     # разборчивость
+    'acompressor=threshold=0.1:ratio=3:attack=5:release=120:makeup=1.25',  # ровный уровень фраз
+])
 
-def build(n):
-    data = json.loads((ROOT / 'src' / 'frozen' / 'data' / f'part{n}_full.json').read_text(encoding='utf-8'))
-    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(ROOT / 'frozen-series' / 'out' / f'part{n}_voice.wav'),
-                          '-ac', '1', '-ar', str(SR), '-f', 'f32le', 'pipe:1'], capture_output=True, check=True).stdout
-    v = np.frombuffer(raw, dtype='<f4').astype(np.float64)
-    total = int(round(data['duration'] * SR))
-    v = np.concatenate([v, np.zeros(max(0, total - len(v)))])[:total]
-    t = np.arange(total) / SR
-    rng = np.random.default_rng(n)
-    hum = sum(np.sin(2 * np.pi * f * t + k) * (0.6 / (i + 1)) for i, (f, k) in enumerate([(50, 0.0), (100, 1.0), (150, 2.0), (200, 0.5)]))
-    hum *= 0.85 + 0.15 * np.sin(2 * np.pi * 0.23 * t)
-    wind = np.convolve(rng.normal(0, 1, total), np.ones(64) / 64, mode='same') * (0.5 + 0.5 * np.sin(2 * np.pi * 0.05 * t))
-    amb = 0.05 * hum + 0.03 * wind
-    for s in data['scenes']:
+
+def clean_voice(path):
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(path), '-af', VOICE_CHAIN,
+                          '-ar', str(SR), '-ac', '1', '-f', 'f32le', 'pipe:1'],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype='<f4').astype(np.float64)
+
+
+def room_tone(total, seed, level_db=-74.0):
+    """Комнатный шум: белый шум со срезом около 1 кГц, очень тихо."""
+    rng = np.random.default_rng(seed)
+    x = np.convolve(rng.normal(0, 1, total), np.ones(48) / 48, mode='same')
+    return x * (10 ** (level_db / 20) / np.sqrt(np.mean(x ** 2)))
+
+
+def thumps(total, scenes):
+    """Глухие удары в сценах с эффектом knock и shake: короткий низкий импульс."""
+    out = np.zeros(total)
+    for s in scenes:
         if s['fx'] in ('knock', 'shake'):
             step = 0.9 if s['fx'] == 'knock' else 1.4
+            amp = 0.05 if s['fx'] == 'knock' else 0.035
             for k in np.arange(s['start'], s['end'], step):
                 i0, L = int(k * SR), int(0.5 * SR)
                 if i0 + L < total:
                     tt = np.arange(L) / SR
-                    amb[i0:i0 + L] += 0.35 * np.sin(2 * np.pi * 55 * tt) * np.exp(-tt * 9) * (0.6 if s['fx'] == 'shake' else 1.0)
-    # ambience sits about 18 dB under the voice
-    gain = 10 ** (-18 / 20) * np.sqrt(np.mean(v ** 2)) / max(1e-9, np.sqrt(np.mean(amb ** 2)))
-    mix = v + amb * gain
-    mix = mix / max(1.0, np.max(np.abs(mix)))
+                    out[i0:i0 + L] += amp * np.sin(2 * np.pi * 55 * tt) * np.exp(-tt * 9)
+    return out
+
+
+def build(n):
+    data = json.loads((ROOT / 'src' / 'frozen' / 'data' / f'part{n}_full.json').read_text(encoding='utf-8'))
+    total = int(round(data['duration'] * SR))
+    v = clean_voice(ROOT / 'frozen-series' / 'out' / f'part{n}_voice.wav')
+    v = np.concatenate([v, np.zeros(max(0, total - len(v)))])[:total]
+    mix = v + room_tone(total, seed=n) + thumps(total, data['scenes'])
+    peak = np.max(np.abs(mix))
+    if peak > 0.95:
+        mix = mix * (0.95 / peak)
     tmp = ROOT / 'out' / f'part{n}_mix_raw.wav'
     tmp.parent.mkdir(exist_ok=True)
     with wave.open(str(tmp), 'wb') as wf:
