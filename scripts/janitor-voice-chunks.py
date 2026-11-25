@@ -147,12 +147,55 @@ def gen():
     return report
 
 
+def trim_pauses(audio):
+    """Shortens each silence inside the chunk (not at its start or end) that is 0.25 s or longer to 0.2 s. The
+    speech on both sides is kept whole. Returns the new audio and the removals, for mapping times."""
+    hop = int(0.01 * SR)
+    n = len(audio) // hop
+    db = 20 * np.log10(np.sqrt((audio[:n * hop].reshape(n, hop) ** 2).mean(axis=1)) + 1e-9)
+    quiet = db < db.max() - 35
+    edge = int(0.1 * SR)
+    removals = []
+    i = 0
+    while i < n:
+        if not quiet[i]:
+            i += 1
+            continue
+        j = i
+        while j < n and quiet[j]:
+            j += 1
+        s0, s1 = i * hop, min(j * hop, len(audio))
+        if i > 0 and j < n and (s1 - s0) / SR >= 0.25:
+            removals.append((s0 + edge, s1 - edge))
+        i = j
+    if not removals:
+        return audio, []
+    kept, cursor, total, removed = [], 0, 0, []
+    for rs, re_ in removals:
+        kept.append(audio[cursor:rs])
+        total += re_ - rs
+        removed.append((re_, total))
+        cursor = re_
+    kept.append(audio[cursor:])
+    return np.concatenate(kept), removed
+
+
+def map_time(t, removed):
+    shift = 0
+    for end_sample, total in removed:
+        if t >= end_sample / SR:
+            shift = total
+        else:
+            break
+    return t - shift / SR
+
+
 def build():
     w, flat, OS, ranges = plan()
     N = len(flat)
     out = np.zeros(int(round(TOTAL * SR)))
     words_out = [None] * N
-    worst = 1.0
+    report = []
     for k, (a, b) in enumerate(ranges):
         room = slot(OS, a, b) - GAP
         chosen = None
@@ -165,30 +208,35 @@ def build():
             if e0 - s0 <= room:
                 break
         words, audio = chunk_words(w, chosen[1])
+        audio, removed = trim_pauses(audio)
+        if removed:
+            for x in words:
+                x['s'] = map_time(x['s'], removed)
+                x['e'] = map_time(x['e'], removed)
+            w.refine_onsets(words, audio)
+            w.refine_ends(words, audio)
         s0 = words[0]['s']
-        start_in = max(0.0, s0 - PRE)
-        audio = audio[int(round(start_in * SR)):]
+        lead = min(PRE, OS[a])
+        audio = audio[int(round(max(0.0, s0 - lead) * SR)):]
         length = words[-1]['e'] - s0
         f = max(1.0, length / room)
-        if f > MAX_RESIDUAL:
-            print(f'chunk {k:02d}: residual {f:.2f} above {MAX_RESIDUAL}')
-        worst = max(worst, f)
         if f > 1.0 + 1e-3:
             audio = stretch(audio, f)
-        t0 = OS[a] - PRE
-        s_out = int(round(t0 * SR))
+        t0 = OS[a] - lead / f
+        s_out = max(0, int(round(t0 * SR)))
         L = min(len(audio), len(out) - s_out)
-        ramp = np.linspace(0.0, 1.0, int(0.005 * SR))
         seg = audio[:L].copy()
+        ramp = np.linspace(0.0, 1.0, int(0.005 * SR))
         seg[:len(ramp)] *= ramp
         out[s_out:s_out + L] += seg
         for j, x in enumerate(words):
-            on = OS[a] + (x['s'] - s0) / f
-            en = OS[a] + (x['e'] - s0) / f
-            words_out[a + j] = (on, en)
+            words_out[a + j] = (OS[a] + (x['s'] - s0) / f, OS[a] + (x['e'] - s0) / f)
+        report.append((k, chosen[0], round(f, 3), round(sum(e - s for s, e in [(r[0], r[1]) for r in []]), 2)))
+        print(f'chunk {k:02d} speed {chosen[0]}, pauses cut {len(removed)}, residual x{f:.3f}'
+              + ('  OVER 1.10' if f > MAX_RESIDUAL else ''), flush=True)
     if any(x is None for x in words_out):
         raise SystemExit('some words have no chunk')
-    return out, words_out, flat, worst
+    return out, words_out, flat, report
 
 
 def stretch(x, tempo):
@@ -208,4 +256,21 @@ if __name__ == '__main__':
     elif cmd == 'gen':
         gen()
     elif cmd == 'build':
-        print('build: see the output of build()')
+        import wave
+        out, words_out, flat, report = build()
+        print('built; residual above 1.10:', sum(1 for r in report if r[2] > MAX_RESIDUAL))
+        raw = ROOT / 'out' / 'voice_chunks_raw.wav'
+        raw.parent.mkdir(parents=True, exist_ok=True)
+        with wave.open(str(raw), 'wb') as wf:
+            wf.setnchannels(1)
+            wf.setsampwidth(2)
+            wf.setframerate(SR)
+            wf.writeframes((np.clip(out, -1.0, 1.0) * 32767).astype('<i2').tobytes())
+        dest = ROOT / 'public' / 'audio' / 'janitor' / 'voice.wav'
+        subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', str(raw), '-af', 'loudnorm=I=-16:TP=-1:LRA=11',
+                        '-ar', str(SR), '-ac', '1', '-c:a', 'pcm_s16le', str(dest)], check=True)
+        words_file = ROOT / 'janitor-short' / 'voice' / 'words.json'
+        data = [{'w': flat[g], 's': round(float(words_out[g][0]), 3), 'e': round(float(words_out[g][1]), 3)}
+                for g in range(len(flat))]
+        words_file.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
+        print('wrote', dest, 'and', words_file, '| words', len(data), '| last word ends', data[-1]['e'])
