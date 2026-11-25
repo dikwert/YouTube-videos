@@ -5,3 +5,11 @@ voice/takes/
 out/*.mp4
 out/*.wav
 janitor-short/voice/takes/
+
+# сгенерированные кадры и звук серии «−20. ЗАПЕРТ В ФУРЕ» (пересобираются скриптами)
+public/frozen/*.png
+public/frozen/*.wav
+frozen-series/plates/
+frozen-series/stills1/
+frozen-series/out/*.wav
+frozen-series/takes/
