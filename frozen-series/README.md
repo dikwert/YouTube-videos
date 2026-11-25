@@ -10,7 +10,7 @@
 2. Таймлайн: `python3 frozen-series/build_timeline.py 1 2 3 4 5`. Речь ускоряется на 1.12 (тон сохраняется), паузы подгоняются под 64 с, хвост каждой реплики обрезается после последней буквы.
 3. Кадры (PNG 1080×1920): `python3 frozen-series/art/plates1.py` … `plates5.py`, затем `cp frozen-series/plates/p*_*.png public/frozen/`.
 4. Сцены, субтитры и HUD: `python3 frozen-series/make_data.py 1 2 3 4 5` (правится таблица `SCENES`, `KEYS`, `HUD`).
-5. Звук: `python3 frozen-series/mix.py 1 2 3 4 5` (голос + гул, ветер и удары по сценам, нормализация −16 LUFS, пик −1.5 dBTP).
+5. Звук: `python3 frozen-series/music.py 1 2 3 4 5` (фоновая музыка, сочинена кодом по аккордам части), затем `python3 frozen-series/mix.py 1 2 3 4 5` (чистый голос, тихая комната, удары по сценам, музыка тише под речью, нормализация −16 LUFS, пик −1.5 dBTP).
 6. Обложки: `python3 frozen-series/art/cover.py` (функция `cover(part, path)`).
 7. Контрольный лист до финального рендера:
    `node scripts/render-frozen-stills.mjs FrozenPart<n> frozen-series/stills<n> 2`, затем
@@ -36,6 +36,7 @@
 - `voice.py`, `config.json` — озвучка и голоса.
 - `build_timeline.py` — таймлайн, речь, данные строк с таймкодами слов.
 - `make_data.py` — сцены, карточки субтитров (красные ключевые слова), HUD.
+- `music.py` — фоновая музыка части (пэд, бас, колокольные ноты; тональность и аккорды в `PROGRESSIONS`).
 - `mix.py` — звук части.
 - `contact_sheet.py` — контрольный лист кадров.
 - `art/` — рисование кадров (`paint.py`, `objects.py`, `objects2.py`, `plates1.py`…`plates5.py`, `cover.py`).

@@ -6,7 +6,7 @@
 Раньше под голосом шли гул 50 Гц с гармониками и шипящий ветер (около −38 dBFS в каждой паузе, слышно как фон).
 Теперь: голос очищен фильтрами (срез низов, мягкая эквализация, компрессор), под ним комнатный шум около −66 dBFS
 (почти не слышен, но без цифровой тишины между фразами) и глухие удары только там, где они есть в сценах.
-Нормализация −16 LUFS, пик −1.5 dBTP. Пишет public/frozen/part{n}_mix.wav (генерируется, в git не попадает).
+Фоновая музыка (music.py) тише под речью. Нормализация −16 LUFS, пик −1.5 dBTP. Пишет public/frozen/part{n}_mix.wav (генерируется, в git не попадает).
 """
 import json
 import subprocess
@@ -56,12 +56,37 @@ def thumps(total, scenes):
     return out
 
 
+MUSIC_RMS_DB = -32.0   # громкость фоновой музыки без голоса (до нормализации)
+DUCK_DB = 6.0          # на сколько музыка тише под речью
+
+
+def moving_avg(x, w):
+    """Скользящее среднее за w отсчётов, быстро (через cumsum)."""
+    w = max(1, int(w))
+    c = np.cumsum(np.insert(x, 0, 0.0))
+    idx = np.arange(x.size)
+    lo = np.clip(idx - w // 2, 0, x.size)
+    hi = np.clip(idx + w // 2 + 1, 0, x.size)
+    return (c[hi] - c[lo]) / (hi - lo)
+
+
+def music_bed(n, total, voice):
+    """Фоновая музыка из music.py: тише под голосом, громче в паузах."""
+    with wave.open(str(ROOT / 'frozen-series' / 'out' / f'part{n}_music.wav'), 'rb') as wf:
+        m = np.frombuffer(wf.readframes(wf.getnframes()), dtype='<i2').astype(np.float64) / 32768.0
+    m = np.concatenate([m, np.zeros(max(0, total - m.size))])[:total]
+    m *= 10 ** (MUSIC_RMS_DB / 20) / np.sqrt(np.mean(m ** 2))
+    env = moving_avg(np.abs(voice), 0.08 * SR)
+    e = moving_avg(np.clip(env / 0.03, 0.0, 1.0), 0.15 * SR)
+    return m * (1.0 - (1.0 - 10 ** (-DUCK_DB / 20)) * e)
+
+
 def build(n):
     data = json.loads((ROOT / 'src' / 'frozen' / 'data' / f'part{n}_full.json').read_text(encoding='utf-8'))
     total = int(round(data['duration'] * SR))
     v = clean_voice(ROOT / 'frozen-series' / 'out' / f'part{n}_voice.wav')
     v = np.concatenate([v, np.zeros(max(0, total - len(v)))])[:total]
-    mix = v + room_tone(total, seed=n) + thumps(total, data['scenes'])
+    mix = v + room_tone(total, seed=n) + thumps(total, data['scenes']) + music_bed(n, total, v)
     peak = np.max(np.abs(mix))
     if peak > 0.95:
         mix = mix * (0.95 / peak)
