@@ -32,7 +32,7 @@ const digitAt = (g: number) => (g < 13.052 ? '3' : g < 13.642 ? '2' : '1');
 export const SHOTS: ShotDef[] = [
   // 1. hook: Gary floats in the capsule, Earth below the window, the mop drifts across his face
   {
-    id: 'hook', a: 0.02, b: 2.115,
+    id: 'hook', a: 0, b: 2.115,
     cam0: {p: [0, 1.3, -2.0], l: [0, 1.4, 0.6], f: 50}, cam1: {p: [0, 1.3, -1.9], l: [0, 1.4, 0.6], f: 50}, creep: 0.05,
     view: ({t, dur}) => {
       const k = Math.min(1, t / dur);
@@ -170,7 +170,7 @@ export const SHOTS: ShotDef[] = [
     view: ({mouth, g}) => (
       <>
         <ControlRoomSet />
-        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth: g > 25.842 && g < 26.804 ? mouth : 0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
+        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth: g > 25.943 && g < 26.804 ? mouth : 0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
         <Person st={{kind: 'ops', pose: 'sit', expr: 'bored', variant: 0}} feet={[-1.3, 0, -10]} height={1.6} />
         <Person st={{kind: 'ops', pose: 'sit', expr: 'neutral', variant: 1}} feet={[1.3, 0, -10]} height={1.6} />
       </>
@@ -263,7 +263,7 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [0, 1.4, -0.5], l: [0, 1.2, -6], f: 50}, cam1: {p: [0, 1.4, -0.4], l: [0, 1.2, -6], f: 50}, creep: 0.05,
     view: ({t}) => (
       <>
-        <StationSet cat={t > 1.164} catExpr="judge" />
+        <StationSet cat={t > 1.057} catExpr="judge" />
       </>
     ),
   },

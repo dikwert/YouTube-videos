@@ -69,6 +69,8 @@ def warp_shots(old_on, new_on):
     # 3. the shot boundaries a and b, last (their old values are no longer needed)
     text = re.sub(r"\b([ab]): (\d+(?:\.\d+)?)\b",
                   lambda mm: f"{mm.group(1)}: {fmt(W(float(mm.group(2)), old_on, new_on))}", text)
+    # the hook starts at the very beginning, so the first lookup never falls through to the last shot
+    text = re.sub(r"(id: 'hook', a: )[0-9.]+", r"\g<1>0", text)
     (ROOT / 'src' / 'janitor' / 'shots.tsx').write_text(text, encoding='utf-8')
     return text
 

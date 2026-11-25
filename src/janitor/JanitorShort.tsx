@@ -5,12 +5,12 @@ import {Subtitles} from '../ui/Subtitles';
 import {CARDS} from './timing.generated';
 import {JanitorScene} from './JanitorScene';
 
-/** White flash after the hook (2.0 to 2.25 s). */
+/** White flash at the hook's cut (2.115 to 2.365 s, the end of the hook in the moved timeline). */
 const Flash: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const g = frame / fps;
-  const a = interpolate(g, [2.0, 2.04, 2.25], [0, 0.9, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const a = interpolate(g, [2.115, 2.155, 2.365], [0, 0.9, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return <AbsoluteFill style={{background: '#ffffff', opacity: a}} />;
 };
 

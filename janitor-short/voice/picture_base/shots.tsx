@@ -170,7 +170,7 @@ export const SHOTS: ShotDef[] = [
     view: ({mouth, g}) => (
       <>
         <ControlRoomSet />
-        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth: g > 26.6 && g < 27.64 ? mouth : 0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
+        <Person st={{kind: 'linda', pose: 'stand', expr: 'shock', mouth: g > 26.66 && g < 27.64 ? mouth : 0, variant: 0}} feet={[0, 0, -6]} height={1.8} />
         <Person st={{kind: 'ops', pose: 'sit', expr: 'bored', variant: 0}} feet={[-1.3, 0, -10]} height={1.6} />
         <Person st={{kind: 'ops', pose: 'sit', expr: 'neutral', variant: 1}} feet={[1.3, 0, -10]} height={1.6} />
       </>
@@ -263,7 +263,7 @@ export const SHOTS: ShotDef[] = [
     cam0: {p: [0, 1.4, -0.5], l: [0, 1.2, -6], f: 50}, cam1: {p: [0, 1.4, -0.4], l: [0, 1.2, -6], f: 50}, creep: 0.05,
     view: ({t}) => (
       <>
-        <StationSet cat={t > 1.125} catExpr="judge" />
+        <StationSet cat={t > 0.826} catExpr="judge" />
       </>
     ),
   },
