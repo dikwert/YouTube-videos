@@ -31,7 +31,7 @@ const pseudo = (n: number) => {
 };
 
 // Слой кадра: медленный наезд, тряска, мерцание — по эффекту сцены
-const SceneLayer: React.FC<{scene: Scene; dur: number}> = ({scene, dur}) => {
+const SceneLayer: React.FC<{scene: Scene; dur: number; isFirst: boolean; isLast: boolean}> = ({scene, dur, isFirst, isLast}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = frame / fps;
@@ -41,10 +41,11 @@ const SceneLayer: React.FC<{scene: Scene; dur: number}> = ({scene, dur}) => {
   let ty = 0;
   let rot = 0;
   let flick = 0;
-  let fade = interpolate(frame, [0, 6, dur - 6, dur], [0, 1, 1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  if (scene.fx === 'hook') {
-    // первый кадр сразу на экране, без затемнения: хук в первые секунды
-    fade = interpolate(frame, [dur - 6, dur], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  // сцены перетекают друг в друга: новая проявляется поверх предыдущей, без чёрного между ними
+  // первый кадр серии уже на экране: без затемнения из чёрного
+  let fade = isFirst ? 1 : interpolate(frame, [0, 6], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  if (isLast) {
+    fade = Math.min(fade, interpolate(frame, [dur - 6, dur], [1, 0], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}));
   }
   if (scene.fx === 'hook') {
     scale = interpolate(frame, [0, 18], [1.12, 1.02], {extrapolateRight: 'clamp'}) + 0.03 * p;
@@ -162,11 +163,13 @@ export const FrozenPart: React.FC<{data: Data}> = ({data}) => {
   return (
     <AbsoluteFill style={{background: '#000'}}>
       {data.scenes.map((s, i) => {
+        const last = i === data.scenes.length - 1;
         const from = Math.round(s.start * fps);
-        const to = Math.round(s.end * fps);
+        // each scene keeps running 0.2 s into the next one, so the next scene fades in over it
+        const to = Math.round((last ? s.end : s.end + 0.2) * fps);
         return (
           <Sequence key={i} from={from} durationInFrames={Math.max(1, to - from)}>
-            <SceneLayer scene={s} dur={Math.max(1, to - from)} />
+            <SceneLayer scene={s} dur={Math.max(1, to - from)} isFirst={i === 0} isLast={last} />
           </Sequence>
         );
       })}

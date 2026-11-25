@@ -14,3 +14,7 @@ frozen-series/stills1/
 frozen-series/out/*.wav
 frozen-series/takes/
 public/frozen/
+# кадры контрольных листов и QA серии (пересобираются)
+frozen-series/stills*/
+out/*_sheet.jpg
+out/qa/

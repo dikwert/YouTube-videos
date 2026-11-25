@@ -14,6 +14,10 @@ import {JanitorShort} from './janitor/JanitorShort';
 import {JanitorCover} from './janitor/JanitorCover';
 import {FrozenPart} from './frozen/FrozenPart';
 import frozen1 from './frozen/data/part1_full.json';
+import frozen2 from './frozen/data/part2_full.json';
+import frozen3 from './frozen/data/part3_full.json';
+import frozen4 from './frozen/data/part4_full.json';
+import frozen5 from './frozen/data/part5_full.json';
 
 const Cover1: React.FC = () => <CoverPart n={1} name="ETHAN NEVER TOLD IT" seed={3} />;
 const Cover2: React.FC = () => <CoverPart n={2} name="THE OTHER JEEP" seed={8} />;
@@ -38,5 +42,9 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="JanitorShort" component={JanitorShort} durationInFrames={1911} fps={FPS} width={W} height={H} />
     <Composition id="JanitorCover" component={JanitorCover} durationInFrames={2010} fps={FPS} width={W} height={H} />
     <Composition id="FrozenPart1" component={FrozenPart} durationInFrames={Math.ceil(frozen1.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen1 as any}} />
+    <Composition id="FrozenPart2" component={FrozenPart} durationInFrames={Math.ceil(frozen2.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen2 as any}} />
+    <Composition id="FrozenPart3" component={FrozenPart} durationInFrames={Math.ceil(frozen3.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen3 as any}} />
+    <Composition id="FrozenPart4" component={FrozenPart} durationInFrames={Math.ceil(frozen4.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen4 as any}} />
+    <Composition id="FrozenPart5" component={FrozenPart} durationInFrames={Math.ceil(frozen5.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen5 as any}} />
   </>
 );

@@ -165,7 +165,7 @@ def flyer(x=160, y=170, w=760, h=1000):
     d.rectangle([x + 18, y + 26, x + w + 18, y + h + 26], fill=(0, 0, 0, 160))
     paper = vgrad(w, h, (238, 232, 218), (206, 198, 184))
     pd = ImageDraw.Draw(paper)
-    pd.text((70, 56), 'ПРОПАЛ', font=font(120, True), fill=(160, 22, 22, 255))
+    pd.text((70, 56), 'ПРОПАЛ', font=font(int(min(120, w * 0.155)), True), fill=(160, 22, 22, 255))
     pd.rounded_rectangle([130, 260, 630, 640], radius=12, fill=(120, 124, 128, 255))
     pd.ellipse([300, 320, 460, 480], fill=(150, 154, 158, 255))
     pd.rounded_rectangle([250, 500, 510, 620], radius=60, fill=(150, 154, 158, 255))

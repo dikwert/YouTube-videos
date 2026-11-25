@@ -19,7 +19,7 @@ TAKES = ROOT / 'takes'
 
 def classify(line):
     if line.startswith('RECAP:'):
-        return 'recap', line
+        return 'recap', line[len('RECAP:'):].strip()
     for tag, role in (('[ВОДИТЕЛЬ]', 'driver'), ('[КОСТЯ]', 'kostya')):
         if line.startswith(tag):
             return role, line[len(tag):].strip()

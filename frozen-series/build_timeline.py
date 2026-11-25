@@ -23,7 +23,9 @@ TAKES = ROOT / 'takes'
 OUT = ROOT / 'out'
 DATA = ROOT.parent / 'src' / 'frozen' / 'data'
 RECAP_HOLD = 2.5   # seconds the recap text stays on screen before the voice starts
+SPEED = 1.12      # each take is sped up (pitch kept), so the pauses between phrases can breathe
 TARGET = (55.0, 65.0)
+TOTAL_TARGET = 64.0  # the pauses are fitted so that the whole part lands here
 
 
 def pause_after(text, role, next_role):
@@ -59,14 +61,15 @@ def load_line(n, i):
     t0 = starts[0] if starts else 0.0
     dur = (ends[-1] - t0) if ends else 0.0
     for w in words:
-        w['s'] -= t0
-        w['e'] -= t0
+        w['s'] = (w['s'] - t0) / SPEED
+        w['e'] = (w['e'] - t0) / SPEED
+    dur = dur / SPEED
     audio = base64.b64decode(d['audio_base64'])
     return words, dur, audio
 
 
 def decode(mp3):
-    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', 'pipe:0', '-ac', '1', '-ar', str(SR), '-f', 'f32le', 'pipe:1'],
+    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', 'pipe:0', '-af', f'atempo={SPEED}', '-ac', '1', '-ar', str(SR), '-f', 'f32le', 'pipe:1'],
                          input=mp3, capture_output=True, check=True).stdout
     return np.frombuffer(raw, dtype='<f4').astype(np.float64)
 
@@ -82,8 +85,8 @@ def plan_scale(n, segs):
         nxt = voiced[k + 1]['role'] if k + 1 < len(voiced) else None
         base_pauses += pause_after(s['text'], s['role'], nxt)
     recap = RECAP_HOLD if any(s['role'] == 'recap' for s in segs) else 0.0
-    want = 60.0 - recap - speech
-    scale = max(0.25, min(1.0, want / base_pauses)) if base_pauses > 0 else 1.0
+    want = TOTAL_TARGET - recap - speech
+    scale = max(0.25, min(1.6, want / base_pauses)) if base_pauses > 0 else 1.0
     return scale, speech, base_pauses
 
 
@@ -105,7 +108,7 @@ def build(n, pause_scale=None):
     recap_text = next((s['text'] for s in segs if s['role'] == 'recap'), None)
     for k, s in enumerate(voiced):
         words, dur, mp3 = load_line(n, s['i'])
-        x = decode(mp3)
+        x = decode(mp3)[:int(round((dur + 0.05) * SR))]  # cut the tail after the last letter, keep 50 ms
         # trim the audio to the speech so the line sits exactly where the timeline says
         start_sample = int(round(t * SR))
         L = min(len(x), audio_total - start_sample)
