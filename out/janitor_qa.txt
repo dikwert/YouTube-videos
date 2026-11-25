@@ -1,8 +1,8 @@
-format: 1440x2560 30/1 fps, duration 67.01 s -> OK
+format: 1440x2560 30/1 fps, duration 63.70 s -> OK
 audio: aac 48000 Hz, 2 ch -> OK
-frames analysed: 2010
+frames analysed: 1911
 black frames: none outside the hook flash -> OK
 white frames: none outside the hook flash -> OK
 frozen runs: none of 12 frames or more -> OK
-loudness: integrated -16.3 LUFS, LRA 2.1 LU, true peak -4.4 dBFS (target -14 LUFS, peak <= -1 dBFS)
+loudness: integrated -15.8 LUFS, LRA 1.9 LU, true peak -4.4 dBFS (target -14 LUFS, peak <= -1 dBFS)
 RESULT: PASS
