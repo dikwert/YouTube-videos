@@ -18,6 +18,9 @@ import frozen2 from './frozen/data/part2_full.json';
 import frozen3 from './frozen/data/part3_full.json';
 import frozen4 from './frozen/data/part4_full.json';
 import frozen5 from './frozen/data/part5_full.json';
+import {HaroldShort} from './harold/HaroldShort';
+import {HaroldCover} from './harold/Cover';
+import harold from './harold/data/timeline.json';
 
 const Cover1: React.FC = () => <CoverPart n={1} name="ETHAN NEVER TOLD IT" seed={3} />;
 const Cover2: React.FC = () => <CoverPart n={2} name="THE OTHER JEEP" seed={8} />;
@@ -46,5 +49,7 @@ export const RemotionRoot: React.FC = () => (
     <Composition id="FrozenPart3" component={FrozenPart} durationInFrames={Math.ceil(frozen3.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen3 as any}} />
     <Composition id="FrozenPart4" component={FrozenPart} durationInFrames={Math.ceil(frozen4.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen4 as any}} />
     <Composition id="FrozenPart5" component={FrozenPart} durationInFrames={Math.ceil(frozen5.duration * 30)} fps={FPS} width={W} height={H} defaultProps={{data: frozen5 as any}} />
+    <Composition id="HaroldShort" component={HaroldShort} durationInFrames={Math.ceil(harold.duration * 30)} fps={30} width={1080} height={1920} />
+    <Still id="HaroldCover" component={HaroldCover} width={1080} height={1920} />
   </>
 );

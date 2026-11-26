@@ -18,3 +18,11 @@ public/frozen/
 frozen-series/stills*/
 out/*_sheet.jpg
 out/qa/
+# короткометражка Harold: тяжёлые промежуточные файлы
+harold-short/voice/takes/
+harold-short/voice/voice.wav
+harold-short/out/
+harold-short/stills/
+harold-short/cover/
+harold-short/segments/
+public/harold/

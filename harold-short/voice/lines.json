@@ -1,0 +1,418 @@
+{
+ "duration": 61.131,
+ "lines": [
+  {
+   "idx": 0,
+   "stanza": 0,
+   "text": "This old man",
+   "s": 0.0,
+   "e": 0.339
+  },
+  {
+   "idx": 1,
+   "stanza": 0,
+   "text": "just bankrupted his town...",
+   "s": 0.38,
+   "e": 1.898
+  },
+  {
+   "idx": 2,
+   "stanza": 0,
+   "text": "with a library book.",
+   "s": 1.925,
+   "e": 2.847
+  },
+  {
+   "idx": 3,
+   "stanza": 1,
+   "text": "Meet Harold.",
+   "s": 3.197,
+   "e": 3.74
+  },
+  {
+   "idx": 4,
+   "stanza": 1,
+   "text": "In 1954,",
+   "s": 3.875,
+   "e": 4.892
+  },
+  {
+   "idx": 5,
+   "stanza": 1,
+   "text": "he borrowed one book.",
+   "s": 4.937,
+   "e": 5.909
+  },
+  {
+   "idx": 6,
+   "stanza": 1,
+   "text": "\"Fishing for Beginners.\"",
+   "s": 6.181,
+   "e": 7.536
+  },
+  {
+   "idx": 7,
+   "stanza": 1,
+   "text": "Due in two weeks.",
+   "s": 7.604,
+   "e": 8.418
+  },
+  {
+   "idx": 8,
+   "stanza": 2,
+   "text": "He forgot.",
+   "s": 8.768,
+   "e": 9.649
+  },
+  {
+   "idx": 9,
+   "stanza": 2,
+   "text": "For seventy years.",
+   "s": 9.734,
+   "e": 11.073
+  },
+  {
+   "idx": 10,
+   "stanza": 3,
+   "text": "Last spring,",
+   "s": 11.423,
+   "e": 11.897
+  },
+  {
+   "idx": 11,
+   "stanza": 3,
+   "text": "he found it",
+   "s": 11.92,
+   "e": 12.236
+  },
+  {
+   "idx": 12,
+   "stanza": 3,
+   "text": "in his attic,",
+   "s": 12.281,
+   "e": 13.118
+  },
+  {
+   "idx": 13,
+   "stanza": 3,
+   "text": "holding up",
+   "s": 13.143,
+   "e": 13.457
+  },
+  {
+   "idx": 14,
+   "stanza": 3,
+   "text": "a wobbly table.",
+   "s": 13.491,
+   "e": 14.203
+  },
+  {
+   "idx": 15,
+   "stanza": 4,
+   "text": "So Harold drove",
+   "s": 14.553,
+   "e": 15.095
+  },
+  {
+   "idx": 16,
+   "stanza": 4,
+   "text": "to the library.",
+   "s": 15.118,
+   "e": 16.078
+  },
+  {
+   "idx": 17,
+   "stanza": 4,
+   "text": "Margaret, the librarian,",
+   "s": 16.119,
+   "e": 17.061
+  },
+  {
+   "idx": 18,
+   "stanza": 4,
+   "text": "scanned the book.",
+   "s": 17.095,
+   "e": 17.739
+  },
+  {
+   "idx": 19,
+   "stanza": 4,
+   "text": "The computer",
+   "s": 17.824,
+   "e": 18.417
+  },
+  {
+   "idx": 20,
+   "stanza": 4,
+   "text": "started smoking.",
+   "s": 18.451,
+   "e": 19.434
+  },
+  {
+   "idx": 21,
+   "stanza": 5,
+   "text": "Ten cents a day.",
+   "s": 19.784,
+   "e": 20.462
+  },
+  {
+   "idx": 22,
+   "stanza": 5,
+   "text": "Plus interest.",
+   "s": 20.584,
+   "e": 21.547
+  },
+  {
+   "idx": 23,
+   "stanza": 5,
+   "text": "Since 1954.",
+   "s": 21.648,
+   "e": 23.648
+  },
+  {
+   "idx": 24,
+   "stanza": 5,
+   "text": "The total?",
+   "s": 23.733,
+   "e": 24.462
+  },
+  {
+   "idx": 25,
+   "stanza": 5,
+   "text": "One point two",
+   "s": 24.648,
+   "e": 25.886
+  },
+  {
+   "idx": 26,
+   "stanza": 5,
+   "text": "million dollars.",
+   "s": 25.962,
+   "e": 27.106
+  },
+  {
+   "idx": 27,
+   "stanza": 6,
+   "text": "Harold had",
+   "s": 27.456,
+   "e": 27.863
+  },
+  {
+   "idx": 28,
+   "stanza": 6,
+   "text": "forty-three dollars...",
+   "s": 27.897,
+   "e": 29.286
+  },
+  {
+   "idx": 29,
+   "stanza": 6,
+   "text": "and a goat.",
+   "s": 29.32,
+   "e": 29.897
+  },
+  {
+   "idx": 30,
+   "stanza": 7,
+   "text": "The judge said,",
+   "s": 30.247,
+   "e": 30.721
+  },
+  {
+   "idx": 31,
+   "stanza": 7,
+   "text": "\"Pay with anything",
+   "s": 30.891,
+   "e": 31.603
+  },
+  {
+   "idx": 32,
+   "stanza": 7,
+   "text": "you own.\"",
+   "s": 31.619,
+   "e": 32.281
+  },
+  {
+   "idx": 33,
+   "stanza": 7,
+   "text": "And Harold remembered.",
+   "s": 32.365,
+   "e": 33.636
+  },
+  {
+   "idx": 34,
+   "stanza": 7,
+   "text": "Grandpa left him",
+   "s": 33.693,
+   "e": 34.382
+  },
+  {
+   "idx": 35,
+   "stanza": 7,
+   "text": "some land.",
+   "s": 34.409,
+   "e": 34.857
+  },
+  {
+   "idx": 36,
+   "stanza": 7,
+   "text": "The land under",
+   "s": 34.975,
+   "e": 35.738
+  },
+  {
+   "idx": 37,
+   "stanza": 7,
+   "text": "the entire town.",
+   "s": 35.755,
+   "e": 36.891
+  },
+  {
+   "idx": 38,
+   "stanza": 8,
+   "text": "Overnight,",
+   "s": 37.241,
+   "e": 37.647
+  },
+  {
+   "idx": 39,
+   "stanza": 8,
+   "text": "the library",
+   "s": 37.664,
+   "e": 38.054
+  },
+  {
+   "idx": 40,
+   "stanza": 8,
+   "text": "owned everything.",
+   "s": 38.099,
+   "e": 38.868
+  },
+  {
+   "idx": 41,
+   "stanza": 8,
+   "text": "The bank.",
+   "s": 38.936,
+   "e": 39.681
+  },
+  {
+   "idx": 42,
+   "stanza": 8,
+   "text": "The bakery.",
+   "s": 39.766,
+   "e": 40.8
+  },
+  {
+   "idx": 43,
+   "stanza": 8,
+   "text": "The fire station.",
+   "s": 40.859,
+   "e": 41.851
+  },
+  {
+   "idx": 44,
+   "stanza": 9,
+   "text": "Margaret became mayor.",
+   "s": 42.201,
+   "e": 43.184
+  },
+  {
+   "idx": 45,
+   "stanza": 9,
+   "text": "Her first law:",
+   "s": 43.226,
+   "e": 44.438
+  },
+  {
+   "idx": 46,
+   "stanza": 9,
+   "text": "whispering only.",
+   "s": 44.472,
+   "e": 45.184
+  },
+  {
+   "idx": 47,
+   "stanza": 9,
+   "text": "Everywhere.",
+   "s": 45.264,
+   "e": 46.133
+  },
+  {
+   "idx": 48,
+   "stanza": 10,
+   "text": "Car horns? Banned.",
+   "s": 46.483,
+   "e": 48.212
+  },
+  {
+   "idx": 49,
+   "stanza": 10,
+   "text": "Loud sneeze?",
+   "s": 48.286,
+   "e": 49.195
+  },
+  {
+   "idx": 50,
+   "stanza": 10,
+   "text": "Ten-dollar fine.",
+   "s": 49.246,
+   "e": 49.941
+  },
+  {
+   "idx": 51,
+   "stanza": 11,
+   "text": "And Harold?",
+   "s": 50.291,
+   "e": 50.765
+  },
+  {
+   "idx": 52,
+   "stanza": 11,
+   "text": "He finally read the book.",
+   "s": 50.992,
+   "e": 52.325
+  },
+  {
+   "idx": 53,
+   "stanza": 11,
+   "text": "Went fishing.",
+   "s": 52.433,
+   "e": 53.647
+  },
+  {
+   "idx": 54,
+   "stanza": 11,
+   "text": "And caught...",
+   "s": 53.723,
+   "e": 54.833
+  },
+  {
+   "idx": 55,
+   "stanza": 11,
+   "text": "another library book.",
+   "s": 54.875,
+   "e": 56.189
+  },
+  {
+   "idx": 56,
+   "stanza": 12,
+   "text": "Overdue since 1931.",
+   "s": 56.539,
+   "e": 58.573
+  },
+  {
+   "idx": 57,
+   "stanza": 12,
+   "text": "Borrowed by...",
+   "s": 58.641,
+   "e": 60.132
+  },
+  {
+   "idx": 58,
+   "stanza": 12,
+   "text": "Margaret's grandfather.",
+   "s": 60.169,
+   "e": 61.081
+  }
+ ]
+}

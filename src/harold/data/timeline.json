@@ -1,0 +1,1188 @@
+{
+ "duration": 61.131,
+ "fps": 30,
+ "shots": [
+  {
+   "id": "HOOK",
+   "start": 0.0,
+   "end": 3.2
+  },
+  {
+   "id": "TITLE_1954",
+   "start": 3.2,
+   "end": 4.94
+  },
+  {
+   "id": "CHECKOUT",
+   "start": 4.94,
+   "end": 7.6
+  },
+  {
+   "id": "DUE_STAMP",
+   "start": 7.6,
+   "end": 9.73
+  },
+  {
+   "id": "MONTAGE",
+   "start": 9.73,
+   "end": 11.42
+  },
+  {
+   "id": "ATTIC",
+   "start": 11.42,
+   "end": 13.49
+  },
+  {
+   "id": "TABLE",
+   "start": 13.49,
+   "end": 14.55
+  },
+  {
+   "id": "CAR",
+   "start": 14.55,
+   "end": 16.12
+  },
+  {
+   "id": "SCAN",
+   "start": 16.12,
+   "end": 17.82
+  },
+  {
+   "id": "SMOKE",
+   "start": 17.82,
+   "end": 19.78
+  },
+  {
+   "id": "COUNTER",
+   "start": 19.78,
+   "end": 23.73
+  },
+  {
+   "id": "TOTAL",
+   "start": 23.73,
+   "end": 24.65
+  },
+  {
+   "id": "MILLION",
+   "start": 24.65,
+   "end": 27.46
+  },
+  {
+   "id": "WALLET",
+   "start": 27.46,
+   "end": 29.32
+  },
+  {
+   "id": "GOAT",
+   "start": 29.32,
+   "end": 30.25
+  },
+  {
+   "id": "COURT",
+   "start": 30.25,
+   "end": 32.37
+  },
+  {
+   "id": "FLASHBACK",
+   "start": 32.37,
+   "end": 34.98
+  },
+  {
+   "id": "DEED_MAP",
+   "start": 34.98,
+   "end": 37.24
+  },
+  {
+   "id": "STAMPS",
+   "start": 37.24,
+   "end": 42.2
+  },
+  {
+   "id": "MAYOR",
+   "start": 42.2,
+   "end": 44.47
+  },
+  {
+   "id": "WHISPER",
+   "start": 44.47,
+   "end": 46.48
+  },
+  {
+   "id": "TOWN_GAGS",
+   "start": 46.48,
+   "end": 50.29
+  },
+  {
+   "id": "LAKE",
+   "start": 50.29,
+   "end": 53.72
+  },
+  {
+   "id": "ROD",
+   "start": 53.72,
+   "end": 56.54
+  },
+  {
+   "id": "DUE_1931",
+   "start": 56.54,
+   "end": 60.17
+  },
+  {
+   "id": "OFFICE",
+   "start": 60.17,
+   "end": 61.131
+  }
+ ],
+ "cards": [
+  {
+   "s": 0.0,
+   "e": 0.36,
+   "words": [
+    {
+     "w": "This",
+     "red": false
+    },
+    {
+     "w": "old",
+     "red": false
+    },
+    {
+     "w": "man",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 0.38,
+   "e": 1.905,
+   "words": [
+    {
+     "w": "just",
+     "red": false
+    },
+    {
+     "w": "bankrupted",
+     "red": true
+    },
+    {
+     "w": "his",
+     "red": false
+    },
+    {
+     "w": "town...",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 1.925,
+   "e": 2.967,
+   "words": [
+    {
+     "w": "with",
+     "red": false
+    },
+    {
+     "w": "a",
+     "red": false
+    },
+    {
+     "w": "library",
+     "red": false
+    },
+    {
+     "w": "book.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 3.197,
+   "e": 3.855,
+   "words": [
+    {
+     "w": "Meet",
+     "red": false
+    },
+    {
+     "w": "Harold.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 3.875,
+   "e": 4.917000000000001,
+   "words": [
+    {
+     "w": "In",
+     "red": false
+    },
+    {
+     "w": "1954,",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 4.937,
+   "e": 6.029,
+   "words": [
+    {
+     "w": "he",
+     "red": false
+    },
+    {
+     "w": "borrowed",
+     "red": false
+    },
+    {
+     "w": "one",
+     "red": false
+    },
+    {
+     "w": "book.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 6.181,
+   "e": 7.5840000000000005,
+   "words": [
+    {
+     "w": "\"Fishing",
+     "red": false
+    },
+    {
+     "w": "for",
+     "red": false
+    },
+    {
+     "w": "Beginners.\"",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 7.604,
+   "e": 8.537999999999998,
+   "words": [
+    {
+     "w": "Due",
+     "red": false
+    },
+    {
+     "w": "in",
+     "red": false
+    },
+    {
+     "w": "two",
+     "red": false
+    },
+    {
+     "w": "weeks.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 8.768,
+   "e": 9.714,
+   "words": [
+    {
+     "w": "He",
+     "red": false
+    },
+    {
+     "w": "forgot.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 9.734,
+   "e": 11.193,
+   "words": [
+    {
+     "w": "For",
+     "red": false
+    },
+    {
+     "w": "seventy",
+     "red": false
+    },
+    {
+     "w": "years.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 11.423,
+   "e": 11.9,
+   "words": [
+    {
+     "w": "Last",
+     "red": false
+    },
+    {
+     "w": "spring,",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 11.92,
+   "e": 12.261000000000001,
+   "words": [
+    {
+     "w": "he",
+     "red": false
+    },
+    {
+     "w": "found",
+     "red": false
+    },
+    {
+     "w": "it",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 12.281,
+   "e": 13.123000000000001,
+   "words": [
+    {
+     "w": "in",
+     "red": false
+    },
+    {
+     "w": "his",
+     "red": false
+    },
+    {
+     "w": "attic,",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 13.143,
+   "e": 13.471,
+   "words": [
+    {
+     "w": "holding",
+     "red": false
+    },
+    {
+     "w": "up",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 13.491,
+   "e": 14.322999999999999,
+   "words": [
+    {
+     "w": "a",
+     "red": false
+    },
+    {
+     "w": "wobbly",
+     "red": false
+    },
+    {
+     "w": "table.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 14.553,
+   "e": 15.098,
+   "words": [
+    {
+     "w": "So",
+     "red": false
+    },
+    {
+     "w": "Harold",
+     "red": false
+    },
+    {
+     "w": "drove",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 15.118,
+   "e": 16.099,
+   "words": [
+    {
+     "w": "to",
+     "red": false
+    },
+    {
+     "w": "the",
+     "red": false
+    },
+    {
+     "w": "library.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 16.119,
+   "e": 17.075,
+   "words": [
+    {
+     "w": "Margaret,",
+     "red": false
+    },
+    {
+     "w": "the",
+     "red": false
+    },
+    {
+     "w": "librarian,",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 17.095,
+   "e": 17.804000000000002,
+   "words": [
+    {
+     "w": "scanned",
+     "red": false
+    },
+    {
+     "w": "the",
+     "red": false
+    },
+    {
+     "w": "book.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 17.824,
+   "e": 18.431,
+   "words": [
+    {
+     "w": "The",
+     "red": false
+    },
+    {
+     "w": "computer",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 18.451,
+   "e": 19.554000000000002,
+   "words": [
+    {
+     "w": "started",
+     "red": false
+    },
+    {
+     "w": "smoking.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 19.784,
+   "e": 20.564,
+   "words": [
+    {
+     "w": "Ten",
+     "red": false
+    },
+    {
+     "w": "cents",
+     "red": false
+    },
+    {
+     "w": "a",
+     "red": false
+    },
+    {
+     "w": "day.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 20.584,
+   "e": 21.628,
+   "words": [
+    {
+     "w": "Plus",
+     "red": false
+    },
+    {
+     "w": "interest.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 21.648,
+   "e": 23.713,
+   "words": [
+    {
+     "w": "Since",
+     "red": false
+    },
+    {
+     "w": "1954.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 23.733,
+   "e": 24.582,
+   "words": [
+    {
+     "w": "The",
+     "red": false
+    },
+    {
+     "w": "total?",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 24.648,
+   "e": 25.942,
+   "words": [
+    {
+     "w": "One",
+     "red": false
+    },
+    {
+     "w": "point",
+     "red": false
+    },
+    {
+     "w": "two",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 25.962,
+   "e": 27.226000000000003,
+   "words": [
+    {
+     "w": "million",
+     "red": true
+    },
+    {
+     "w": "dollars.",
+     "red": true
+    }
+   ]
+  },
+  {
+   "s": 27.456,
+   "e": 27.877,
+   "words": [
+    {
+     "w": "Harold",
+     "red": false
+    },
+    {
+     "w": "had",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 27.897,
+   "e": 29.3,
+   "words": [
+    {
+     "w": "forty-three",
+     "red": false
+    },
+    {
+     "w": "dollars...",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 29.32,
+   "e": 30.017,
+   "words": [
+    {
+     "w": "and",
+     "red": false
+    },
+    {
+     "w": "a",
+     "red": false
+    },
+    {
+     "w": "goat.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 30.247,
+   "e": 30.841,
+   "words": [
+    {
+     "w": "The",
+     "red": false
+    },
+    {
+     "w": "judge",
+     "red": false
+    },
+    {
+     "w": "said,",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 30.891,
+   "e": 31.599,
+   "words": [
+    {
+     "w": "\"Pay",
+     "red": false
+    },
+    {
+     "w": "with",
+     "red": false
+    },
+    {
+     "w": "anything",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 31.619,
+   "e": 32.345,
+   "words": [
+    {
+     "w": "you",
+     "red": false
+    },
+    {
+     "w": "own.\"",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 32.365,
+   "e": 33.672999999999995,
+   "words": [
+    {
+     "w": "And",
+     "red": false
+    },
+    {
+     "w": "Harold",
+     "red": false
+    },
+    {
+     "w": "remembered.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 33.693,
+   "e": 34.388999999999996,
+   "words": [
+    {
+     "w": "Grandpa",
+     "red": false
+    },
+    {
+     "w": "left",
+     "red": false
+    },
+    {
+     "w": "him",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 34.409,
+   "e": 34.955,
+   "words": [
+    {
+     "w": "some",
+     "red": false
+    },
+    {
+     "w": "land.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 34.975,
+   "e": 35.735,
+   "words": [
+    {
+     "w": "The",
+     "red": false
+    },
+    {
+     "w": "land",
+     "red": false
+    },
+    {
+     "w": "under",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 35.755,
+   "e": 37.010999999999996,
+   "words": [
+    {
+     "w": "the",
+     "red": false
+    },
+    {
+     "w": "entire",
+     "red": false
+    },
+    {
+     "w": "town.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 37.241,
+   "e": 37.644,
+   "words": [
+    {
+     "w": "Overnight,",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 37.664,
+   "e": 38.07899999999999,
+   "words": [
+    {
+     "w": "the",
+     "red": false
+    },
+    {
+     "w": "library",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 38.099,
+   "e": 38.916,
+   "words": [
+    {
+     "w": "owned",
+     "red": false
+    },
+    {
+     "w": "everything.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 38.936,
+   "e": 39.745999999999995,
+   "words": [
+    {
+     "w": "The",
+     "red": false
+    },
+    {
+     "w": "bank.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 39.766,
+   "e": 40.839,
+   "words": [
+    {
+     "w": "The",
+     "red": false
+    },
+    {
+     "w": "bakery.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 40.859,
+   "e": 41.971,
+   "words": [
+    {
+     "w": "The",
+     "red": false
+    },
+    {
+     "w": "fire",
+     "red": false
+    },
+    {
+     "w": "station.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 42.201,
+   "e": 43.205999999999996,
+   "words": [
+    {
+     "w": "Margaret",
+     "red": false
+    },
+    {
+     "w": "became",
+     "red": false
+    },
+    {
+     "w": "mayor.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 43.226,
+   "e": 44.452,
+   "words": [
+    {
+     "w": "Her",
+     "red": false
+    },
+    {
+     "w": "first",
+     "red": false
+    },
+    {
+     "w": "law:",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 44.472,
+   "e": 45.244,
+   "words": [
+    {
+     "w": "whispering",
+     "red": false
+    },
+    {
+     "w": "only.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 45.264,
+   "e": 46.253,
+   "words": [
+    {
+     "w": "Everywhere.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 46.483,
+   "e": 48.266,
+   "words": [
+    {
+     "w": "Car",
+     "red": false
+    },
+    {
+     "w": "horns?",
+     "red": false
+    },
+    {
+     "w": "Banned.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 48.286,
+   "e": 49.226,
+   "words": [
+    {
+     "w": "Loud",
+     "red": false
+    },
+    {
+     "w": "sneeze?",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 49.246,
+   "e": 50.061,
+   "words": [
+    {
+     "w": "Ten-dollar",
+     "red": false
+    },
+    {
+     "w": "fine.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 50.291,
+   "e": 50.885,
+   "words": [
+    {
+     "w": "And",
+     "red": false
+    },
+    {
+     "w": "Harold?",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 50.992,
+   "e": 51.915,
+   "words": [
+    {
+     "w": "He",
+     "red": false
+    },
+    {
+     "w": "finally",
+     "red": false
+    },
+    {
+     "w": "read",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 51.935,
+   "e": 52.413,
+   "words": [
+    {
+     "w": "the",
+     "red": false
+    },
+    {
+     "w": "book.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 52.433,
+   "e": 53.702999999999996,
+   "words": [
+    {
+     "w": "Went",
+     "red": false
+    },
+    {
+     "w": "fishing.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 53.723,
+   "e": 54.855,
+   "words": [
+    {
+     "w": "And",
+     "red": false
+    },
+    {
+     "w": "caught...",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 54.875,
+   "e": 56.309,
+   "words": [
+    {
+     "w": "another",
+     "red": false
+    },
+    {
+     "w": "library",
+     "red": false
+    },
+    {
+     "w": "book.",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 56.539,
+   "e": 58.620999999999995,
+   "words": [
+    {
+     "w": "Overdue",
+     "red": false
+    },
+    {
+     "w": "since",
+     "red": false
+    },
+    {
+     "w": "1931.",
+     "red": true
+    }
+   ]
+  },
+  {
+   "s": 58.641,
+   "e": 60.148999999999994,
+   "words": [
+    {
+     "w": "Borrowed",
+     "red": false
+    },
+    {
+     "w": "by...",
+     "red": false
+    }
+   ]
+  },
+  {
+   "s": 60.169,
+   "e": 61.201,
+   "words": [
+    {
+     "w": "Margaret's",
+     "red": false
+    },
+    {
+     "w": "grandfather.",
+     "red": false
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  {
+   "t": 0.9,
+   "name": "stamp"
+  },
+  {
+   "t": 7.9,
+   "name": "stamp"
+  },
+  {
+   "t": 18.1,
+   "name": "sparks"
+  },
+  {
+   "t": 19.9,
+   "name": "ching"
+  },
+  {
+   "t": 25.9,
+   "name": "ching_big"
+  },
+  {
+   "t": 29.5,
+   "name": "goat"
+  },
+  {
+   "t": 31.0,
+   "name": "gavel"
+  },
+  {
+   "t": 33.2,
+   "name": "ding"
+  },
+  {
+   "t": 37.6,
+   "name": "stamp"
+  },
+  {
+   "t": 38.9,
+   "name": "stamp"
+  },
+  {
+   "t": 40.9,
+   "name": "stamp"
+  },
+  {
+   "t": 45.0,
+   "name": "shh"
+  },
+  {
+   "t": 46.8,
+   "name": "horn"
+  },
+  {
+   "t": 49.3,
+   "name": "sneeze"
+  },
+  {
+   "t": 49.7,
+   "name": "ching"
+  },
+  {
+   "t": 53.8,
+   "name": "creak"
+  },
+  {
+   "t": 55.0,
+   "name": "splash"
+  },
+  {
+   "t": 56.8,
+   "name": "stamp"
+  },
+  {
+   "t": 58.8,
+   "name": "stamp"
+  }
+ ]
+}
