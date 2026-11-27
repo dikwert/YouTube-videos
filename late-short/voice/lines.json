@@ -1,5 +1,5 @@
 {
- "duration": 60.45,
+ "duration": 60.817,
  "lines": [
   {
    "idx": 0,
@@ -398,70 +398,70 @@
    "stanza": 19,
    "text": "\"Not guilty.\"",
    "s": 50.7,
-   "e": 51.533
+   "e": 51.9
   },
   {
    "idx": 57,
    "stanza": 20,
    "text": "Sounds made up?",
-   "s": 51.733,
-   "e": 52.633
+   "s": 52.1,
+   "e": 53.0
   },
   {
    "idx": 58,
    "stanza": 20,
    "text": "In German universities,",
-   "s": 52.711,
-   "e": 53.867
+   "s": 53.078,
+   "e": 54.233
   },
   {
    "idx": 59,
    "stanza": 20,
    "text": "a class at ten",
-   "s": 53.9,
-   "e": 54.733
+   "s": 54.267,
+   "e": 55.1
   },
   {
    "idx": 60,
    "stanza": 20,
    "text": "\"c.t.\" really starts",
-   "s": 54.867,
-   "e": 56.333
+   "s": 55.233,
+   "e": 56.7
   },
   {
    "idx": 61,
    "stanza": 20,
    "text": "at ten fifteen.",
-   "s": 56.356,
-   "e": 57.133
+   "s": 56.723,
+   "e": 57.5
   },
   {
    "idx": 62,
    "stanza": 21,
    "text": "It's called",
-   "s": 57.333,
-   "e": 57.667
+   "s": 57.7,
+   "e": 58.033
   },
   {
    "idx": 63,
    "stanza": 21,
    "text": "the academic quarter.",
-   "s": 57.733,
-   "e": 59.133
+   "s": 58.1,
+   "e": 59.5
   },
   {
    "idx": 64,
    "stanza": 22,
    "text": "Walter would",
-   "s": 59.333,
-   "e": 59.733
+   "s": 59.7,
+   "e": 60.1
   },
   {
    "idx": 65,
    "stanza": 22,
    "text": "fit right in.",
-   "s": 59.767,
-   "e": 60.4
+   "s": 60.133,
+   "e": 60.767
   }
  ]
 }

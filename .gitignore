@@ -38,3 +38,4 @@ late-short/voice/voice.wav
 late-short/out/
 late-short/segments/
 late-short/render.done
+late-short/voice/__pycache__/
