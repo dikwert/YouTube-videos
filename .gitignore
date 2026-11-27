@@ -36,3 +36,5 @@ out/qa_*.jpg
 late-short/voice/provisional.json
 late-short/voice/voice.wav
 late-short/out/
+late-short/segments/
+late-short/render.done
