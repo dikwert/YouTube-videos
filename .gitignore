@@ -27,3 +27,9 @@ harold-short/cover/
 harold-short/segments/
 public/harold/
 harold-short/voice/takes_v2/
+late-short/stills/
+late-short/cover/
+late-short/voice/takes/
+public/late/
+out/late_*.png
+out/qa_*.jpg
