@@ -95,6 +95,13 @@ def main():
     if words_file.exists():
         real = json.loads(words_file.read_text(encoding='utf-8'))
         lines_full = real['lines']
+        wds = json.loads((VOICE / 'words.json').read_text(encoding='utf-8'))
+        k = 0
+        for ln in lines_full:
+            n = len(ln['text'].split())
+            ln['idx'] = lines_full.index(ln)
+            ln['words'] = wds[k:k + n]
+            k += n
         duration = real['duration']
         provisional_flag = False
     else:

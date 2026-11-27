@@ -24,8 +24,8 @@ SR = 48000
 MODEL = 'eleven_v3'
 SETTINGS = {'stability': 0.35, 'similarity_boost': 0.8, 'style': 0.3}
 NARRATOR = 'iP95p4xoKVk53GoZ742B'          # Chris: американский, разговорный (замена Mike, см. README)
-STANZA_GAP = 0.25
-SPEED = 1.0
+STANZA_GAP = 0.15                           # пауза между строфами, с
+SPEED = 1.2                                # голос ускорен (тон сохраняется), чтобы уложиться в ~60 с
 JUDGE = {'bill': 'pqHfZKP75CvOlQylNhV4', 'adam': 'pNInz6obpgDQGcFmaJgB', 'daniel': 'onwK4e9ZLuTAKqWW03F9'}
 
 

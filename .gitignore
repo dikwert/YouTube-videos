@@ -34,3 +34,5 @@ public/late/
 out/late_*.png
 out/qa_*.jpg
 late-short/voice/provisional.json
+late-short/voice/voice.wav
+late-short/out/

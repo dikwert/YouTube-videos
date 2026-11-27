@@ -1,0 +1,467 @@
+{
+ "duration": 60.45,
+ "lines": [
+  {
+   "idx": 0,
+   "stanza": 0,
+   "text": "Walter showed up",
+   "s": 0.0,
+   "e": 0.467
+  },
+  {
+   "idx": 1,
+   "stanza": 0,
+   "text": "exactly on time.",
+   "s": 0.542,
+   "e": 1.533
+  },
+  {
+   "idx": 2,
+   "stanza": 1,
+   "text": "Ten seconds later,",
+   "s": 1.733,
+   "e": 2.4
+  },
+  {
+   "idx": 3,
+   "stanza": 1,
+   "text": "he was arrested.",
+   "s": 2.444,
+   "e": 3.133
+  },
+  {
+   "idx": 4,
+   "stanza": 2,
+   "text": "This is Tardyville.",
+   "s": 3.333,
+   "e": 4.667
+  },
+  {
+   "idx": 5,
+   "stanza": 3,
+   "text": "Population: two thousand.",
+   "s": 4.867,
+   "e": 6.467
+  },
+  {
+   "idx": 6,
+   "stanza": 4,
+   "text": "And one very",
+   "s": 6.667,
+   "e": 7.333
+  },
+  {
+   "idx": 7,
+   "stanza": 4,
+   "text": "strange law.",
+   "s": 7.375,
+   "e": 8.0
+  },
+  {
+   "idx": 8,
+   "stanza": 5,
+   "text": "Back in 1887,",
+   "s": 8.2,
+   "e": 9.0
+  },
+  {
+   "idx": 9,
+   "stanza": 5,
+   "text": "the town's only clock",
+   "s": 9.017,
+   "e": 10.0
+  },
+  {
+   "idx": 10,
+   "stanza": 5,
+   "text": "ran fifteen minutes slow.",
+   "s": 10.05,
+   "e": 11.4
+  },
+  {
+   "idx": 11,
+   "stanza": 6,
+   "text": "Nobody fixed it.",
+   "s": 11.6,
+   "e": 12.6
+  },
+  {
+   "idx": 12,
+   "stanza": 7,
+   "text": "So the town",
+   "s": 12.8,
+   "e": 13.4
+  },
+  {
+   "idx": 13,
+   "stanza": 7,
+   "text": "made it law.",
+   "s": 13.427,
+   "e": 14.0
+  },
+  {
+   "idx": 14,
+   "stanza": 8,
+   "text": "Everyone must be",
+   "s": 14.2,
+   "e": 14.867
+  },
+  {
+   "idx": 15,
+   "stanza": 8,
+   "text": "fifteen minutes late.",
+   "s": 14.917,
+   "e": 15.8
+  },
+  {
+   "idx": 16,
+   "stanza": 8,
+   "text": "For everything.",
+   "s": 15.883,
+   "e": 16.667
+  },
+  {
+   "idx": 17,
+   "stanza": 9,
+   "text": "The bakery sign says",
+   "s": 16.867,
+   "e": 17.6
+  },
+  {
+   "idx": 18,
+   "stanza": 9,
+   "text": "\"Open at seven.\"",
+   "s": 17.667,
+   "e": 18.467
+  },
+  {
+   "idx": 19,
+   "stanza": 9,
+   "text": "It opens",
+   "s": 18.578,
+   "e": 19.0
+  },
+  {
+   "idx": 20,
+   "stanza": 9,
+   "text": "at seven fifteen.",
+   "s": 19.044,
+   "e": 19.8
+  },
+  {
+   "idx": 21,
+   "stanza": 10,
+   "text": "The school bell rings,",
+   "s": 20.0,
+   "e": 21.067
+  },
+  {
+   "idx": 22,
+   "stanza": 10,
+   "text": "and the kids",
+   "s": 21.1,
+   "e": 21.533
+  },
+  {
+   "idx": 23,
+   "stanza": 10,
+   "text": "wait outside.",
+   "s": 21.573,
+   "e": 22.267
+  },
+  {
+   "idx": 24,
+   "stanza": 11,
+   "text": "Weddings start late.",
+   "s": 22.467,
+   "e": 23.333
+  },
+  {
+   "idx": 25,
+   "stanza": 11,
+   "text": "Buses leave late.",
+   "s": 23.5,
+   "e": 24.7
+  },
+  {
+   "idx": 26,
+   "stanza": 11,
+   "text": "Even birthday cakes",
+   "s": 24.76,
+   "e": 25.8
+  },
+  {
+   "idx": 27,
+   "stanza": 11,
+   "text": "get cut late.",
+   "s": 25.817,
+   "e": 26.867
+  },
+  {
+   "idx": 28,
+   "stanza": 12,
+   "text": "Luckily, nobody here",
+   "s": 27.067,
+   "e": 27.867
+  },
+  {
+   "idx": 29,
+   "stanza": 12,
+   "text": "has ever missed a train.",
+   "s": 27.9,
+   "e": 28.933
+  },
+  {
+   "idx": 30,
+   "stanza": 12,
+   "text": "Unluckily,",
+   "s": 29.089,
+   "e": 30.0
+  },
+  {
+   "idx": 31,
+   "stanza": 12,
+   "text": "that's because",
+   "s": 30.013,
+   "e": 30.4
+  },
+  {
+   "idx": 32,
+   "stanza": 12,
+   "text": "the trains are late too.",
+   "s": 30.417,
+   "e": 31.333
+  },
+  {
+   "idx": 33,
+   "stanza": 13,
+   "text": "Then Walter moved in.",
+   "s": 31.533,
+   "e": 32.333
+  },
+  {
+   "idx": 34,
+   "stanza": 13,
+   "text": "His whole life,",
+   "s": 32.5,
+   "e": 33.667
+  },
+  {
+   "idx": 35,
+   "stanza": 13,
+   "text": "Walter was late.",
+   "s": 33.714,
+   "e": 34.467
+  },
+  {
+   "idx": 36,
+   "stanza": 13,
+   "text": "To everything.",
+   "s": 34.623,
+   "e": 35.467
+  },
+  {
+   "idx": 37,
+   "stanza": 14,
+   "text": "Tardyville was",
+   "s": 35.667,
+   "e": 36.2
+  },
+  {
+   "idx": 38,
+   "stanza": 14,
+   "text": "his dream town.",
+   "s": 36.233,
+   "e": 37.467
+  },
+  {
+   "idx": 39,
+   "stanza": 15,
+   "text": "But on his",
+   "s": 37.667,
+   "e": 38.067
+  },
+  {
+   "idx": 40,
+   "stanza": 15,
+   "text": "very first day,",
+   "s": 38.107,
+   "e": 38.667
+  },
+  {
+   "idx": 41,
+   "stanza": 15,
+   "text": "he was so nervous…",
+   "s": 38.689,
+   "e": 39.933
+  },
+  {
+   "idx": 42,
+   "stanza": 15,
+   "text": "he arrived",
+   "s": 39.956,
+   "e": 40.267
+  },
+  {
+   "idx": 43,
+   "stanza": 15,
+   "text": "at nine o'clock.",
+   "s": 40.289,
+   "e": 41.067
+  },
+  {
+   "idx": 44,
+   "stanza": 15,
+   "text": "Sharp.",
+   "s": 41.189,
+   "e": 42.267
+  },
+  {
+   "idx": 45,
+   "stanza": 16,
+   "text": "The whole office froze.",
+   "s": 42.467,
+   "e": 43.467
+  },
+  {
+   "idx": 46,
+   "stanza": 16,
+   "text": "Someone dropped",
+   "s": 43.525,
+   "e": 44.2
+  },
+  {
+   "idx": 47,
+   "stanza": 16,
+   "text": "their coffee.",
+   "s": 44.211,
+   "e": 44.667
+  },
+  {
+   "idx": 48,
+   "stanza": 16,
+   "text": "Sirens.",
+   "s": 44.767,
+   "e": 45.267
+  },
+  {
+   "idx": 49,
+   "stanza": 17,
+   "text": "The judge set",
+   "s": 45.467,
+   "e": 46.0
+  },
+  {
+   "idx": 50,
+   "stanza": 17,
+   "text": "his trial",
+   "s": 46.017,
+   "e": 46.333
+  },
+  {
+   "idx": 51,
+   "stanza": 17,
+   "text": "for ten.",
+   "s": 46.383,
+   "e": 46.867
+  },
+  {
+   "idx": 52,
+   "stanza": 18,
+   "text": "Walter arrived",
+   "s": 47.067,
+   "e": 47.733
+  },
+  {
+   "idx": 53,
+   "stanza": 18,
+   "text": "at ten fifteen.",
+   "s": 47.778,
+   "e": 48.767
+  },
+  {
+   "idx": 54,
+   "stanza": 18,
+   "text": "Perfectly late.",
+   "s": 48.804,
+   "e": 49.533
+  },
+  {
+   "idx": 55,
+   "stanza": 19,
+   "text": "The judge smiled.",
+   "s": 49.733,
+   "e": 50.4
+  },
+  {
+   "idx": 56,
+   "stanza": 19,
+   "text": "\"Not guilty.\"",
+   "s": 50.7,
+   "e": 51.533
+  },
+  {
+   "idx": 57,
+   "stanza": 20,
+   "text": "Sounds made up?",
+   "s": 51.733,
+   "e": 52.633
+  },
+  {
+   "idx": 58,
+   "stanza": 20,
+   "text": "In German universities,",
+   "s": 52.711,
+   "e": 53.867
+  },
+  {
+   "idx": 59,
+   "stanza": 20,
+   "text": "a class at ten",
+   "s": 53.9,
+   "e": 54.733
+  },
+  {
+   "idx": 60,
+   "stanza": 20,
+   "text": "\"c.t.\" really starts",
+   "s": 54.867,
+   "e": 56.333
+  },
+  {
+   "idx": 61,
+   "stanza": 20,
+   "text": "at ten fifteen.",
+   "s": 56.356,
+   "e": 57.133
+  },
+  {
+   "idx": 62,
+   "stanza": 21,
+   "text": "It's called",
+   "s": 57.333,
+   "e": 57.667
+  },
+  {
+   "idx": 63,
+   "stanza": 21,
+   "text": "the academic quarter.",
+   "s": 57.733,
+   "e": 59.133
+  },
+  {
+   "idx": 64,
+   "stanza": 22,
+   "text": "Walter would",
+   "s": 59.333,
+   "e": 59.733
+  },
+  {
+   "idx": 65,
+   "stanza": 22,
+   "text": "fit right in.",
+   "s": 59.767,
+   "e": 60.4
+  }
+ ]
+}
